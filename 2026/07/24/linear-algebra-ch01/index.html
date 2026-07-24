@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>线性代数 Ch01：行列式 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>线性代数 Ch01：行列式</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-24T02:08:00.000Z" id="date"> 2026-07-24</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:46:47.676Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.math-table { margin: 1.2em auto; overflow-x: auto; }
+.math-table table { width: auto; min-width: 60%; margin: 0 auto; border-collapse: collapse; }
+.math-table th, .math-table td { text-align: center; vertical-align: middle; padding: .45em .8em; white-space: nowrap; }
+.math-table-note { margin: -.5em auto 1em; text-align: center; color: #888; font-size: .92em; }
+.post-content mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
+</style>
+
+<blockquote>
+<p>本文是“线性代数”系列的第 01 章，主题为“行列式”。</p>
+</blockquote>
+<a href="/2026/07/24/linear-algebra-ch02/" title="线性代数 Ch02：矩阵">下一篇：线性代数 Ch02：矩阵</a>
+
+<span id="more"></span>
+
+<blockquote>
+<p>\(n\)阶行列式的完全展开式<br>\[
+\left| \begin{array}{cccc}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n}\\
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n}\\
+\vdots &amp; \vdots &amp;  &amp; \vdots\\
+a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn}\\
+\end{array}\right| =\sum_{j_1j_2\cdots j_n}(-1)^{\tau(j_1j_2\cdots j_n)}a_{1j_1}a_{2j_2}\cdots a_{nj_n}
+\]</p>
+<p>\(\tau(j_1j_2\cdots j_n)\)表示排列\(j_1j_2\cdots j_n\)的逆序数.</p>
+</blockquote>
+<blockquote>
+<p>\(a_{ij}\)的余子式\(M_{ij}\): \(n\)阶行列式中划去第\(i\)行第\(j\)列剩下的元素构成的\(n-1\)阶行列式.</p>
+<p>\(a_{ij}\)的代数余子式\(A_{ij}=(-1)^{i+j}M_{ij}\).</p>
+<p>行列式按第\(k\)行(列)的展开公式: \(n\)阶行列式等于任意一行(列)的所有元素与各自对应的代数余子式的乘积之和.</p>
+</blockquote>
+<blockquote>
+<p>副对角线的行列式<br>\[
+\left| \begin{array}{cccc}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n}\\
+a_{21} &amp; a_{22} &amp; \cdots &amp; 0\\
+\vdots &amp; \vdots &amp;  &amp; \vdots\\
+a_{n1} &amp; 0 &amp; \cdots &amp; 0\\
+\end{array}\right| =\left| \begin{array}{cccc}
+0 &amp; \cdots &amp; 0 &amp; a_{1n}\\
+0 &amp; \cdots &amp; a_{2,n-1} &amp; a_{2n}\\
+\vdots &amp;  &amp; \vdots &amp; \vdots\\
+a_{n1} &amp; \cdots &amp; a_{n,n-1} &amp; a_{nn}\\
+\end{array}\right| =(-1)^{\frac{n(n-1)}{2}}a_{1n}a_{2,n-1}\cdots a_{n1}
+\]</p>
+</blockquote>
+<blockquote>
+<p>拉普拉斯展开式<br>\[
+\begin{aligned}
+&amp;\left| \begin{array}{cc}
+\boldsymbol{A} &amp; *\\
+\boldsymbol{O} &amp; \boldsymbol{B}\\
+\end{array}\right| =\left| \begin{array}{cc}
+\boldsymbol{A} &amp; \boldsymbol{O}\\
+* &amp; \boldsymbol{B}\\
+\end{array}\right| =|\boldsymbol{A}|\cdot|\boldsymbol{B}|\\
+&amp;\left| \begin{array}{cc}
+\boldsymbol{O} &amp; \boldsymbol{A}\\
+\boldsymbol{B} &amp; *\\
+\end{array}\right| =\left| \begin{array}{cc}
+* &amp; \boldsymbol{A}\\
+\boldsymbol{B} &amp; \boldsymbol{O}\\
+\end{array}\right| =(-1)^{mn}|\boldsymbol{A}|\cdot|\boldsymbol{B}|
+\end{aligned}
+\]</p>
+</blockquote>
+<blockquote>
+<p>范德蒙行列式<br>\[
+\left| \begin{array}{cccc}
+1 &amp; 1 &amp; \cdots &amp; 1\\
+x_1 &amp; x_2 &amp; \cdots &amp; x_n\\
+x_1^2 &amp; x_2^2 &amp; \cdots &amp; x_n^2\\
+\vdots &amp; \vdots &amp;  &amp; \vdots\\
+x_1^{n-1} &amp; x_2^{n-1} &amp; \cdots &amp; x_n^{n-1}\\
+\end{array}\right| =\prod_{1\leqslant j&lt;i\leqslant n}(x_i-x_j)
+\]</p>
+</blockquote>
+<blockquote>
+<p>方阵的行列式</p>
+<p>若\(\boldsymbol{A},\boldsymbol{B}\)为\(n\)阶矩阵,</p>
+<p>\(|\boldsymbol{A}^T|=|\boldsymbol{A}|\)  \(|k\boldsymbol{A}|=k^n|\boldsymbol{A}|\)  \(|\boldsymbol{A}\boldsymbol{B}|=|\boldsymbol{A}|\cdot|\boldsymbol{B}|\)  \(|\boldsymbol{A}^*|=|\boldsymbol{A}|^{n-1}\)</p>
+<p>\(|\boldsymbol{A}^{-1}|=|\boldsymbol{A}|^{-1}\)  \(|\boldsymbol{A}|=\displaystyle\prod_{i=1}^{n}\lambda_i\)  \(\boldsymbol{A}\sim\boldsymbol{B}\Rightarrow|\boldsymbol{A}|=|\boldsymbol{B}|,|\boldsymbol{A}+k\boldsymbol{E}|=|\boldsymbol{B}+k\boldsymbol{E}|\)</p>
+<p>注意\(|\boldsymbol{A}+\boldsymbol{B}|\)没有运算法则, 利用\(\boldsymbol{E}\)作恒等变形是常用技巧.</p>
+</blockquote>
+<blockquote>
+<p>克拉默法则及其推论</p>
+<p>\(n\)个方程\(n\)个未知数的线性方程组的系数行列式\(\boldsymbol{D}\neq0\Rightarrow\)方程组有唯一解.</p>
+<p>推论:</p>
+<p>(1) 齐次线性方程组系数行列式不为\(0\Rightarrow\)方程组只有零解.</p>
+<p>(2) 齐次线性方程组有非零解\(\Rightarrow\)系数行列式为0.</p>
+</blockquote>
+<blockquote>
+<p>矩阵秩的概念</p>
+<p>\(r(\boldsymbol{A})=r\Leftrightarrow\boldsymbol{A}\)中有\(r\)阶子式不为0, 任何\(r+1\)阶子式(若还有)必全为0;</p>
+<p>\(r(\boldsymbol{A})&lt;r\Leftrightarrow\boldsymbol{A}\)中每一个\(r\)阶子式全为0;</p>
+<p>\(r(\boldsymbol{A})\geqslant r\Leftrightarrow\boldsymbol{A}\)中有\(r\)阶子式不为0.</p>
+<p>特别地, \(r(\boldsymbol{A})=0\Leftrightarrow\boldsymbol{A}=\boldsymbol{O}\); \(r(\boldsymbol{A})\geqslant1\Leftrightarrow\boldsymbol{A}\neq\boldsymbol{O}\).</p>
+<p>若\(\boldsymbol{A}\)是\(n\)阶矩阵, \(r(\boldsymbol{A})=n\Leftrightarrow|\boldsymbol{A}|\neq0\Leftrightarrow\boldsymbol{A}\)可逆.</p>
+<p>\(r(\boldsymbol{A})&lt;n\Leftrightarrow|\boldsymbol{A}|=0\Leftrightarrow\boldsymbol{A}\)不可逆.</p>
+<p>若\(A\)是\(m\times n\)矩阵, 则\(r(\boldsymbol{A})\leqslant\min(m,n)\).</p>
+</blockquote>
+<blockquote>
+<p>设\(\boldsymbol{A}\)是\(n\)阶反对称矩阵, 即\(\boldsymbol{A}^T=-\boldsymbol{A}\), 若\(\boldsymbol{A}\)可逆, 则\(n\)必是偶数.</p>
+</blockquote>
+<blockquote>
+<p>对于\(\boldsymbol{A}\boldsymbol{B}=\boldsymbol{O}\)的两种思路</p>
+<p>设\(\boldsymbol{A}\)是\(m\times n\)矩阵, \(\boldsymbol{B}\)是\(n\times s\)矩阵, 若\(\boldsymbol{A}\boldsymbol{B}=\boldsymbol{O}\), 则</p>
+<p>(1) \(\boldsymbol{B}\)的列向量是齐次方程组\(\boldsymbol{Ax}=\boldsymbol{0}\)的解;</p>
+<p>(2) \(r(\boldsymbol{A})+r(\boldsymbol{B})\leqslant n\).</p>
+</blockquote>
+<hr>
+<a href="/2026/07/24/linear-algebra-ch02/" title="线性代数 Ch02：矩阵">下一篇：线性代数 Ch02：矩阵</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/24/linear-algebra-ch02/">← Next 线性代数 Ch02：矩阵</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/24/advanced-mathematics-ch07/">高等数学 Ch07：多元函数积分学及其应用 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

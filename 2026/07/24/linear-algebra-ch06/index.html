@@ -1,0 +1,185 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>线性代数 Ch06：二次型 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>线性代数 Ch06：二次型</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-24T02:13:00.000Z" id="date"> 2026-07-24</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:46:47.678Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.math-table { margin: 1.2em auto; overflow-x: auto; }
+.math-table table { width: auto; min-width: 60%; margin: 0 auto; border-collapse: collapse; }
+.math-table th, .math-table td { text-align: center; vertical-align: middle; padding: .45em .8em; white-space: nowrap; }
+.math-table-note { margin: -.5em auto 1em; text-align: center; color: #888; font-size: .92em; }
+.post-content mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
+</style>
+
+<blockquote>
+<p>本文是“线性代数”系列的第 06 章，主题为“二次型”。</p>
+</blockquote>
+<a href="/2026/07/24/linear-algebra-ch05/" title="线性代数 Ch05：特征值与特征向量">上一篇：线性代数 Ch05：特征值与特征向量</a>
+
+<span id="more"></span>
+
+<blockquote>
+<p>二次型化为二次型的矩阵\(\boldsymbol{A}\)</p>
+<p>(1) \(\boldsymbol{A}\)主对角线上的元素为二次型的平方项系数.</p>
+<p>(2) \(x_ix_j\)项系数除以2, 放在\((i,j),(j,i)\)位置.</p>
+</blockquote>
+<blockquote>
+<p>由\(\boldsymbol{x}=(x_1,x_2,x_3)^T\)到\(\boldsymbol{y}=(y_1,y_2,y_3)^T\)的坐标变换<br>\[
+\left[ \begin{array}{c}
+x_1\\ x_2\\ x_3\\
+\end{array}\right] =\left[ \begin{array}{ccc}
+c_{11} &amp; c_{12} &amp; c_{13}\\
+c_{21} &amp; c_{22} &amp; c_{23}\\
+c_{31} &amp; c_{32} &amp; c_{33}\\
+\end{array}\right] \left[ \begin{array}{c}
+y_1\\ y_2\\ y_3\\
+\end{array}\right]
+\]<br>\[
+\boldsymbol{x}=\boldsymbol{Cy}
+\]</p>
+<p>其中\(\boldsymbol{C}\)是可逆矩阵.</p>
+</blockquote>
+<blockquote>
+<p>标准型  只含有平方项的二次型.</p>
+<p>规范型  平方项系数为1, \(-1\)或0的标准型.</p>
+<p>任意二次型都可以通过坐标变换化成标准型</p>
+<p>(1) 配方法.</p>
+<p>(2) 正交变换法.</p>
+<p>正交变换法的具体步骤如下(下设\(n=3\)):</p>
+<p>(1) 写出二次型矩阵\(\boldsymbol{A}\);</p>
+<p>(2) 求矩阵\(\boldsymbol{A}\)的特征值\(\lambda_1,\lambda_2,\lambda_3\);</p>
+<p>(3) 求矩阵\(\boldsymbol{A}\)的特征向量\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\boldsymbol{\alpha}_3\);</p>
+<p>(4) 改造特征向量(单位化、Schmidt正交化)\(\boldsymbol{\gamma}_1,\boldsymbol{\gamma}_2,\boldsymbol{\gamma}_3\);</p>
+<p>(5) 构造正交矩阵\(\boldsymbol{Q}=[\boldsymbol{\gamma}_1,\boldsymbol{\gamma}_2,\boldsymbol{\gamma}_3]\), 则经坐标变换得\(\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}\overset{\boldsymbol{x}=\boldsymbol{Q}\boldsymbol{y}}{=}\boldsymbol{y}^T\boldsymbol{\Lambda} \boldsymbol{y}=\lambda_1y_1^2+\lambda_2y_2^2+\lambda_3y_3^2\).</p>
+</blockquote>
+<blockquote>
+<p>二次型\(\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}\)经坐标变换\(\boldsymbol{x}=\boldsymbol{Cy}\)化为二次型\(\boldsymbol{y}^T\boldsymbol{B}\boldsymbol{y}\)</p>
+<p>\(\Leftrightarrow \boldsymbol{C}^T\boldsymbol{A}\boldsymbol{C}=\boldsymbol{B}\) (合同)</p>
+<p>\(\Leftrightarrow\)正、负惯性指数相等</p>
+<p>\(\Leftrightarrow \boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}\)与\(\boldsymbol{y}^T\boldsymbol{B}\boldsymbol{y}\)有相同的规范型.</p>
+</blockquote>
+<blockquote>
+<p>\(n\)元二次型\(\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}\)正定的充分必要条件有:</p>
+<p>(1) \(\boldsymbol{A}\)的正惯性指数为\(n\);</p>
+<p>(2) \(\boldsymbol{A}\)与\(\boldsymbol{E}\)合同;</p>
+<p>(3) \(\boldsymbol{A}\)的所有特征值均为正数;</p>
+<p>(4) \(\boldsymbol{A}\)的各阶顺序主子式大于零.</p>
+<p>推论: \(\boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}\)正定的必要条件</p>
+<p>(1) \(a_{ii}&gt;0\);</p>
+<p>(2) \(|\boldsymbol{A}|&gt;0\).</p>
+</blockquote>
+<blockquote>
+<p>矩阵的等价、相似、合同</p>
+<p>(一) \(\boldsymbol{A}\)和\(\boldsymbol{B}\)均为\(m\times n\)矩阵, 即同型矩阵</p>
+<p>\(\boldsymbol{A}\)与\(\boldsymbol{B}\)等价</p>
+<p>\(\Leftrightarrow \boldsymbol{A}\)经初等变换得到\(\boldsymbol{B}\)</p>
+<p>\(\Leftrightarrow \boldsymbol{P}\boldsymbol{A}\boldsymbol{Q}=\boldsymbol{B}\), 其中\(\boldsymbol{P},\boldsymbol{Q}\)可逆</p>
+<p>\(\Leftrightarrow r(\boldsymbol{A})=r(\boldsymbol{B})\).</p>
+<p>(二) \(\boldsymbol{A}\)和\(\boldsymbol{B}\)均为\(n\)阶矩阵</p>
+<p>\(\boldsymbol{A}\)与\(\boldsymbol{B}\)相似</p>
+<p>\(\Leftrightarrow \exists\)可逆矩阵\(\boldsymbol{P}\), 使\(\boldsymbol{P}^{-1}\boldsymbol{A}\boldsymbol{P}=\boldsymbol{B}\).</p>
+<p>判断、证明相似</p>
+<p>(1) \(\boldsymbol{A}\sim \boldsymbol{\Lambda},\boldsymbol{B}\sim\boldsymbol{\Lambda}\Rightarrow \boldsymbol{A}\sim \boldsymbol{B}\).</p>
+<p>(2) 实对称矩阵\(\boldsymbol{A}\sim \boldsymbol{B}\Leftrightarrow\lambda_{\boldsymbol{A}}=\lambda_{\boldsymbol{B}}\).</p>
+<p>判断不相似(必要条件)</p>
+<p>(1) \(\displaystyle\sum a_{ii}\neq\displaystyle\sum b_{ii}\); (2) \(\lambda_{\boldsymbol{A}}\neq\lambda_{\boldsymbol{B}}\); (3) \(r(\boldsymbol{A})\neq r(\boldsymbol{B})\); (4) \(|\boldsymbol{A}|\neq|\boldsymbol{B}|\); (5) \(\boldsymbol{A}+k\boldsymbol{E}\nsim \boldsymbol{B}+k\boldsymbol{E}\).</p>
+<p>(三) \(\boldsymbol{A}\)和\(\boldsymbol{B}\)均为\(n\)阶实对称矩阵</p>
+<p>\(\boldsymbol{A}\)与\(\boldsymbol{B}\)合同</p>
+<p>\(\Leftrightarrow \boldsymbol{C}^T\boldsymbol{A}\boldsymbol{C}=\boldsymbol{B}\), 其中\(\boldsymbol{C}\)可逆</p>
+<p>\(\Leftrightarrow \boldsymbol{x}^T\boldsymbol{A}\boldsymbol{x}\)与\(\boldsymbol{x}^T\boldsymbol{B}\boldsymbol{x}\)有相同的正、负惯性指数.</p>
+<p>注意: 实对称矩阵\(\boldsymbol{A}\sim \boldsymbol{B}\Rightarrow \boldsymbol{A}\simeq \boldsymbol{B}\), 但\(\boldsymbol{A}\simeq \boldsymbol{B}\nRightarrow \boldsymbol{A}\sim \boldsymbol{B}\).</p>
+</blockquote>
+<hr>
+<a href="/2026/07/24/linear-algebra-ch05/" title="线性代数 Ch05：特征值与特征向量">上一篇：线性代数 Ch05：特征值与特征向量</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/24/probability-and-statistics-ch01/">← Next 概率论与数理统计 Ch01：随机事件与概率</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/24/linear-algebra-ch05/">线性代数 Ch05：特征值与特征向量 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

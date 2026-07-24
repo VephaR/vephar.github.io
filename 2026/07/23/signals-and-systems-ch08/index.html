@@ -1,0 +1,320 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>信号与系统 Ch08：离散时间系统的频域分析 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>信号与系统 Ch08：离散时间系统的频域分析</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T05:08:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:19:22.546Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.signals-table { display: block; overflow-x: auto; text-align: center; }
+.signals-table table { width: auto; margin-left: auto; margin-right: auto; }
+.signals-table th, .signals-table td { text-align: center !important; vertical-align: middle; }
+</style>
+
+<blockquote>
+<p>本文是“信号与系统”系列的第 08 章，主题为“离散时间系统的频域分析”。</p>
+</blockquote>
+<a href="/2026/07/23/signals-and-systems-ch07/" title="信号与系统 Ch07：离散时间系统的时域分析">上一篇：离散时间系统的时域分析</a> · <a href="/2026/07/23/signals-and-systems-ch09/" title="信号与系统 Ch09：z 变换与离散系统的 z 域分析">下一篇：z 变换与离散系统的 z 域分析</a>
+
+<span id="more"></span>
+
+<h2 id="离散时间傅里叶变换及其性质"><a href="#离散时间傅里叶变换及其性质" class="headerlink" title="离散时间傅里叶变换及其性质"></a>离散时间傅里叶变换及其性质</h2><blockquote>
+<p>离散时间傅里叶正变换(DTFT)<br>\[
+X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x(n)e^{-j\omega n}
+\]</p>
+<p>傅里叶变换收敛的条件<br>\[
+\sum_{n=-\infty}^{\infty}|x(n)|&lt;\infty\quad\mbox{(绝对可加)}
+\]</p>
+<p>傅里叶反变换<br>\[
+x(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\omega})e^{j\omega n}{\rm d}\omega
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散时间傅里叶变换的周期性<br>\[
+X(e^{j(\omega+2m\pi)})=X(e^{j\omega}),m\mbox{为整数}\quad\mbox{(周期为}2\pi\mbox{)}
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散时间傅里叶变换的线性</p>
+<p>若\(\mathscr{F}[x_1(n)]=X_1(e^{j\omega}),\mathscr{F}[x_2(n)]=X_2(e^{j\omega})\), 则<br>\[
+\mathscr{F}[ax_1(n)+bx_2(n)]=aX_1(e^{j\omega})+bX_2(e^{j\omega})
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散时间傅里叶变换的平移特性</p>
+<p>(1) 时移特性<br>\[
+\mathscr{F}[x(n-n_0)]=e^{-j\omega n_0}X(e^{j\omega})
+\]</p>
+<p>(2) 频移特性<br>\[
+\mathscr{F}[e^{j\omega_0n}x(n)]=X(e^{j(\omega-\omega_0)})
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散时间傅里叶变换的对称性<br>\[
+x_e(n)=\frac{1}{2}[x(n)+x^*(-n)]=x_e^*(-n)\quad\mbox{(共轭对称序列)}
+\]<br>\[
+x_o(n)=\frac{1}{2}[x(n)-x^*(-n)]=-x_o^*(-n)\quad\mbox{(共轭反对称序列)}
+\]</p>
+<div class="table-container signals-table">
+<table>
+<thead><tr><th>序列</th><th>傅里叶变换</th></tr></thead>
+<tbody><tr><td>&#92;(x(n)&#92;)</td><td>&#92;(X(e^{j\omega})&#92;)</td></tr><tr><td>&#92;(x^*(n)&#92;)</td><td>&#92;(X^*(e^{-j\omega})&#92;)</td></tr><tr><td>&#92;(x(-n)&#92;)</td><td>&#92;(X(e^{-j\omega})&#92;)</td></tr><tr><td>&#92;(x^*(-n)&#92;)</td><td>&#92;(X^*(e^{j\omega})&#92;)</td></tr><tr><td>&#92;(\mathcal{R}e[x(n)]&#92;)</td><td>&#92;(X_e(e^{j\omega})&#92;)</td></tr><tr><td>&#92;(j\mathcal{I}m[x(n)]&#92;)</td><td>&#92;(X_o(e^{j\omega})&#92;)</td></tr><tr><td>&#92;(x_e(n)&#92;)</td><td>&#92;(\mathcal{R}e[X(e^{j\omega})]&#92;)</td></tr><tr><td>&#92;(x_o(n)&#92;)</td><td>&#92;(j\mathcal{I}m[X(e^{j\omega})]&#92;)</td></tr></tbody>
+</table>
+</div>
+</blockquote>
+<blockquote>
+<p>离散时间傅里叶变换的尺度变换</p>
+<p>定义\(x_k(n)=\begin{cases}
+x\left(\dfrac{n}{k}\right),n\mbox{是}k\mbox{的整倍数}\\[2pt]
+0,\mbox{其他}
+\end{cases}\), 则\(x_k(n)\)的傅里叶变换为<br>\[
+X_k(e^{j\omega})=X(e^{jk\omega})
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散时间傅里叶变换的时域差分性质(要求\(x(n)\)无直流分量)<br>\[
+\mathscr{F}[x(n)-x(n-1)]=(1-e^{-j\omega})X(e^{j\omega})
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散时间傅里叶变换的频域微分性质<br>\[
+\mathscr{F}^{-1}[X'(e^{j\omega})]=-jnx(n)
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散时间傅里叶变换的帕斯瓦尔定理<br>\[
+\sum_{n=-\infty}^{\infty}|x(n)|^2=\frac{1}{2\pi}\int_{-\pi}^{\pi}|X(e^{j\omega})|^2{\rm d}\omega
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散时间傅里叶变换的卷积定理</p>
+<p>(1) 时域卷积定理<br>\[
+\mathscr{F}[x_1(n)*x_2(n)]=X_1(e^{j\omega})\cdot X_2(e^{j\omega})
+\]</p>
+<p>(2) 频域卷积定理(调制性质)<br>\[
+\mathscr{F}[x_1(n)\cdot x_2(n)]=\frac{1}{2\pi}X_1(e^{j\omega})*X_2(e^{j\omega})
+\]</p>
+</blockquote>
+<h2 id="常见离散时间信号的傅里叶变换"><a href="#常见离散时间信号的傅里叶变换" class="headerlink" title="常见离散时间信号的傅里叶变换"></a>常见离散时间信号的傅里叶变换</h2><blockquote>
+<p>单位取样序列\(x(n)=\delta(n)\)的傅里叶变换<br>\[
+X(e^{j\omega})=1
+\]</p>
+</blockquote>
+<blockquote>
+<p>矩形序列\(x(n)=\begin{cases}
+1,|n|\leq N_1\\
+0,|n|&gt;N_1
+\end{cases}\)的傅里叶变换<br>\[
+X(e^{j\omega})=\frac{\sin\omega\left(N_1+\dfrac{1}{2}\right)}{\sin\dfrac{\omega}{2}}
+\]</p>
+</blockquote>
+<blockquote>
+<p>实指数序列的傅里叶变换</p>
+<p>(1) 因果实指数序列\(x(n)=a^n\varepsilon(n),|a|&lt;1\)<br>\[
+X(e^{j\omega})=\frac{1}{1-ae^{-j\omega}}
+\]</p>
+<p>(2) 非因果实指数序列\(x(n)=a^n\varepsilon(-n),|a|&gt;1\)<br>\[
+X(e^{j\omega})=\frac{1}{1-a^{-1}e^{j\omega}}
+\]</p>
+<p>(3) 双边实指数序列\(x(n)=a^{|n|},|a|&lt;1\)<br>\[
+\begin{aligned}
+X(e^{j\omega})&amp;=\frac{1}{1-ae^{-j\omega}}+\frac{1}{1-ae^{j\omega}}-1\\&amp;=\frac{1-a^2}{1-2a\cdot\cos\omega+a^2}
+\end{aligned}
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(x(n)=(n+1)a^n\varepsilon(n),|a|&lt;1\)的傅里叶变换<br>\[
+X(e^{j\omega})=\frac{1}{(1-ae^{-j\omega})^2}
+\]</p>
+<p>推广: \(x(n)=\dfrac{(n+r-1)!}{n!(r-1)!}a^n\varepsilon(n),|a|&lt;1\)的傅里叶变换<br>\[
+X(e^{j\omega})=\frac{1}{(1-ae^{-j\omega})^r}
+\]</p>
+</blockquote>
+<blockquote>
+<p>单位阶跃序列\(x(n)=\varepsilon(n)\)的傅里叶变换<br>\[
+X(e^{j\omega})=\frac{1}{1-e^{-j\omega}}+\pi\sum_{k=-\infty}^{\infty}\delta(\omega-2\pi k)
+\]</p>
+</blockquote>
+<blockquote>
+<p>常数序列\(x(n)=L\)的傅里叶变换<br>\[
+X(e^{j\omega})=2\pi L\sum_{k=-\infty}^{\infty}\delta(\omega-2\pi k)
+\]</p>
+<p>连续时间直流信号的时域采样\(\Rightarrow\)频域周期延拓</p>
+</blockquote>
+<blockquote>
+<p>抽样脉冲序列\(x(n)=\dfrac{\sin Wn}{\pi n},W&lt;\pi\)的傅里叶变换<br>\[
+X(e^{j\omega})=\begin{cases}
+1,0\leq|\omega|\leq W\\
+0,W&lt;|\omega|\leq\pi
+\end{cases}\quad\mbox{(频域矩形窗)}
+\]</p>
+</blockquote>
+<h2 id="离散系统的频率响应"><a href="#离散系统的频率响应" class="headerlink" title="离散系统的频率响应"></a>离散系统的频率响应</h2><blockquote>
+<p>离散时间系统的特征输入</p>
+<p>已知系统的频率响应为\(H(e^{j\omega})=\displaystyle\sum\limits_{n=-\infty}^{\infty}h(n)e^{-j\omega n}=|H(e^{j\omega})|e^{j\varphi(\omega)}\)</p>
+<p>(1) 系统对\(x(n)=e^{j\omega_0n},-\infty&lt;n&lt;\infty\)的响应<br>\[
+y(n)=H(e^{j\omega})\big|_{\omega=\omega_0}\cdot e^{j\omega_0n}
+\]</p>
+<p>(2) 系统对\(x(n)=A\cos(\omega_0n+\varphi_0),-\infty&lt;n&lt;\infty\)的响应<br>\[
+y(n)=A|H(e^{j\omega_0})|\cos[\omega_0n+\varphi_0+\varphi(\omega_0)]
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散时间系统的正弦稳态</p>
+<p>已知系统的频率响应为\(H(e^{j\omega})=\displaystyle\sum\limits_{n=-\infty}^{\infty}h(n)e^{-j\omega n}=|H(e^{j\omega})|e^{j\varphi(\omega)}\)</p>
+<p>(1) 系统对\(x(n)=e^{j\omega_0n}\cdot\varepsilon(n)\)的稳态响应<br>\[
+y(n)=H(e^{j\omega})\big|_{\omega=\omega_0}\cdot e^{j\omega_0n}\cdot\varepsilon(n)
+\]</p>
+<p>(2) 系统对\(x(n)=A\cos(\omega_0n+\varphi_0)\cdot\varepsilon(n)\)的稳态响应<br>\[
+y(n)=A|H(e^{j\omega_0})|\cos[\omega_0n+\varphi_0+\varphi(\omega_0)]\cdot\varepsilon(n)
+\]</p>
+</blockquote>
+<h2 id="补充知识点"><a href="#补充知识点" class="headerlink" title="补充知识点"></a>补充知识点</h2><blockquote>
+<p>求\(X(e^{j\omega})=e^{-j\omega/2}\)的傅里叶反变换(非整数延迟)</p>
+<p>由于延迟时间不是一个整数, 故不能直接利用时移性质求得\(x(n)=\delta\left(n-\dfrac{1}{2}\right)\).</p>
+<p>离散时间傅里叶变换具有隐含周期性, 其在第一个周期内为<br>\[
+\begin{aligned}
+X_1(e^{j\omega})&amp;=e^{-j\omega/2},|\omega|&lt;\pi\\
+&amp;=e^{-j\omega/2}[\varepsilon(\omega+\pi)-\varepsilon(\omega-\pi)]\\
+&amp;=X_c(\omega)
+\end{aligned}
+\]</p>
+<p>其对应的连续时间傅里叶反变换为<br>\[
+x_c(t)=\frac{\sin\pi\left(t-\dfrac{1}{2}\right)}{\pi\left(t-\dfrac{1}{2}\right)}
+\]</p>
+<p>对连续信号\(x(t)\)进行C&#x2F;D转换即可得到离散傅里叶反变换(\(T=1\))<br>\[
+x(n)=x_c(t)\big|_{t=nT}=\frac{\sin\pi\left(n-\dfrac{1}{2}\right)}{\pi\left(n-\dfrac{1}{2}\right)}
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散对称矩形窗的表达式(共有\(2N_1+1\)点)<br>\[
+\begin{aligned}
+x(n)&amp;=\begin{cases}
+1,|n|\leq N_1\\
+0,|n|&gt;N_1
+\end{cases}\\
+&amp;=\varepsilon(n+N_1)-\varepsilon(n-N_1-1)
+\end{aligned}
+\]</p>
+</blockquote>
+<blockquote>
+<p>冲激信号与阶跃信号的尺度变换性质</p>
+<div class="table-container signals-table">
+<table>
+<thead><tr><th>连续时间</th><th>离散时间</th></tr></thead>
+<tbody><tr><td>&#92;(\delta(at)=\dfrac{\delta(t)}{|a|}&#92;)</td><td>&#92;(\delta(an)=\delta(n)&#92;)</td></tr><tr><td>&#92;(\varepsilon(at)=\varepsilon(t),a>0&#92;)</td><td>&#92;(\varepsilon(an)=\varepsilon(n),a>0&#92;)</td></tr></tbody>
+</table>
+</div>
+</blockquote>
+<blockquote>
+<p>常见复指数等式<br>\[
+1^n=e^{j0n}\quad(-1)^n=e^{j\pi n}\quad j^n=e^{j(\pi/2)n}\quad(-j)^n=e^{-j(\pi/2)n}
+\]</p>
+</blockquote>
+<blockquote>
+<p>同一序列的不同形式<br>\[
+(n+1)(n+2)(n+3)\varepsilon(n+3)
+\]<br>\[
+(n+1)(n+2)(n+3)\varepsilon(n+2)
+\]<br>\[
+(n+1)(n+2)(n+3)\varepsilon(n+1)
+\]<br>\[
+(n+1)(n+2)(n+3)\varepsilon(n)
+\]<br>\[
+(n+1)(n+2)(n+3)[\varepsilon(n-1)+\delta(n)]
+\]<br>\[
+(n+1)(n+2)(n+3)\varepsilon(n-1)+6\delta(n)
+\]</p>
+</blockquote>
+<hr>
+<a href="/2026/07/23/signals-and-systems-ch07/" title="信号与系统 Ch07：离散时间系统的时域分析">上一篇：离散时间系统的时域分析</a> · <a href="/2026/07/23/signals-and-systems-ch09/" title="信号与系统 Ch09：z 变换与离散系统的 z 域分析">下一篇：z 变换与离散系统的 z 域分析</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch09/">← Next 信号与系统 Ch09：z 变换与离散系统的 z 域分析</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch07/">信号与系统 Ch07：离散时间系统的时域分析 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E6%97%B6%E9%97%B4%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8"><span class="toc-number">1.</span> <span class="toc-text">离散时间傅里叶变换及其性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%A6%BB%E6%95%A3%E6%97%B6%E9%97%B4%E4%BF%A1%E5%8F%B7%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">常见离散时间信号的傅里叶变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E7%8E%87%E5%93%8D%E5%BA%94"><span class="toc-number">3.</span> <span class="toc-text">离散系统的频率响应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">4.</span> <span class="toc-text">补充知识点</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

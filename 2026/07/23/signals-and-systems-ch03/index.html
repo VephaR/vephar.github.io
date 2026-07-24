@@ -1,0 +1,412 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>信号与系统 Ch03：连续信号的傅里叶分析 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>信号与系统 Ch03：连续信号的傅里叶分析</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T05:03:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:18:54.726Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.signals-table { display: block; overflow-x: auto; text-align: center; }
+.signals-table table { width: auto; margin-left: auto; margin-right: auto; }
+.signals-table th, .signals-table td { text-align: center !important; vertical-align: middle; }
+</style>
+
+<blockquote>
+<p>本文是“信号与系统”系列的第 03 章，主题为“连续信号的傅里叶分析”。</p>
+</blockquote>
+<a href="/2026/07/23/signals-and-systems-ch02/" title="信号与系统 Ch02：连续时间系统的时域分析">上一篇：连续时间系统的时域分析</a> · <a href="/2026/07/23/signals-and-systems-ch04/" title="信号与系统 Ch04：连续时间系统的频域分析">下一篇：连续时间系统的频域分析</a>
+
+<span id="more"></span>
+
+<h2 id="傅里叶级数"><a href="#傅里叶级数" class="headerlink" title="傅里叶级数"></a>傅里叶级数</h2><blockquote>
+<p>傅里叶级数的三角形式<br>\[
+\begin{aligned}
+f(t)&amp;=\sum_{n=0}^{\infty}(a_n\cos n\omega_1t+b_n\sin n\omega_1t)\\
+&amp;=a_0+\sum_{n=1}^{\infty}(a_n\cos n\omega_1t+b_n\sin n\omega_1t)
+\end{aligned}
+\]</p>
+<p>其中\(\omega_1=\dfrac{2\pi}{T_1}\), 直流分量\(a_0\)满足<br>\[
+a_0=\frac{1}{T_1}\int_{T_1}f(t){\rm d}t
+\]</p>
+<p>傅里叶系数\(a_n\)和\(b_n\)满足<br>\[
+a_n=\frac{2}{T_1}\int_{T_1}f(t)\cos n\omega_1t{\rm d}t\quad\mbox{(偶对称)}
+\]<br>\[
+b_n=\frac{2}{T_1}\int_{T_1}f(t)\sin n\omega_1t{\rm d}t\quad\mbox{(奇对称)}
+\]</p>
+</blockquote>
+<blockquote>
+<p>傅里叶级数的三角形式变体<br>\[
+\begin{aligned}
+f(t)&amp;=C_0+\sum_{n=1}^{\infty}C_n\cos(n\omega_1t+\varphi_n)\\
+&amp;=D_0+\sum_{n=1}^{\infty}D_n\sin(n\omega_1t+\theta_n)
+\end{aligned}
+\]</p>
+<p>傅里叶系数之间的关系<br>\[
+\begin{cases}
+C_0=D_0=a_0\\
+C_n=D_n=\sqrt{a_n^2+b_n^2}\\[2pt]
+\varphi_n=-\arctan\dfrac{b_n}{a_n}\\[8pt]
+\theta_n=\arctan\dfrac{a_n}{b_n}
+\end{cases}
+\]</p>
+<p>(1) 一般把频率为\(\omega_1\)的分量称为基波, 频率为\(2\omega_1\)、\(3\omega_1\)等分量称为二次、三次谐波等.</p>
+<p>(2) \(C_n\)与\(n\omega_1\)的频谱关系图称为单边幅度谱, \(\varphi_n\)与\(n\omega_1\)的频谱关系图称为单边相位谱.</p>
+</blockquote>
+<blockquote>
+<p>傅里叶级数的复指数形式<br>\[
+f(t)=\sum_{n=-\infty}^{\infty}F_ne^{jn\omega_1t}
+\]</p>
+<p>傅里叶级数的系数\(F_n\)<br>\[
+F_n=\frac{1}{T_1}\int_{T_1}f(t)e^{-jn\omega_1t}{\rm d}t
+\]</p>
+<p>傅里叶系数之间的关系<br>\[
+\begin{cases}
+F_0=a_0\\[2pt]
+F_n=|F_n|e^{j\varphi_n}=\dfrac{1}{2}(a_n-jb_n)\\[8pt]
+F_{-n}=|F_{-n}|e^{-j\varphi_n}=\dfrac{1}{2}(a_n+jb_n)
+\end{cases}
+\]</p>
+<p>(1) 若\(f(t)\)为实信号, 则\(F_n^*=F_{-n}\).</p>
+<p>(2) \(|F_n|\)与\(n\omega_1\)的频谱关系图称为双边幅度谱, \(\varphi_n\)与\(n\omega_1\)的频谱关系图称为双边相位谱.</p>
+<p>(3) 双边谱具有对称性: 幅度偶对称, 相位奇对称.</p>
+<p>(4) 双边谱与单边谱之间的关系<br>\[
+\begin{cases}
+|F_n|=\dfrac{\sqrt{a_n^2+b_n^2}}{2}=\dfrac{1}{2}|C_n|\mbox{, 相位相同} &amp; n&gt;0\\[2pt]
+F_0=C_0 &amp; n=0\\
+\mbox{利用双边谱的对称性得到幅度谱和相位谱} &amp; n&lt;0
+\end{cases}
+\]</p>
+</blockquote>
+<blockquote>
+<p>具有对称性的周期信号的傅里叶系数</p>
+<p>奇谐信号满足<br>\[
+f(t)=-f\left(t\pm\frac{T_1}{2}\right)
+\]</p>
+<p>偶谐信号满足<br>\[
+f(t)=f\left(t\pm\frac{T_1}{2}\right)
+\]</p>
+<p>(1) 奇函数只包括正弦分量, 不包括余弦分量和直流分量.</p>
+<p>(2) 偶函数只包括余弦分量和直流, 不包括正弦分量.</p>
+<p>(3) 奇谐函数只包括奇次谐波的正余弦分量.</p>
+<p>(4) 偶谐函数只包括偶次谐波的正余弦分量以及直流分量.</p>
+</blockquote>
+<blockquote>
+<p>脉冲幅度为\(E\), 宽度为\(\tau\)的周期矩形脉冲, 其周期为\(T_1(\omega_1=\dfrac{2\pi}{T_1})\).</p>
+<p>在一个周期内\((-\dfrac{\tau}{2}\leq t\leq\dfrac{\tau}{2})\)的表示式为<br>\[
+f(t)=E\left[\varepsilon\left(t+\frac{\tau}{2}\right)-\varepsilon\left(t-\frac{\tau}{2}\right)\right]
+\]</p>
+<p>傅里叶系数为<br>\[
+F_n=\frac{E\tau}{T_1}Sa\left(\frac{n\omega_1\tau}{2}\right)
+\]</p>
+</blockquote>
+<h2 id="傅里叶变换及其性质"><a href="#傅里叶变换及其性质" class="headerlink" title="傅里叶变换及其性质"></a>傅里叶变换及其性质</h2><blockquote>
+<p>傅里叶正变换<br>\[
+F(\omega)=\mathscr{F}[f(t)]=\int_{-\infty}^{\infty}f(t)e^{-j\omega t}{\rm d}t
+\]</p>
+<p>傅里叶反变换<br>\[
+f(t)=\mathscr{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)e^{j\omega t}{\rm d}\omega
+\]</p>
+</blockquote>
+<blockquote>
+<p>傅里叶变换的线性</p>
+<p>若\(\mathscr{F}[f_1(t)]=F_1(\omega)\), \(\mathscr{F}[f_2(t)]=F_2(\omega)\), 则<br>\[
+\mathscr{F}[a_1f_1(t)+a_2f_2(t)]=a_1F_1(\omega)+a_2F_2(\omega)
+\]</p>
+</blockquote>
+<blockquote>
+<p>傅里叶变换的反折和共轭<br>\[
+\mathscr{F}[f(-t)]=F(-\omega)
+\]<br>\[
+\mathscr{F}[f^*(-t)]=F^*(\omega)
+\]<br>\[
+\mathscr{F}[f^*(t)]=F^*(-\omega)
+\]</p>
+</blockquote>
+<blockquote>
+<p>傅里叶变换的奇偶虚实性</p>
+<div class="table-container signals-table">
+<table>
+<thead><tr><th rowspan="2">频谱</th><th colspan="2">&#92;(f(t)&#92;) 为实信号</th><th colspan="2">&#92;(f(t)&#92;) 为虚信号</th></tr><tr><th>偶对称</th><th>奇对称</th><th>偶对称</th><th>奇对称</th></tr></thead>
+<tbody><tr><td>&#92;(F(\omega)&#92;)</td><td>实偶</td><td>虚奇</td><td>虚偶</td><td>实奇</td></tr><tr><td>&#92;(R(\omega)&#92;)</td><td colspan="2">偶对称</td><td colspan="2">奇对称</td></tr><tr><td>&#92;(X(\omega)&#92;)</td><td colspan="2">奇对称</td><td colspan="2">偶对称</td></tr><tr><td>&#92;(|F(\omega)|&#92;)</td><td colspan="2">偶对称</td><td colspan="2">偶对称</td></tr><tr><td>&#92;(\varphi(\omega)&#92;)</td><td colspan="2">奇对称</td><td colspan="2">&#92;(\pi-\varphi(-\omega)&#92;)</td></tr></tbody>
+</table>
+</div>
+</blockquote>
+<blockquote>
+<p>傅里叶变换的对称性<br>\[
+F(\omega)=\mathscr{F}[f(t)]\Rightarrow\mathscr{F}[F(t)]=2\pi f(-\omega)
+\]</p>
+</blockquote>
+<blockquote>
+<p>傅里叶变换的尺度变换<br>\[
+\mathscr{F}[f(at)]=\frac{1}{|a|}F\left(\frac{\omega}{a}\right)
+\]</p>
+</blockquote>
+<blockquote>
+<p>傅里叶变换的平移特性</p>
+<p>(1) 时移特性<br>\[
+\mathscr{F}[f(t-t_0)]=e^{-j\omega t_0}F(\omega)
+\]</p>
+<p>(2) 频移特性<br>\[
+\mathscr{F}[f(t)e^{j\omega_0t}]=F(\omega-\omega_0)
+\]<br>\[
+\mathscr{F}[f(t)\cos\omega_0t]=\mathscr{F}\left[\frac{1}{2}f(t)e^{j\omega_0t}+\frac{1}{2}f(t)e^{-j\omega_0t}\right]=\frac{1}{2}[F(\omega-\omega_0)+F(\omega+\omega_0)]
+\]<br>\[
+\mathscr{F}[f(t)\sin\omega_0t]=\mathscr{F}\left[\frac{1}{2j}f(t)e^{j\omega_0t}-\frac{1}{2j}f(t)e^{-j\omega_0t}\right]=\frac{1}{2j}[F(\omega-\omega_0)-F(\omega+\omega_0)]
+\]</p>
+</blockquote>
+<blockquote>
+<p>傅里叶变换的卷积定理</p>
+<p>(1) 时域卷积定理</p>
+<p>若\(\mathscr{F}[f_1(t)]=F_1(\omega)\), \(\mathscr{F}[f_2(t)]=F_2(\omega)\), 则<br>\[
+\mathscr{F}[f_1(t)*f_2(t)]=F_1(\omega)\cdot F_2(\omega)
+\]</p>
+<p>(2) 频域卷积定理</p>
+<p>若\(\mathscr{F}[f_1(t)]=F_1(\omega)\), \(\mathscr{F}[f_2(t)]=F_2(\omega)\), 则<br>\[
+\mathscr{F}[f_1(t)\cdot f_2(t)]=\frac{1}{2\pi}F_1(\omega)*F_2(\omega)
+\]</p>
+</blockquote>
+<blockquote>
+<p>傅里叶变换的微积分特性</p>
+<p>(1) 时域微分特性(要求\(f(t)\)无直流分量)<br>\[
+\mathscr{F}[f'(t)]=j\omega F(\omega)
+\]</p>
+<p>(2) 频域微分特性(要求\(F(\omega)\)无直流分量)<br>\[
+\mathscr{F}^{-1}[F'(\omega)]=-jtf(t)
+\]</p>
+<p>(3) 时域积分特性(要求\(f(-\infty)=0\))<br>\[
+\mathscr{F}\left[\int_{-\infty}^{t}f(\tau){\rm d}\tau\right]=\mathscr{F}[f(t)*\varepsilon(t)]=\pi F(0)\delta(\omega)+\frac{1}{j\omega}F(\omega)
+\]</p>
+<p>(4) 频域积分特性(要求\(F(-\infty)=0\))<br>\[
+\mathscr{F}^{-1}\left[\int_{-\infty}^{\omega}F(\eta){\rm d}\eta\right]=\pi f(0)\delta(t)+\frac{1}{-jt}f(t)
+\]</p>
+</blockquote>
+<blockquote>
+<p>傅里叶变换的帕斯瓦尔定理</p>
+<p>(1) 能量信号(非周期信号)<br>\[
+\begin{aligned}
+\int_{-\infty}^{\infty}|f(t)|^2{\rm d}t&amp;=\frac{1}{2\pi}\int_{-\infty}^{\infty}|F(\omega)|^2{\rm d}\omega\\
+&amp;=\int_{-\infty}^{\infty}|F(f)|^2{\rm d}f
+\end{aligned}
+\]</p>
+<p>(2) 功率信号(周期信号)<br>\[
+\begin{aligned}
+P&amp;=\lim\limits_{T\rightarrow\infty}\frac{1}{2T}\int_{-T}^{T}|f(t)|^2{\rm d}t\\
+&amp;=a_0^2+\frac{1}{2}\sum_{n=1}^{\infty}(a_n^2+b_n^2)\\
+&amp;=C_0^2+\frac{1}{2}\sum_{n=1}^{\infty}C_n^2\\
+&amp;=\sum_{n=-\infty}^{\infty}|F_n|^2
+\end{aligned}
+\]</p>
+</blockquote>
+<h2 id="常见非周期信号的傅里叶变换"><a href="#常见非周期信号的傅里叶变换" class="headerlink" title="常见非周期信号的傅里叶变换"></a>常见非周期信号的傅里叶变换</h2><blockquote>
+<p>单位冲激信号\(f(t)=\delta(t)\)的傅里叶变换<br>\[
+F(\omega)=1
+\]</p>
+<p>冲激偶信号\(f(t)=\delta'(t)\)的傅里叶变换<br>\[
+F(\omega)=j\omega
+\]</p>
+</blockquote>
+<blockquote>
+<p>直流信号\(f(t)=E\)的傅里叶变换<br>\[
+F(\omega)=2\pi E\delta(\omega)
+\]</p>
+</blockquote>
+<blockquote>
+<p>符号函数\(f(t)=sgn(t)=\begin{cases}
+1 &amp; t&gt;0\\
+-1 &amp; t&lt;0
+\end{cases}\)的傅里叶变换<br>\[
+F(\omega)=\frac{2}{j\omega}
+\]</p>
+<p>单位阶跃信号\(\varepsilon(t)\)的傅里叶变换<br>\[
+F(\omega)=\mathscr{F}\left[\frac{1}{2}+\frac{1}{2}sgn(t)\right]=\pi\delta(\omega)+\frac{1}{j\omega}
+\]</p>
+</blockquote>
+<blockquote>
+<p>时域矩形窗\(f(t)=E\left[\varepsilon\left(t+\dfrac{\tau}{2}\right)-\varepsilon\left(t-\dfrac{\tau}{2}\right)\right]\)的傅里叶变换<br>\[
+F(\omega)=E\tau Sa\left(\frac{\omega\tau}{2}\right)=\mbox{脉高}\times\mbox{脉宽}\times Sa\left(\omega\frac{\mbox{脉宽}}{2}\right)
+\]</p>
+</blockquote>
+<blockquote>
+<p>时域三角窗\(f(t)=\begin{cases}
+E\left(1-\dfrac{2|t|}{\tau}\right) &amp; |t|\leq\dfrac{\tau}{2}\\[8pt]
+0 &amp; |t|&gt;\dfrac{\tau}{2}
+\end{cases}\)的傅里叶变换<br>\[
+F(\omega)=\frac{E\tau}{2}Sa^2\left(\frac{\omega\tau}{4}\right)=\mbox{脉高}\times\frac{\mbox{脉宽}}{2}\times Sa^2\left(\omega\frac{\mbox{脉宽}}{4}\right)
+\]</p>
+</blockquote>
+<blockquote>
+<p>抽样脉冲信号\(f(t)=Sa(\omega_ct)=\dfrac{\sin\omega_ct}{\omega_ct}\)的傅里叶变换<br>\[
+F(\omega)=\frac{\pi}{\omega_c}[\varepsilon(\omega+\omega_c)-\varepsilon(\omega-\omega_c)]
+\]</p>
+<p>频域矩形窗\(G_{2\omega_c}(\omega)=E[\varepsilon(\omega+\omega_c)-\varepsilon(\omega-\omega_c)]\)<br>\[
+\mathscr{F}^{-1}[G_{2\omega_c}(\omega)]=E\frac{\sin\omega_ct}{\pi t}
+\]</p>
+<p>\(f(t)=Sa^2(\omega_ct)\)的傅里叶变换<br>\[
+F(\omega)=\begin{cases}
+\dfrac{\pi}{\omega_c}\left(1-\dfrac{|\omega|}{2\omega_c}\right) &amp; |\omega|\leq2\omega_c\\[2pt]
+0 &amp; |\omega|&gt;2\omega_c
+\end{cases}
+\]</p>
+</blockquote>
+<blockquote>
+<p>单边指数信号\(f(t)=e^{-at}\cdot\varepsilon(t),a&gt;0\)的傅里叶变换<br>\[
+F(\omega)=\frac{1}{a+j\omega}
+\]</p>
+<p>双边指数信号\(f(t)=e^{-a|t|},a&gt;0,-\infty&lt;t&lt;\infty\)的傅里叶变换<br>\[
+F(\omega)=\frac{2a}{a^2+\omega^2}
+\]</p>
+</blockquote>
+<h2 id="周期信号的傅里叶变换"><a href="#周期信号的傅里叶变换" class="headerlink" title="周期信号的傅里叶变换"></a>周期信号的傅里叶变换</h2><blockquote>
+<p>复指数信号\(f(t)=e^{\pm j\omega_1t}\)的傅里叶变换<br>\[
+\mathscr{F}[1\cdot e^{j\omega_1t}]=2\pi\delta(\omega-\omega_1)
+\]<br>\[
+\mathscr{F}[1\cdot e^{-j\omega_1t}]=2\pi\delta(\omega+\omega_1)
+\]</p>
+</blockquote>
+<blockquote>
+<p>正弦信号\(f(t)=\sin\omega_1t\)和余弦信号\(f(t)=\cos\omega_1t\)的傅里叶变换<br>\[
+\mathscr{F}[\cos\omega_1t]=\frac{1}{2}\mathscr{F}[e^{j\omega_1t}]+\frac{1}{2}\mathscr{F}[e^{-j\omega_1t}]=\pi[\delta(\omega-\omega_1)+\delta(\omega+\omega_1)]
+\]<br>\[
+\mathscr{F}[\sin\omega_1t]=\frac{\pi}{j}[\delta(\omega-\omega_1)-\delta(\omega+\omega_1)]
+\]</p>
+</blockquote>
+<blockquote>
+<p>一般周期信号\(f(t)\)的傅里叶变换<br>\[
+F(\omega)=2\pi\sum_{n=-\infty}^{\infty}F_n\delta(\omega-n\omega_1)
+\]</p>
+</blockquote>
+<blockquote>
+<p>周期信号的傅里叶系数\(F_n\)和主周期信号的傅里叶变换\(F_0(\omega)\)的关系<br>\[
+F_n=\frac{1}{T_1}F_0(\omega)\big|_{\omega=n\omega_1}
+\]</p>
+</blockquote>
+<blockquote>
+<p>周期冲激序列\(\delta_T(t)=\displaystyle\sum\limits_{n=-\infty}^{\infty}\delta(t-nT_1)\)的傅里叶级数和傅里叶变换<br>\[
+F_0(\omega)=\mathscr{F}[\delta(t)]=1
+\]<br>\[
+F_n=\frac{1}{T_1}F_0(\omega)\big|_{\omega=n\omega_1}=\frac{1}{T_1}
+\]<br>\[
+F(\omega)=\mathscr{F}[\delta_T(t)]=\omega_1\sum_{n=-\infty}^{\infty}\delta(\omega-n\omega_1)
+\]</p>
+</blockquote>
+<h2 id="抽样定理"><a href="#抽样定理" class="headerlink" title="抽样定理"></a>抽样定理</h2><blockquote>
+<p>时域冲激抽样</p>
+<p>时域抽样过程是通过抽样脉冲信号\(p(t)\)与连续信号\(f(t)\)相乘得到的, 即<br>\[
+f_s(t)=f(t)\cdot p(t)
+\]</p>
+<p>根据频域卷积定理, 可得抽样信号\(f_s(t)\)的频谱为<br>\[
+F_s(\omega)=\frac{1}{2\pi}F(\omega)*P(\omega)=\sum_{n=-\infty}^{\infty}P_nF(\omega-n\omega_s)
+\]</p>
+<p>若抽样脉冲\(p(t)\)是周期冲激序列\(\delta_T(t)=\displaystyle\sum\limits_{n=-\infty}^{\infty}\delta(t-nT_s)\), 则冲激抽样信号\(f_s(t)\)的频谱为<br>\[
+F_s(\omega)=\sum_{n=-\infty}^{\infty}\frac{\omega_s}{2\pi}F(\omega-n\omega_s)=\frac{1}{T_s}\sum_{n=-\infty}^{\infty}F(\omega-n\omega_s)
+\]</p>
+</blockquote>
+<blockquote>
+<p>时域抽样定理</p>
+<p>若连续信号\(f(t)\)的频谱占据\((-\omega_m)\)至\((+\omega_m)\)的范围, 此信号称为频谱受限信号, 则不产生频谱混叠的条件为, 抽样角频率\(\omega_s\)必须大于或等于\(2\omega_m\), 即<br>\[
+\omega_s\geq2\omega_m
+\]</p>
+<p>或抽样周期<br>\[
+T_s\leq\frac{1}{2f_m}
+\]</p>
+<p>满足抽样定理条件的最小抽样率\(\omega_{s\min}=2\omega_m\)或\(f_s=2f_m\)称为奈奎斯特频率, 最大允许抽样周期\(T_{s\max}=\dfrac{1}{2f_m}\)称为奈奎斯特周期.</p>
+</blockquote>
+<blockquote>
+<p>奈奎斯特频率的规律</p>
+<p>卷小和大积相加. 若\(h_1(t)\)的截止频率为\(\omega_1\), \(h_2(t)\)的截止频率为\(\omega_2\), 则</p>
+<p>\(h_1(t)*h_2(t)\)的奈奎斯特频率为\(2\cdot\{\omega_1,\omega_2\}_{\min}\)</p>
+<p>\(h_1(t)+h_2(t)\)的奈奎斯特频率为\(2\cdot\{\omega_1,\omega_2\}_{\max}\)</p>
+<p>\(h_1(t)\cdot h_2(t)\)的奈奎斯特频率为\(2\cdot(\omega_1+\omega_2)\)</p>
+</blockquote>
+<hr>
+<a href="/2026/07/23/signals-and-systems-ch02/" title="信号与系统 Ch02：连续时间系统的时域分析">上一篇：连续时间系统的时域分析</a> · <a href="/2026/07/23/signals-and-systems-ch04/" title="信号与系统 Ch04：连续时间系统的频域分析">下一篇：连续时间系统的频域分析</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch04/">← Next 信号与系统 Ch04：连续时间系统的频域分析</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch02/">信号与系统 Ch02：连续时间系统的时域分析 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">傅里叶级数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8"><span class="toc-number">2.</span> <span class="toc-text">傅里叶变换及其性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%9D%9E%E5%91%A8%E6%9C%9F%E4%BF%A1%E5%8F%B7%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">3.</span> <span class="toc-text">常见非周期信号的傅里叶变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%A8%E6%9C%9F%E4%BF%A1%E5%8F%B7%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">4.</span> <span class="toc-text">周期信号的傅里叶变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E6%A0%B7%E5%AE%9A%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">抽样定理</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

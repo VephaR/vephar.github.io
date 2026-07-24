@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>信号与系统 Ch01：信号的函数表示与系统分析方法 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>信号与系统 Ch01：信号的函数表示与系统分析方法</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T05:01:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:18:40.765Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.signals-figure { text-align: center; }
+.signals-figure a { display: block; max-width: 100%; margin: 0 auto; }
+.signals-figure img { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
+</style>
+
+<blockquote>
+<p>本文是“信号与系统”系列的第 01 章，主题为“信号的函数表示与系统分析方法”。</p>
+</blockquote>
+<a href="/2026/07/23/signals-and-systems-ch00/" title="信号与系统 Ch00：数学与电路基础">上一篇：数学与电路基础</a> · <a href="/2026/07/23/signals-and-systems-ch02/" title="信号与系统 Ch02：连续时间系统的时域分析">下一篇：连续时间系统的时域分析</a>
+
+<span id="more"></span>
+
+<h2 id="信号的能量与功率"><a href="#信号的能量与功率" class="headerlink" title="信号的能量与功率"></a>信号的能量与功率</h2><blockquote>
+<p>能量有限信号的信号能量\(E\)<br>\[
+E=\lim\limits_{T\rightarrow\infty}\int_{-T}^{T}|f(t)|^2{\rm d}t
+\]</p>
+</blockquote>
+<blockquote>
+<p>功率有限信号的平均功率\(P\)<br>\[
+P=\lim\limits_{T\rightarrow\infty}\frac{1}{2T}\int_{-T}^{T}|f(t)|^2{\rm d}t
+\]</p>
+</blockquote>
+<h2 id="连续信号的分解"><a href="#连续信号的分解" class="headerlink" title="连续信号的分解"></a>连续信号的分解</h2><blockquote>
+<p>直流分量与交流分量<br>\[
+f(t)=f_d+f_a(t)
+\]</p>
+<p>信号直流分量\(f_d\)即信号平均值<br>\[
+\lim\limits_{T\rightarrow\infty}\frac{1}{2T}\int_{-T}^{T}f(t){\rm d}t
+\]</p>
+</blockquote>
+<blockquote>
+<p>实信号的偶分量与奇分量<br>\[
+f(t)=f_e(t)+f_o(t)
+\]</p>
+<p>偶分量为\(f_e(t)=Ev\{f(t)\}=\dfrac{f(t)+f(-t)}{2}\), 满足\(f_e(t)=f_e(-t)\).</p>
+<p>奇分量为\(f_o(t)=Od\{f(t)\}=\dfrac{f(t)-f(-t)}{2}\), 满足\(f_o(t)=-f_o(-t)\).</p>
+</blockquote>
+<blockquote>
+<p>复信号的共轭对称分量与共轭反对称分量<br>\[
+f(t)=f_e(t)+f_o(t)
+\]</p>
+<p>共轭对称分量为\(f_e(t)=\dfrac{f(t)+f^*(-t)}{2}\), 满足\(f_e(t)=f_e^*(-t)\).</p>
+<p>共轭反对称分量为\(f_o(t)=\dfrac{f(t)-f^*(-t)}{2}\), 满足\(f_o(t)=-f_o^*(-t)\).</p>
+</blockquote>
+<h2 id="常见连续信号的性质"><a href="#常见连续信号的性质" class="headerlink" title="常见连续信号的性质"></a>常见连续信号的性质</h2><blockquote>
+<p>抽样函数\(Sa(t)=\dfrac{\sin t}{t}\)的性质<br>\[
+Sa(t)=Sa(-t)\quad\mbox{(实偶函数)}
+\]<br>\[
+\int_{0}^{\infty}Sa(t){\rm d}t=\frac{\pi}{2}
+\]<br>\[
+\int_{-\infty}^{\infty}Sa(t){\rm d}t=\pi
+\]</p>
+<p>\(\sin c(t)\)函数与\(Sa(t)\)函数相似.<br>\[
+\sin c(t)=\frac{\sin\pi t}{\pi t}
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/signals-and-systems-ch01/sa-function.svg" style="width: 65%;" class='item-img' data-src='/2026/07/23/signals-and-systems-ch01/sa-function.svg'><img src="/2026/07/23/signals-and-systems-ch01/sa-function.svg" alt="Sa 函数曲线"></a>
+</div>
+</blockquote>
+<blockquote>
+<p>单位冲激信号\(\delta(t)\)的性质</p>
+<p>(1) 归一性质<br>\[
+\int_{-\infty}^{\infty}\delta(t){\rm d}t=1
+\]<br>\[
+\int_{-\infty}^{\infty}\delta(t-t_0){\rm d}t=1
+\]</p>
+<p>(2) 筛分性质<br>\[
+f(t)\delta(t)=f(0)\delta(t)
+\]<br>\[
+f(t)\delta(t-t_0)=f(t_0)\delta(t-t_0)
+\]</p>
+<p>(3) 抽样性质<br>\[
+\int_{-\infty}^{\infty}f(t)\delta(t){\rm d}t=f(0)
+\]<br>\[
+\int_{-\infty}^{\infty}f(t)\delta(t-t_0){\rm d}t=f(t_0)
+\]</p>
+<p>(4) 奇偶性质<br>\[
+\delta(t)=\delta(-t)\quad\mbox{(偶函数)}
+\]</p>
+<p>(5) 复合函数化简性质</p>
+<p>令\(f(t)=0\), 方程根为\(t_0,t_1,\cdots,t_n\), 则\(\delta[f(t)]\)可以化简为<br>\[
+\delta[f(t)]=\sum_{i=0}^{n}\frac{1}{|f'(t_i)|}\delta(t-t_i)
+\]</p>
+<p>(6) 尺度变换性质<br>\[
+\delta(at)=\frac{1}{|a|}\delta(t)
+\]<br>\[
+\delta^{(n)}(at)=\frac{1}{|a|}\frac{1}{a^n}\delta^{(n)}(t)
+\]</p>
+<p>(7) 卷积性质<br>\[
+f(t)*\delta(t-t_0)=\delta(t-t_0)*f(t)=f(t-t_0)
+\]<br>\[
+f(t-t_1)*\delta(t-t_2)=f(t-t_2)*\delta(t-t_1)=f(t-t_1-t_2)
+\]</p>
+<p>(8) 积分性质<br>\[
+\int_{-\infty}^{t}\delta(\tau){\rm d}\tau=\varepsilon(t)
+\]</p>
+</blockquote>
+<blockquote>
+<p>单位阶跃信号\(\varepsilon(t)\)的性质</p>
+<p>(1)尺度变换性质<br>\[
+\varepsilon(at)=\varepsilon(t),a&gt;0
+\]</p>
+<p>(2)卷积性质<br>\[
+f(t)*\varepsilon(t-t_0)=\int_{-\infty}^{t-t_0}f(\tau){\rm d}\tau
+\]<br>\[
+f(t)\varepsilon(t)*\varepsilon(t)=\int_0^{t}f(\tau){\rm d}\tau
+\]</p>
+<p>(3) 规定函数值<br>\[
+\varepsilon(0)=\frac{1}{2}[\varepsilon(0^-)+\varepsilon(0^+)]=\frac{1}{2}
+\]</p>
+<p>与符号函数\(sgn(t)\)的关系<br>\[
+sgn(t)=2\varepsilon(t)-1
+\]</p>
+</blockquote>
+<blockquote>
+<p>冲激偶信号\(\delta'(t)\)的性质</p>
+<p>(1) 奇偶性质<br>\[
+\delta'(t)=-\delta'(-t)\quad\mbox{(奇函数)}
+\]</p>
+<p>(2) 积分性质<br>\[
+\int_{-\infty}^{\infty}\delta'(t){\rm d}t=0
+\]</p>
+<p>(3) 乘积性质<br>\[
+f(t)\delta'(t)=f(0)\delta'(t)-f'(0)\delta(t)
+\]<br>\[
+f(t)\delta'(t-t_0)=f(t_0)\delta'(t-t_0)-f'(t_0)\delta(t-t_0)
+\]</p>
+<p>(4) 抽样性质<br>\[
+\int_{-\infty}^{\infty}f(t)\delta'(t){\rm d}t=f(t)\delta(t)\Big|_{-\infty}^{\infty}-\int_{-\infty}^{\infty}f'(t)\delta(t){\rm d}t=-f'(0)
+\]<br>\[
+\int_{-\infty}^{\infty}f(t)\delta'(t-t_0){\rm d}t=-f'(t_0)
+\]</p>
+<p>(5) 卷积性质<br>\[
+f(t)*\delta'(t-t_0)=f'(t-t_0)
+\]</p>
+</blockquote>
+<h2 id="连续系统的性质"><a href="#连续系统的性质" class="headerlink" title="连续系统的性质"></a>连续系统的性质</h2><blockquote>
+<p>连续系统的线性</p>
+<p>线性系统满足<br>\[
+T[a_1e_1(t)+a_2e_2(t)]=a_1T[e_1(t)]+a_2T[e_2(t)]=a_1r_1(t)+a_2r_2(t)
+\]</p>
+</blockquote>
+<blockquote>
+<p>连续系统的非时变性</p>
+<p>非时变系统满足<br>\[
+T[e(t-t_0)]=r(t-t_0)
+\]</p>
+</blockquote>
+<blockquote>
+<p>连续系统的因果性</p>
+<p>输入发生在输出之前(因在果前), 则为因果系统.</p>
+<p>只要\(t_{in}&gt;t_{out}\)有解, 则该系统一定非因果.</p>
+</blockquote>
+<blockquote>
+<p>连续系统的稳定性</p>
+<p>给定有限的输入产生有限的输出, 则为稳定系统(BIBO准则).</p>
+<p>线性非时变系统稳定的充分必要条件<br>\[
+\int_{-\infty}^{\infty}|h(t)|{\rm d}t&lt;\infty\quad\mbox{(绝对可积)}
+\]</p>
+</blockquote>
+<hr>
+<a href="/2026/07/23/signals-and-systems-ch00/" title="信号与系统 Ch00：数学与电路基础">上一篇：数学与电路基础</a> · <a href="/2026/07/23/signals-and-systems-ch02/" title="信号与系统 Ch02：连续时间系统的时域分析">下一篇：连续时间系统的时域分析</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch02/">← Next 信号与系统 Ch02：连续时间系统的时域分析</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch00/">信号与系统 Ch00：数学与电路基础 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E7%9A%84%E8%83%BD%E9%87%8F%E4%B8%8E%E5%8A%9F%E7%8E%87"><span class="toc-number">1.</span> <span class="toc-text">信号的能量与功率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E4%BF%A1%E5%8F%B7%E7%9A%84%E5%88%86%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">连续信号的分解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E8%BF%9E%E7%BB%AD%E4%BF%A1%E5%8F%B7%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">3.</span> <span class="toc-text">常见连续信号的性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">4.</span> <span class="toc-text">连续系统的性质</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

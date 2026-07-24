@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>信号与系统 Ch06：连续时间系统的 s 域分析 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>信号与系统 Ch06：连续时间系统的 s 域分析</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T05:06:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:19:12.879Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><blockquote>
+<p>本文是“信号与系统”系列的第 06 章，主题为“连续时间系统的 s 域分析”。</p>
+</blockquote>
+<a href="/2026/07/23/signals-and-systems-ch05/" title="信号与系统 Ch05：拉普拉斯变换">上一篇：拉普拉斯变换</a> · <a href="/2026/07/23/signals-and-systems-ch07/" title="信号与系统 Ch07：离散时间系统的时域分析">下一篇：离散时间系统的时域分析</a>
+
+<span id="more"></span>
+
+<h2 id="由系统函数的零极点分布确定时域特性"><a href="#由系统函数的零极点分布确定时域特性" class="headerlink" title="由系统函数的零极点分布确定时域特性"></a>由系统函数的零极点分布确定时域特性</h2><blockquote>
+<p>零极点与时域特性</p>
+<p>系统函数\(H(s)\)与冲激响应\(h(t)\)是一对拉氏变换式, 因此根据零极点在\(s\)平面的位置就可以确定系统的时域特性.</p>
+<p>(1) 若\(H(s)\)的收敛域包括正无穷, 此系统为因果系统.</p>
+<p>(2) 若\(H(s)\)的收敛域包括虚轴, 此系统为稳定系统.</p>
+<p>(3) \(H(s)\)的极点位置影响冲激函数的形状, 而\(H(s)\)的零点分布只影响冲激函数的振幅与相位.</p>
+</blockquote>
+<blockquote>
+<p>自由、强迫响应与暂态、稳态响应之间的关系(因果的LTI系统)</p>
+<p>完全响应中与系统函数\(H(s)\)极点相对应的项为自由响应, 其余为强迫响应.</p>
+<p>自由响应:</p>
+<p>(1) 若\(H(s)\)的极点位于\(s\)左半平面(\(Re[p_i]&lt;0\)), 则自由响应为衰减信号, 即自由响应分量就是暂态响应, 此系统为稳定系统.</p>
+<p>(2) 若\(H(s)\)的一阶极点位于虚轴(\(Re[p_i]=0\)), 则自由响应为等幅振荡, 即自由响应分量就是稳态响应, 此系统为临界稳定系统或边界稳定系统; 若多阶极点位于虚轴, 则为不稳定系统.</p>
+<p>(3) 若\(H(s)\)的极点位于\(s\)右半平面(\(Re[p_i]&gt;0\)), 则自由响应为增幅振荡, 此系统为不稳定系统.</p>
+<p>强迫响应:</p>
+<p>(1) 若\(E(s)\)的极点实部大于或等于零(\(Re[p_k]\geq0\)), 则强迫响应就是稳态响应.</p>
+<p>(2) 若\(E(s)\)的极点实部小于零(\(Re[p_k]&lt;0\)), 则强迫响应就是暂态响应.</p>
+</blockquote>
+<blockquote>
+<p>\(s\)变换的特征输入</p>
+<p>一个系统函数为\(H(s)\)的LTI系统, 若输入\(e(t)=e^{s_0t}\)对于所有的\(t\)均成立, 则其零状态输出<br>\[
+T[e^{s_0t}]=r_{zs}(t)=e^{s_0t}\cdot H(s)\big|_{s=s_0}
+\]</p>
+</blockquote>
+<blockquote>
+<p>特殊信号的零极点特性</p>
+<p>(1) 若系统的单位脉冲响应\(h(t)\)为实数, 则\(H(s)\)的极点和极点共轭, 零点和零点共轭.<br>\[
+h(t)=h^*(t)\Rightarrow H(s_0)=H^*(s_0^*)
+\]</p>
+<p>(2) 若系统的单位脉冲响应\(h(t)\)具有对称性, 即<br>\[
+h(t)=h(-t)\quad\mbox{(偶对称)}
+\]</p>
+<p>或者<br>\[
+h(t)=-h(-t)\quad\mbox{(奇对称)}
+\]</p>
+<p>则\(H(s)\)的极点和极点对称, 零点和零点对称.<br>\[
+H(s_0)=\pm H(-s_0)
+\]</p>
+</blockquote>
+<h2 id="由系统函数的零极点分布确定频率特性"><a href="#由系统函数的零极点分布确定频率特性" class="headerlink" title="由系统函数的零极点分布确定频率特性"></a>由系统函数的零极点分布确定频率特性</h2><blockquote>
+<p>由系统函数的零极点分布确定频率特性</p>
+<p>系统的频率响应为<br>\[
+\begin{aligned}
+H(j\omega)=H(s)\big|_{s=j\omega}&amp;=K\frac{\displaystyle\prod\limits_{j=1}^{m}(j\omega-z_j)}{\displaystyle\prod\limits_{i=1}^{n}(j\omega-p_i)}=K\frac{N_1N_2\cdots N_me^{j(\psi_1+\psi_2+\cdots+\psi_m)}}{M_1M_2\cdots M_ne^{j(\theta_1+\theta_2+\cdots+\theta_n)}}\\
+&amp;=|H(j\omega)|e^{j\varphi(\omega)}
+\end{aligned}
+\]</p>
+<p>对于任意零点\(z_j\)和极点\(p_i\), 有<br>\[
+j\omega-z_j=N_je^{j\psi_j}
+\]<br>\[
+j\omega-p_i=M_ie^{j\theta_i}
+\]</p>
+<p>则幅频特性为<br>\[
+|H(j\omega)|=K\frac{N_1N_2\cdots N_m}{M_1M_2\cdots M_n}
+\]</p>
+<p>相频特性为<br>\[
+\varphi(\omega)=(\psi_1+\psi_2+\cdots+\psi_m)-(\theta_1+\theta_2+\cdots+\theta_n)
+\]</p>
+</blockquote>
+<blockquote>
+<p>全通系统的\(s\)域分析</p>
+<p>一阶全通函数(只有一个极点)<br>\[
+H_{\rm ap}(s)=K\frac{s-a}{s+a}
+\]</p>
+<p>幅频特性<br>\[
+|H_{\rm ap}(j\omega)|=K
+\]</p>
+<p>相频特性<br>\[
+\varphi(\omega)=\pi-2\tan^{-1}\frac{\omega}{a}
+\]</p>
+<p>若系统函数\(H(s)\)的极点位于\(s\)左半平面, 零点位于\(s\)右半平面, 而且零极点关于虚轴对称, 则该系统为全通系统, 其幅频特性为一常数, 相频特性不受约束.</p>
+</blockquote>
+<blockquote>
+<p>最小相移系统的\(s\)域分析</p>
+<p>最小相移函数<br>\[
+H(s)_{\min}=\frac{(s-z_1)(s-z_1^*)}{(s-p_1)(s-p_1^*)}
+\]</p>
+<p>(1) 对于具有相同幅频特性的系统, 系统函数的零点(\(z_1\)和\(z_1^*\))位于\(s\)左半平面或虚轴上时, 该系统相位特性\(\varphi(\omega)\)最小, 此系统称为最小相移系统或最小相移网络.</p>
+<p>(2) 如果系统函数在\(s\)右半平面有零点, 则称为非最小相移函数, 可以表示为最小相移函数与全通函数的乘积.<br>\[
+\begin{aligned}
+H(s)&amp;=\frac{(s+z_1)(s+z_1^*)}{(s-p_1)(s-p_1^*)}\\
+&amp;=\frac{(s-z_1)(s-z_1^*)}{(s-p_1)(s-p_1^*)}\cdot\frac{(s+z_1)(s+z_1^*)}{(s-z_1)(s-z_1^*)}\\
+&amp;=H_{\min}(s)\cdot H_{\rm ap}(s)\\
+\end{aligned}
+\]</p>
+</blockquote>
+<h2 id="罗斯阵列判别系统的稳定性"><a href="#罗斯阵列判别系统的稳定性" class="headerlink" title="罗斯阵列判别系统的稳定性"></a>罗斯阵列判别系统的稳定性</h2><blockquote>
+<p>罗斯阵列判别准则</p>
+<p>若\(B(s)=b_ns^n+b_{n-1}s^{n-1}+\cdots+b_1s+b_0\), 则\(B(s)=0\)的根全部位于\(s\)左半平面的充要条件为</p>
+<p>(1) 多项式\(B(s)\)的全部系数\(b_i\)全为正数.</p>
+<p>(2) 无缺项(如缺项, 则缺全部偶次幂项或奇次幂项).</p>
+<p>(3) 罗斯阵列中第一列数字的符号相同(如果第一列中各数字的符号不尽相同, 则符号改变的次数就是\(B(s)=0\)所具有正实部根的数目).</p>
+<p>罗斯阵列的排列规则<br>\[
+\begin{array}{c|cccc}
+s^n &amp; b_n &amp; b_{n-2} &amp; b_{n-4} &amp; \cdots\\
+s^{n-1} &amp; b_{n-1} &amp; b_{n-3} &amp; b_{n-5} &amp; \cdots\\
+s^{n-2} &amp; c_{n-1} &amp; c_{n-3} &amp; c_{n-5} &amp; \cdots\\
+s^{n-3} &amp; d_{n-1} &amp; d_{n-3} &amp; d_{n-5} &amp; \cdots\\
+s^{n-4} &amp; e_{n-1} &amp; e_{n-3} &amp; e_{n-5} &amp; \cdots\\
+\vdots
+\end{array}
+\]</p>
+<p>第3行后的系数由下式得到<br>\[
+c_{n-1}=-\frac{1}{b_{n-1}}\begin{vmatrix}
+b_n &amp; b_{n-2} \\
+b_{n-1} &amp; b_{n-3}
+\end{vmatrix}
+\]<br>\[
+c_{n-3}=-\frac{1}{b_{n-1}}\begin{vmatrix}
+b_n &amp; b_{n-4} \\
+b_{n-1} &amp; b_{n-5}
+\end{vmatrix}
+\]<br>\[
+\vdots
+\]<br>\[
+d_{n-1}=-\frac{1}{c_{n-1}}\begin{vmatrix}
+b_{n-1} &amp; b_{n-3} \\
+c_{n-1} &amp; c_{n-3}
+\end{vmatrix}
+\]<br>\[
+d_{n-3}=-\frac{1}{c_{n-1}}\begin{vmatrix}
+b_{n-1} &amp; b_{n-5} \\
+c_{n-1} &amp; c_{n-5}
+\end{vmatrix}
+\]</p>
+<p>特殊情况</p>
+<p>(1) 某行首项为0时, 可用无穷小量\(\varepsilon\)代替0继续排出阵列, 然后令\(\varepsilon\rightarrow0\)加以判定.</p>
+<p>(2) 连续两行数字相等或成比例时, 可用全零行的前一列元素组成一个辅助多项式, 用此多项式的导数的系数来代替全零行继续排出阵列, 此时除审查罗斯阵列是否变号之外, 还要检查辅助多项式的根, 如在虚轴上的根为单根则临界稳定, 如在虚轴上有重根, 则不稳定.</p>
+<p>罗斯阵列在低阶情况下的结论</p>
+<p>(1) 二阶：\(B(s)=b_2s^2+b_1s+b_0\)</p>
+<p>稳定条件：\(b_2&gt;0,b_1&gt;0,b_0&gt;0\).</p>
+<p>(2) 三阶：\(B(s)=b_3s^3+b_2s^2+b_1s+b_0\)</p>
+<p>稳定条件：\(\begin{cases}
+b_3&gt;0,b_2&gt;0,b_1&gt;0,b_0&gt;0\\
+b_2b_1&gt;b_3b_0
+\end{cases}\).</p>
+</blockquote>
+<h2 id="梅森公式与系统的信号流图表示"><a href="#梅森公式与系统的信号流图表示" class="headerlink" title="梅森公式与系统的信号流图表示"></a>梅森公式与系统的信号流图表示</h2><blockquote>
+<p>流图术语的定义</p>
+<p>(1) 支路: 表示信号变量间传输关系的有向线段.</p>
+<p>(2) 通路: 从任一节点沿支路箭头方向连续穿过各相连支路到达另一节点的路径.</p>
+<p>(3) 环路(闭通路): 如果通路的终点就是通路的起点, 并且与其他任何节点相交不多于一次, 则该通路称为环路.</p>
+<p>(4) 环路增益: 环路中各支路传输值的乘积.</p>
+<p>(5) 不接触环路: 两环路之间没有任何公共节点, 则称为不接触环路.</p>
+</blockquote>
+<blockquote>
+<p>信号流图的形式</p>
+<p>(1) 直接型\(\begin{cases}
+\mbox{直接I型}\\
+\mbox{直接II型(共用积分器}s^{-1}\mbox{/延迟器}z^{-1}\mbox{)}
+\end{cases}\)</p>
+<p>(2) 级联型(串联型)</p>
+<p>(3) 并联型</p>
+</blockquote>
+<blockquote>
+<p>梅森增益公式<br>\[
+H=\frac{1}{\Delta}\sum_ig_i\Delta_i
+\]</p>
+<p>其中\(\Delta\)称为信号流图的特征行列式<br>\[
+\Delta=1-\sum_aL_a+\sum_{b,c}L_bL_c-\sum_{d,e,f}L_dL_eL_f+\cdots
+\]</p>
+<p>(1) \(\displaystyle\sum\limits_aL_a\)为所有环路增益之和, \(\displaystyle\sum\limits_{b,c}L_bL_c\)为所有两两互不接触的环路增益乘积之和, \(\displaystyle\sum\limits_{d,e,f}L_dL_eL_f\)为所有三个都互不接触的环路增益乘积之和.</p>
+<p>(2) \(i\)表示由输入节点至输出节点的第\(i\)条向前通路的标号, \(g_i\)表示由输入节点至输出节点的第\(i\)条向前通路的增益.</p>
+<p>(3) \(\Delta_i\)为第\(i\)条向前通路特征行列式的余因子(与第\(i\)条通路不接触的剩余环路\(\Delta\)), 若第\(i\)条通路与所有环路都接触, 则\(\Delta_i=1\).</p>
+</blockquote>
+<hr>
+<a href="/2026/07/23/signals-and-systems-ch05/" title="信号与系统 Ch05：拉普拉斯变换">上一篇：拉普拉斯变换</a> · <a href="/2026/07/23/signals-and-systems-ch07/" title="信号与系统 Ch07：离散时间系统的时域分析">下一篇：离散时间系统的时域分析</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch07/">← Next 信号与系统 Ch07：离散时间系统的时域分析</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch05/">信号与系统 Ch05：拉普拉斯变换 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B1%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E7%9A%84%E9%9B%B6%E6%9E%81%E7%82%B9%E5%88%86%E5%B8%83%E7%A1%AE%E5%AE%9A%E6%97%B6%E5%9F%9F%E7%89%B9%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">由系统函数的零极点分布确定时域特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B1%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E7%9A%84%E9%9B%B6%E6%9E%81%E7%82%B9%E5%88%86%E5%B8%83%E7%A1%AE%E5%AE%9A%E9%A2%91%E7%8E%87%E7%89%B9%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">由系统函数的零极点分布确定频率特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%97%E6%96%AF%E9%98%B5%E5%88%97%E5%88%A4%E5%88%AB%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="toc-number">3.</span> <span class="toc-text">罗斯阵列判别系统的稳定性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A2%85%E6%A3%AE%E5%85%AC%E5%BC%8F%E4%B8%8E%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BF%A1%E5%8F%B7%E6%B5%81%E5%9B%BE%E8%A1%A8%E7%A4%BA"><span class="toc-number">4.</span> <span class="toc-text">梅森公式与系统的信号流图表示</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

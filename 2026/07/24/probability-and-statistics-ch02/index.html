@@ -1,0 +1,188 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>概率论与数理统计 Ch02：随机变量及其分布 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>概率论与数理统计 Ch02：随机变量及其分布</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-24T02:15:00.000Z" id="date"> 2026-07-24</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:46:47.678Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.math-table { margin: 1.2em auto; overflow-x: auto; }
+.math-table table { width: auto; min-width: 60%; margin: 0 auto; border-collapse: collapse; }
+.math-table th, .math-table td { text-align: center; vertical-align: middle; padding: .45em .8em; white-space: nowrap; }
+.math-table-note { margin: -.5em auto 1em; text-align: center; color: #888; font-size: .92em; }
+.post-content mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
+</style>
+
+<blockquote>
+<p>本文是“概率论与数理统计”系列的第 02 章，主题为“随机变量及其分布”。</p>
+</blockquote>
+<a href="/2026/07/24/probability-and-statistics-ch01/" title="概率论与数理统计 Ch01：随机事件与概率">上一篇：概率论与数理统计 Ch01：随机事件与概率</a> · <a href="/2026/07/24/probability-and-statistics-ch03/" title="概率论与数理统计 Ch03：多维随机变量及其分布">下一篇：概率论与数理统计 Ch03：多维随机变量及其分布</a>
+
+<span id="more"></span>
+
+<blockquote>
+<p>随机变量\(X\)的分布函数<br>\[
+F(x)=P\{X\leqslant x\},-\infty&lt;x&lt;\infty
+\]</p>
+<p>(1) \(F(x)\)单调非减.</p>
+<p>(2) \(F(-\infty)=0,F(+\infty)=1\).</p>
+<p>(3) \(F(x)\)是右连续的.</p>
+</blockquote>
+<blockquote>
+<p>离散型随机变量\(X\)的分布律<br>\[
+P\{X=x_k\}=p_k,k=1,2,\cdots
+\]</p>
+<p>(1) \(p_k\geqslant0,k=1,2,\cdots\).</p>
+<p>(2) \(\displaystyle\sum_kp_k=1\).</p>
+</blockquote>
+<blockquote>
+<p>连续型随机变量\(X\)的分布函数<br>\[
+F(x)=\int_{-\infty}^{x}f(t)\mathrm{d}t,-\infty&lt;x&lt;+\infty
+\]</p>
+<p>\(f(x)\)称为\(X\)的概率密度.</p>
+<p>(1) \(f(x)\geqslant0\).</p>
+<p>(2) \(\displaystyle\int_{-\infty}^{+\infty}f(x)\mathrm{d}x=1\).</p>
+<p>(3) \(P\{x_1&lt;X\leqslant x_2\}=\displaystyle\int_{x_1}^{x_2}f(t)\mathrm{d}t\) (哪里求概率, 哪里求积分).</p>
+<p>(4) 在\(f(x)\)的连续点处有\(F'(x)=f(x)\).</p>
+</blockquote>
+<blockquote>
+<p>\(X\)服从参数为\(n,p\)的二项分布\(X\sim B(n,p)\)<br>\[
+P\{X=k\}=C_n^kp^k(1-p)^{n-k},k=0,1,2,\cdots,n
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(X\)服从参数为\(\lambda\)的泊松分布\(X\sim P(\lambda)\)<br>\[
+P\{X=k\}=\frac{\lambda^k}{k!}e^{-\lambda},k=0,1,2,\cdots
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(X\)服从区间\([a,b]\)上的均匀分布\(X\sim U[a,b]\)<br>\[
+f(x)=\begin{cases}
+\dfrac{1}{b-a} &amp; a\leqslant x\leqslant b\\[2pt]
+0 &amp; \text{其他}
+\end{cases}
+\]</p>
+<p>\(P\{c\leqslant X\leqslant d\}=\dfrac{d-c}{b-a}\) (长度之比).</p>
+</blockquote>
+<blockquote>
+<p>\(X\)服从参数为\(\lambda\)的指数分布\(X\sim E(\lambda)\)<br>\[
+f(x)=\begin{cases}
+\lambda e^{-\lambda x} &amp; x&gt;0\\
+0 &amp; x\leqslant0
+\end{cases}
+\]</p>
+<p>(1) \(P\{X&gt;t\}=e^{-\lambda t}\).</p>
+<p>(2) \(P\{X&gt;t+s|X&gt;s\}=P\{X&gt;t\}\) (无记忆性).</p>
+</blockquote>
+<blockquote>
+<p>\(X\)服从参数为\(\mu,\sigma\)的正态分布\(X\sim N(\mu,\sigma^2)\)<br>\[
+f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},-\infty&lt;x&lt;+\infty
+\]</p>
+<p>(1) \(F(x)=\Phi\left( \dfrac{x-\mu}{\sigma}\right) ,\dfrac{X-\mu}{\sigma}\sim N(0,1)\) (标准化).</p>
+<p>(2) \(f(x)\)关于\(x=\mu\)对称, \(\varphi(x)\)是偶函数.</p>
+<p>(3) \(\Phi(-x)=1-\Phi(x),\Phi(0)=\dfrac{1}{2}\).</p>
+<p>(4) \(X\sim N(0,1)\Rightarrow P\{|X|\leqslant a\}=2\Phi(a)-1\).</p>
+<p>(5) 分布\(\Phi\left( \dfrac{x-\mu}{\sigma}\right)\)的期望必为\(\mu\), 密度\(\dfrac{1}{\sigma}\varphi\left( \dfrac{x-\mu}{\sigma}\right)\)的期望必为\(\mu,\displaystyle\int_{-\infty}^{+\infty}x\varphi\left( \dfrac{x-\mu}{\sigma}\right) \mathrm{d}x=\mu\sigma\).</p>
+</blockquote>
+<blockquote>
+<p>连续型随机变量的函数分布</p>
+<p>(定义法) 先求\(Y\)的分布函数<br>\[
+F_Y(y)=P\{Y\leqslant y\}=P\{g(X)\leqslant y\}=\int_{g(x)\leqslant y}f_X(x)\mathrm{d}x
+\]</p>
+<p>然后\(f_Y(y)=F'_Y(y)\).</p>
+</blockquote>
+<blockquote>
+<p>对任一连续型随机变量\(X\)其分布函数为\(F(x)\), 则\(Y=F(X)\)必定服从\(U(0,1)\).</p>
+</blockquote>
+<hr>
+<a href="/2026/07/24/probability-and-statistics-ch01/" title="概率论与数理统计 Ch01：随机事件与概率">上一篇：概率论与数理统计 Ch01：随机事件与概率</a> · <a href="/2026/07/24/probability-and-statistics-ch03/" title="概率论与数理统计 Ch03：多维随机变量及其分布">下一篇：概率论与数理统计 Ch03：多维随机变量及其分布</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/24/probability-and-statistics-ch03/">← Next 概率论与数理统计 Ch03：多维随机变量及其分布</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/24/probability-and-statistics-ch01/">概率论与数理统计 Ch01：随机事件与概率 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

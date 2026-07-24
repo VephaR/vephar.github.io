@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>离散时间信号处理 Ch10：利用离散傅里叶变换的信号傅里叶分析 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>离散时间信号处理 Ch10：利用离散傅里叶变换的信号傅里叶分析</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T06:10:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:21:13.912Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.signals-table { display: block; overflow-x: auto; text-align: center; }
+.signals-table table { width: auto; margin-left: auto; margin-right: auto; }
+.signals-table th, .signals-table td { text-align: center !important; vertical-align: middle; }
+.signals-figure { text-align: center; margin: 1.25rem 0; }
+.signals-figure a { display: block; max-width: 100%; margin: 0 auto; }
+.signals-figure img { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
+.signals-figure-caption { margin: .5rem 0 0; text-align: center; opacity: .8; }
+</style>
+
+<blockquote>
+<p>本文是“离散时间信号处理”系列的第 10 章，主题为“利用离散傅里叶变换的信号傅里叶分析”。</p>
+</blockquote>
+<a href="/2026/07/23/discrete-time-signal-processing-ch09/" title="离散时间信号处理 Ch09：离散傅里叶变换的计算">上一篇：离散傅里叶变换的计算</a> · <a href="/2026/07/23/discrete-time-signal-processing-ch11/" title="离散时间信号处理 Ch11：离散希尔伯特变换">下一篇：离散希尔伯特变换</a>
+
+<span id="more"></span>
+
+<h1 id="利用离散傅里叶变换的信号傅里叶分析"><a href="#利用离散傅里叶变换的信号傅里叶分析" class="headerlink" title="利用离散傅里叶变换的信号傅里叶分析"></a>利用离散傅里叶变换的信号傅里叶分析</h1><h2 id="利用离散傅里叶变换的信号傅里叶分析-1"><a href="#利用离散傅里叶变换的信号傅里叶分析-1" class="headerlink" title="利用离散傅里叶变换的信号傅里叶分析"></a>利用离散傅里叶变换的信号傅里叶分析</h2><blockquote>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch10/10-2.svg" style="width: 57.6%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch10/10-2.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch10/10-2.svg" alt="(a) 连续时间输入信号的傅里叶变换; (b) 抗混叠滤波器的频率响应; ；(c) 抗混叠滤波器输出的傅里叶变换; (d) 采样信号的傅里叶变换; ；(e) 窗序列的傅里叶变换; (f) 加窗信号段的傅里叶变换和用DFT样本得到的频率样本"></a>
+<p class="signals-figure-caption">(a) 连续时间输入信号的傅里叶变换; (b) 抗混叠滤波器的频率响应; ；(c) 抗混叠滤波器输出的傅里叶变换; (d) 采样信号的傅里叶变换; ；(e) 窗序列的傅里叶变换; (f) 加窗信号段的傅里叶变换和用DFT样本得到的频率样本</p>
+</div>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch10/10-1.svg" style="width: 50.4%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch10/10-1.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch10/10-1.svg" alt="连续时间信号的离散时间傅里叶分析的处理步骤"></a>
+<p class="signals-figure-caption">连续时间信号的离散时间傅里叶分析的处理步骤</p>
+</div>
+
+<p>加窗通常是用有限长窗\(w[n]\)乘以序列\(x[n]\), 从而产生有限长序列\(v[n]=w[n]x[n]\), 它在频域上表现为周期卷积<br>\[
+V(e^{j\omega})=\frac{1}{2\pi}\int_{-\pi}^{\pi}X(e^{j\theta})W(e^{j(\omega-\theta)})\mathrm{d}\theta
+\]</p>
+<p>加窗序列\(v[n]=w[n]x[n]\)后的DFT为<br>\[
+\begin{aligned}
+V[k]&amp;=\sum_{n=0}^{N-1}v[n]e^{-j(2\pi/N)kn},k=0,1,\cdots,N-1\\
+&amp;=V(e^{j\omega})\big|_{\omega=2\pi k/N}
+\end{aligned}
+\]</p>
+</blockquote>
+<blockquote>
+<p>加窗的频域表达</p>
+<p>(1) 当\(x[n]\)的点数\(\leq w[n]\)的点数时</p>
+<p>时域关系<br>\[
+v[n]=x[n]w[n]=x[n]\cdot1
+\]</p>
+<p>频域关系<br>\[
+V(e^{j\omega})=\frac{1}{2\pi}X(e^{j\omega})*2\pi\delta(\omega)=X(e^{j\omega})
+\]</p>
+<p>因此窗函数满足<br>\[
+W(e^{j\omega})=2\pi\delta(\omega)
+\]</p>
+<p>(2) 当\(x[n]\)的点数\(&gt;w[n]\)的点数时</p>
+<p>时域关系<br>\[
+v[n]=w[n]x[n]
+\]</p>
+<p>频域关系<br>\[
+V(e^{j\omega})=\frac{1}{2\pi}X(e^{j\omega})*W(e^{j\omega})
+\]</p>
+<p>\(W(e^{j\omega})\)即为\(w[n]\)的DTFT.</p>
+</blockquote>
+<blockquote>
+<p>影响频率分辨率和物理分辨率的因素</p>
+<p>(1) DFT的点数不影响\(V[k]\)的包络(频率分辨率), 只影响采样间隔(物理分辨率).</p>
+<p>(2) 窗函数的主瓣宽度(窗的种类&#x2F;窗长)会对频率分辨率产生影响. 当主瓣宽度一定时, 频率分辨率表现为加窗后频域刚好不发生混叠时的频率间隔, 即, 窗的主瓣宽度.</p>
+</blockquote>
+<blockquote>
+<p>频率之间的互化</p>
+<p>(1) 角频率\(\Omega\)(rad&#x2F;s)和物理频率\(f\)(Hz)<br>\[
+\Omega=2\pi f
+\]</p>
+<p>(2) 连续时间频率\(\Omega\)和离散时间频率\(\omega\)<br>\[
+\Omega=\frac{\omega}{T}
+\]</p>
+<p>(3) 离散时间频率\(\omega\)和DFT频率\(k\)<br>\[
+\omega=\frac{2\pi k}{N}
+\]</p>
+</blockquote>
+<blockquote>
+<p>已知实信号在\(k_0\)点的DFT值\(V[k_0]\), 求其对应的连续时间傅里叶变换</p>
+<p>根据DFT的对称性\(V[k]=V^*[((-k))_N],k=0,1,\cdots,N-1\), 得<br>\[
+V[N-k_0]=V^*[k_0]
+\]</p>
+<p>则可以求得\((-\pi,\pi)\)区间内频率点的\(X_c(j\Omega)\)为<br>\[
+X_c(j\Omega_0)=X_c\left(j\frac{2\pi k_0}{NT}\right)\approx T\cdot V[k_0]
+\]<br>\[
+X_c(-j\Omega_0)=X_c\left(-j\frac{2\pi k_0}{NT}\right)\approx T\cdot V^*[k_0]
+\]</p>
+<p>可将\(V[k]\)与\(X_c(j\Omega)\)的关系总结如下<br>\[
+V[k]=
+\begin{cases}
+\dfrac{1}{T}X_c\left(j\dfrac{2\pi k}{NT}\right) &amp; 0\leq k\leq\dfrac{N}{2}-1\\[8pt]
+\dfrac{1}{T}X_c\left(j\dfrac{2\pi (k-N)}{NT}\right) &amp; \dfrac{N}{2}\leq k\leq N-1
+\end{cases}
+\]</p>
+</blockquote>
+<h2 id="正弦信号的DFT分析"><a href="#正弦信号的DFT分析" class="headerlink" title="正弦信号的DFT分析"></a>正弦信号的DFT分析</h2><blockquote>
+<p>加窗的影响</p>
+<p>已知一个由两个正弦分量之和组成的连续时间信号, 即<br>\[
+s_c(t)=A_0\cos(\Omega_0t+\theta_0)+A_1\cos(\Omega_1t+\theta_1),-\infty&lt;t&lt;\infty
+\]</p>
+<p>假定采样是理想的, 没有混叠和量化误差, 则可以得到离散时间信号<br>\[
+x[n]=A_0\cos(\omega_0n+\theta_0)+A_1\cos(\omega_1n+\theta_1),-\infty&lt;n&lt;\infty
+\]</p>
+<p>其中\(\omega_0=\Omega_0T\), 且\(\omega_1=\Omega_1T\), 则加窗后的序列\(v[n]\)为<br>\[
+v[n]=A_0w[n]\cos(\omega_0n+\theta_0)+A_1w[n]\cos(\omega_1n+\theta_1)
+\]</p>
+<p>利用复指数展开后可得<br>\[
+\begin{aligned}
+v[n]=&amp;\frac{A_0}{2}w[n]e^{j\theta_0}e^{j\omega_0n}+\frac{A_0}{2}w[n]e^{-j\theta_0}e^{-j\omega_0n}+\\
+&amp;\frac{A_1}{2}w[n]e^{j\theta_1}e^{j\omega_1n}+\frac{A_1}{2}w[n]e^{-j\theta_1}e^{-j\omega_1n}
+\end{aligned}
+\]</p>
+<p>因此加窗序列的傅里叶变换为<br>\[
+\begin{aligned}
+V(e^{j\omega})=&amp;\frac{A_0}{2}e^{j\theta_0}W(e^{j(\omega-\omega_0)})+\frac{A_0}{2}e^{-j\theta_0}W(e^{j(\omega+\omega_0)})+\\
+&amp;\frac{A_1}{2}e^{j\theta_1}W(e^{j(\omega-\omega_1)})+\frac{A_1}{2}e^{-j\theta_1}W(e^{j(\omega+\omega_1)})
+\end{aligned}
+\]</p>
+<p>(1) 加窗信号的傅里叶变换包含重复出现在频率\(\pm\omega_0\)和\(\pm\omega_1\)处以及按组成该信号的每个复指数的复振幅换算的窗函数的傅里叶变换.</p>
+<p>(2) 频谱泄露: 由于窗函数的谱平滑作用, 使得在一个频率处的分量泄漏到相邻的另一个分量中去.</p>
+<p>(3) 频率分辨率: 当两个正弦分量的频率满足\(|\omega_0-\omega_1|&gt;\Delta\omega_m\text{ (窗的主瓣宽度)}\)时, 对应的两个频率在频谱中是可分辨的; 随着\(|\omega_0-\omega_1|\)的减小, 加入异相的旁瓣将降低峰的高度, 使得频率分辨率降低.</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch10/10-3.svg" style="width: 80%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch10/10-3.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch10/10-3.svg" alt="(a) 矩形窗的傅里叶变换; (b)\(\sim\)(e) 当频率逐渐减小时加窗余弦的傅里叶变换"></a>
+<p class="signals-figure-caption">(a) 矩形窗的傅里叶变换; (b)\(\sim\)(e) 当频率逐渐减小时加窗余弦的傅里叶变换</p>
+</div>
+</blockquote>
+<hr>
+<a href="/2026/07/23/discrete-time-signal-processing-ch09/" title="离散时间信号处理 Ch09：离散傅里叶变换的计算">上一篇：离散傅里叶变换的计算</a> · <a href="/2026/07/23/discrete-time-signal-processing-ch11/" title="离散时间信号处理 Ch11：离散希尔伯特变换">下一篇：离散希尔伯特变换</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/discrete-time-signal-processing-ch11/">← Next 离散时间信号处理 Ch11：离散希尔伯特变换</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/discrete-time-signal-processing-ch09/">离散时间信号处理 Ch09：离散傅里叶变换的计算 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%9A%84%E4%BF%A1%E5%8F%B7%E5%82%85%E9%87%8C%E5%8F%B6%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">利用离散傅里叶变换的信号傅里叶分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%9A%84%E4%BF%A1%E5%8F%B7%E5%82%85%E9%87%8C%E5%8F%B6%E5%88%86%E6%9E%90-1"><span class="toc-number">1.1.</span> <span class="toc-text">利用离散傅里叶变换的信号傅里叶分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%BC%A6%E4%BF%A1%E5%8F%B7%E7%9A%84DFT%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">正弦信号的DFT分析</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

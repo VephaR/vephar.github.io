@@ -1,0 +1,284 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>高等数学 Ch07：多元函数积分学及其应用 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>高等数学 Ch07：多元函数积分学及其应用</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-24T02:07:00.000Z" id="date"> 2026-07-24</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T03:15:56.692Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.math-table { margin: 1.2em auto; overflow-x: auto; }
+.math-table table { width: auto; min-width: 60%; margin: 0 auto; border-collapse: collapse; }
+.math-table th, .math-table td { text-align: center; vertical-align: middle; padding: .45em .8em; white-space: nowrap; }
+.math-table-note { margin: -.5em auto 1em; text-align: center; color: #888; font-size: .92em; }
+.post-content mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
+</style>
+
+<blockquote>
+<p>本文是“高等数学”系列的第 07 章，主题为“多元函数积分学及其应用”。</p>
+</blockquote>
+<a href="/2026/07/24/advanced-mathematics-ch06/" title="高等数学 Ch06：无穷级数">上一篇：高等数学 Ch06：无穷级数</a>
+
+<span id="more"></span>
+
+<h2 id="三重积分"><a href="#三重积分" class="headerlink" title="三重积分"></a>三重积分</h2><blockquote>
+<p>三重积分的计算</p>
+<p>(一) 直角坐标下先一后二(\(D_{xy}\)为\(\Omega\)在\(xOy\)面上的投影域)<br>\[
+\iiint\limits_\Omega f(x,y,z)\mathrm{d}v=\iint\limits_{D_{xy}}\mathrm{d}\sigma\int_{z_1(x,y)}^{z_2(x,y)}f(x,y,z)\mathrm{d}z
+\]</p>
+<p>(二) 直角坐标下先二后一(\(c_1,c_2\)为\(\Omega\)在\(z\)轴上的投影, \(D_z\)为垂直\(z\)轴截闭区域\(\Omega\)的平面闭区域)<br>\[
+\iiint\limits_\Omega f(x,y,z)\mathrm{d}v=\int_{c_1}^{c_2}\mathrm{d}z\iint\limits_{D_z}f(x,y,z)\mathrm{d}x\mathrm{d}y
+\]</p>
+<p>适合:</p>
+<p>(1) \(f(x,y,z)\)是\(z\)的一元函数;</p>
+<p>(2) \(D_z\)面容易求出.</p>
+<p>(三) 柱坐标(体积微元\(\mathrm{d}v=r\mathrm{d}r\mathrm{d}\theta\mathrm{d}z\))<br>\[
+\begin{cases}
+x=r\cos\theta &amp; 0\leqslant r&lt;+\infty\\
+y=r\sin\theta &amp; 0\leqslant\theta\leqslant2\pi\\
+z=z &amp; -\infty&lt;z&lt;+\infty
+\end{cases}
+\]</p>
+<p>适合:</p>
+<p>(1) 函数 \(\varphi(z)f(\sqrt{x^2+y^2})=\varphi(z)f(r)\);</p>
+<p>(2) 区域  以\(z\)为中心的圆柱体、椎体、偏心柱体.</p>
+<p>(四) 球坐标(体积微元\(\mathrm{d}v=r^2\sin\varphi\mathrm{d}r\mathrm{d}\varphi\mathrm{d}\theta\))<br>\[
+\begin{cases}
+x=r\sin\varphi\cos\theta &amp; 0\leqslant r&lt;+\infty\\
+y=r\sin\varphi\sin\theta &amp; 0\leqslant\varphi\leqslant\pi\\
+z=r\cos\varphi &amp; 0\leqslant\theta\leqslant2\pi\\
+\end{cases}
+\]</p>
+<p>适合:</p>
+<p>(1) 函数 \(f(\sqrt{x^2+y^2+z^2})=f(r)\);</p>
+<p>(2) 区域  球体、半球、1&#x2F;4球、球壳.</p>
+<p>(五) 奇偶性  \(\Omega\)关于\(xOy\)面对称, 则\(\displaystyle\iiint\limits_\Omega f(x,y,z)\mathrm{d}v\)关于\(z\)有对称性.</p>
+</blockquote>
+<h2 id="第一类线积分"><a href="#第一类线积分" class="headerlink" title="第一类线积分"></a>第一类线积分</h2><blockquote>
+<p>平面曲线积分的计算</p>
+<p>(一) 直接法</p>
+<p>(1) \[
+L:\begin{cases}
+x=x(t)\\ y=y(t)
+\end{cases} ,t\in[\alpha,\beta]
+\], 则<br>\[
+\int_Lf(x,y)\mathrm{d}s=\int_{\alpha}^{\beta}f(x(t),y(t))\sqrt{x'^2(t)+y'^2(t)}\mathrm{d}t
+\]</p>
+<p>(2) \(L:y=y(x),x\in[\alpha,\beta]\), 则<br>\[
+\int_Lf(x,y)\mathrm{d}s=\int_{\alpha}^{\beta}f(x,y(x))\sqrt{1+y'^2(x)}\mathrm{d}x
+\]</p>
+<p>(3) \(L:r=r(\theta),\theta\in[\alpha,\beta]\), 则<br>\[
+\int_Lf(x,y)\mathrm{d}s=\int_{\alpha}^{\beta}f(r\cos\theta,r\sin\theta)\sqrt{r^2+r'^2}\mathrm{d}\theta
+\]</p>
+<p>(二) 奇偶性 \(L\)关于\(y\)轴对称, 则\(\displaystyle\int_Lf(x,y)\mathrm{d}s\)关于\(x\)有奇偶性.</p>
+<p>(三) 对称性 \(L\)关于\(y=x\)对称, 则\(\displaystyle\int_Lf(x,y)\mathrm{d}s=\int_Lf(y,x)\mathrm{d}s\).</p>
+</blockquote>
+<blockquote>
+<p>空间曲线积分的计算</p>
+<p>\[
+L:\begin{cases}
+x=x(t)\\ y=y(t)\\ z=z(t)
+\end{cases} ,t\in[\alpha,\beta]
+\], 则<br>\[
+\int_Lf(x,y,z)\mathrm{d}s=\int_{\alpha}^{\beta}f(x(t),y(t),z(t))\sqrt{x'^2(t)+y'^2(t)+z'^2(t)}\mathrm{d}t
+\]</p>
+</blockquote>
+<h2 id="第二类线积分"><a href="#第二类线积分" class="headerlink" title="第二类线积分"></a>第二类线积分</h2><blockquote>
+<p>平面曲线积分的计算</p>
+<p>(一) 直接法</p>
+<p>\[
+L:\begin{cases}
+x=x(t)\\ y=y(t)
+\end{cases} ,t\in[\alpha,\beta]
+\], 起点\(t=\alpha\), 终点\(t=\beta\), 则<br>\[
+\int_LP\mathrm{d}x+Q\mathrm{d}y=\int_{\alpha}^{\beta}[P(x(t),y(t))x'(t)+Q(x(t),y(t))y'(t)]\mathrm{d}t
+\]</p>
+<p>(二) 格林公式(\(L\)为\(D\)取正向的边界曲线, 沿正向移动, 区域在左侧)<br>\[
+\oint_LP\mathrm{d}x+Q\mathrm{d}y=\iint\limits_{D}\left( \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right) \mathrm{d}\sigma
+\]</p>
+<p>(三) 补线用格林公式</p>
+<p>(四) 线积分与路径无关</p>
+<p>(1) \(P(x,y),Q(x,y)\)在单连通域\(D\)上有一阶连续偏导数, 则</p>
+<p>\(\displaystyle\int_LP\mathrm{d}x+Q\mathrm{d}y\)与路径无关</p>
+<p>\(\Leftrightarrow\dfrac{\partial Q}{\partial x}=\dfrac{\partial P}{\partial y}\)</p>
+<p>\(\Leftrightarrow\displaystyle\oint_LP\mathrm{d}x+Q\mathrm{d}y=0\)</p>
+<p>\(\Leftrightarrow P(x,y)\mathrm{d}x+Q(x,y)\mathrm{d}y=\mathrm{d}F(x,y)\)</p>
+<p>i. 改换路径计算  ii. 利用原函数计算</p>
+<p>(2) 对于复连通域\(0&lt;x^2+y^2&lt;+\infty\), 判断线积分与路径无关有如下方法:</p>
+<p>i. 沿任何一条不包含原点在内的分段光滑闭曲线的积分为零.</p>
+<p>ii. 沿任何一条包含原点在内的分段光滑闭曲线的积分均相等.</p>
+<p>iii. \(P(x,y)\mathrm{d}x+Q(x,y)\mathrm{d}y=\mathrm{d}F(x,y)\).</p>
+</blockquote>
+<blockquote>
+<p>两类线积分的联系<br>\[
+\oint_LP\mathrm{d}x+Q\mathrm{d}y=\oint_L(P\cos\alpha+Q\cos\beta)\mathrm{d}s
+\]</p>
+</blockquote>
+<blockquote>
+<p>空间曲线积分的计算</p>
+<p>(一) 直接法</p>
+<p>\[
+L:\begin{cases}
+x=x(t)\\ y=y(t)\\ z=z(t)
+\end{cases} ,t\in[\alpha,\beta]
+\], 起点\(t=\alpha\), 终点\(t=\beta\), 则<br>\[
+\begin{aligned}
+&amp;\int_LP(x,y,z)\mathrm{d}x+Q(x,y,z)\mathrm{d}y+R(x,y,z)\mathrm{d}z\\
+=&amp;\int_{\alpha}^{\beta}\{P[x(t),y(t),z(t)]x'(t)+Q[x(t),y(t),z(t)]y'(t)+R[x(t),y(t),z(t)]z'(t)\}\mathrm{d}t
+\end{aligned}
+\]</p>
+<p>(二) 非直接法</p>
+<p>(1) 当\(\Sigma\)为平面时, 可以考虑化空间线积分为平面线积分(第二类), 然后用格林公式.</p>
+<p>(2) 斯托克斯公式(\(L\)的方向与\(\Sigma\)的法方向符合右手法则)</p>
+<p>i. 化为第一类面积分<br>\[
+\oint_LP(x,y,z)\mathrm{d}x+Q(x,y,z)\mathrm{d}y+R(x,y,z)\mathrm{d}z=\iint\limits_\Sigma\left| \begin{array}{ccc}
+\cos\alpha &amp; \cos\beta &amp; \cos\gamma\\[2pt]
+\dfrac{\partial}{\partial x} &amp; \dfrac{\partial}{\partial y} &amp; \dfrac{\partial}{\partial z}\\[5pt]
+P &amp; Q &amp; R\\
+\end{array}\right| \mathrm{d}S
+\]</p>
+<p>ii. 化为第二类面积分<br>\[
+\begin{aligned}
+&amp;\oint_LP(x,y,z)\mathrm{d}x+Q(x,y,z)\mathrm{d}y+R(x,y,z)\mathrm{d}z\\
+=&amp;\iint\limits_\Sigma\left( \frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\right) \mathrm{d}y\mathrm{d}z+\left( \frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\right) \mathrm{d}z\mathrm{d}x+\left( \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right) \mathrm{d}x\mathrm{d}y\\
+=&amp;\iint\limits_\Sigma\left| \begin{array}{ccc}
+\mathrm{d}y\mathrm{d}z &amp; \mathrm{d}z\mathrm{d}x &amp; \mathrm{d}x\mathrm{d}y\\[2pt]
+\dfrac{\partial}{\partial x} &amp; \dfrac{\partial}{\partial y} &amp; \dfrac{\partial}{\partial z}\\[5pt]
+P &amp; Q &amp; R\\
+\end{array}\right|
+\end{aligned}
+\]</p>
+</blockquote>
+<h2 id="第一类面积分"><a href="#第一类面积分" class="headerlink" title="第一类面积分"></a>第一类面积分</h2><blockquote>
+<p>第一类面积分的计算</p>
+<p>(一) 直接法</p>
+<p>\(\Sigma:z=z(x,y),(x,y)\in D_{xy}\)(\(D_{xy}\)为\(\Sigma\)在\(xOy\)面上的投影域), 则<br>\[
+\iint\limits_\Sigma f(x,y,z)\mathrm{d}S=\iint\limits_{D_{xy}}f[x,y,z(x,y)]\sqrt{1+z_x'^2+z_y'^2}\mathrm{d}x\mathrm{d}y
+\]</p>
+<p>(二) 奇偶性 \(\Sigma\)关于\(xOy\)面对称, 则\(\displaystyle\iint\limits_\Sigma f(x,y,z)\mathrm{d}S\)关于\(z\)有奇偶性.</p>
+</blockquote>
+<h2 id="第二类面积分"><a href="#第二类面积分" class="headerlink" title="第二类面积分"></a>第二类面积分</h2><blockquote>
+<p>第二类面积分的计算</p>
+<p>(一) 直接法</p>
+<p>(1) \(\Sigma:z=z(x,y),(x,y)\in D_{xy}\), 则<br>\[
+\iint\limits_\Sigma R(x,y,z)\mathrm{d}x\mathrm{d}y=\pm\iint\limits_{D_{xy}}R[x,y,z(x,y)]\mathrm{d}x\mathrm{d}y
+\]</p>
+<p>上侧为正, 下侧为负.</p>
+<p>(2) \(\Sigma:x=x(y,z),(y,z)\in D_{yz}\), 则<br>\[
+\iint\limits_\Sigma P(x,y,z)\mathrm{d}y\mathrm{d}z=\pm\iint\limits_{D_{yz}}P[x(y,z),y,z]\mathrm{d}y\mathrm{d}z
+\]</p>
+<p>前侧为正, 后侧为负.</p>
+<p>(3) \(\Sigma:y=y(z,x),(z,x)\in D_{zx}\), 则<br>\[
+\iint\limits_\Sigma Q(x,y,z)\mathrm{d}z\mathrm{d}x=\pm\iint\limits_{D_{zx}}Q[x,y(z,x),z]\mathrm{d}z\mathrm{d}x
+\]</p>
+<p>右侧为正, 左侧为负.</p>
+<p>(二) 高斯公式<br>\[
+\mathop{\Large ∯}\limits_{\Sigma_{\text{外}}}P\mathrm{d}y\mathrm{d}z+Q\mathrm{d}z\mathrm{d}x+R\mathrm{d}x\mathrm{d}y=\iiint\limits_{\Omega}\left( \frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right) \mathrm{d}v
+\]</p>
+<p>(三) 补面用高斯公式(外侧为正, 内侧为负)</p>
+<p>(四) 投影轮换法(一代二投三点积)</p>
+<p>\(\Sigma:z=z(x,y),(x,y)\in D_{xy}\), 则<br>\[
+\begin{aligned}
+&amp;\iint\limits_\Sigma P(x,y,z)\mathrm{d}y\mathrm{d}z+Q(x,y,z)\mathrm{d}z\mathrm{d}x+R(x,y,z)\mathrm{d}x\mathrm{d}y\\
+=&amp;\iint\limits_{D_{xy}}\{P[x,y,z(x,y)],Q[x,y,z(x,y)],R[x,y,z(x,y)]\}\cdot\boldsymbol{n}\mathrm{d}x\mathrm{d}y
+\end{aligned}
+\]</p>
+<p>其中\(\boldsymbol{n}\)为曲面\(\Sigma\)的法向量\(\pm\{z'_x,z'_y,-1\}\).</p>
+</blockquote>
+<blockquote>
+<p>两类面积分的联系<br>\[
+\iint\limits_{\Sigma}P\mathrm{d}y\mathrm{d}z+Q\mathrm{d}z\mathrm{d}x+R\mathrm{d}x\mathrm{d}y=\iint\limits_{\Sigma}(P\cos\alpha+Q\cos\beta+R\cos\gamma)\mathrm{d}S
+\]</p>
+<p>其中\((\cos\alpha,\cos\beta,\cos\gamma)\)为曲面\(\Sigma\)法向量的方向余弦.</p>
+</blockquote>
+<hr>
+<a href="/2026/07/24/advanced-mathematics-ch06/" title="高等数学 Ch06：无穷级数">上一篇：高等数学 Ch06：无穷级数</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/24/linear-algebra-ch01/">← Next 线性代数 Ch01：行列式</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/24/advanced-mathematics-ch06/">高等数学 Ch06：无穷级数 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E9%87%8D%E7%A7%AF%E5%88%86"><span class="toc-number">1.</span> <span class="toc-text">三重积分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%B1%BB%E7%BA%BF%E7%A7%AF%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">第一类线积分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%B1%BB%E7%BA%BF%E7%A7%AF%E5%88%86"><span class="toc-number">3.</span> <span class="toc-text">第二类线积分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%B1%BB%E9%9D%A2%E7%A7%AF%E5%88%86"><span class="toc-number">4.</span> <span class="toc-text">第一类面积分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%B1%BB%E9%9D%A2%E7%A7%AF%E5%88%86"><span class="toc-number">5.</span> <span class="toc-text">第二类面积分</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

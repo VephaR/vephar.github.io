@@ -1,0 +1,461 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>离散时间信号处理 Ch05：线性时不变系统的变换分析 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>离散时间信号处理 Ch05：线性时不变系统的变换分析</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T06:05:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:20:33.556Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.signals-table { display: block; overflow-x: auto; text-align: center; }
+.signals-table table { width: auto; margin-left: auto; margin-right: auto; }
+.signals-table th, .signals-table td { text-align: center !important; vertical-align: middle; }
+.signals-figure { text-align: center; margin: 1.25rem 0; }
+.signals-figure a { display: block; max-width: 100%; margin: 0 auto; }
+.signals-figure img { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
+.signals-figure-caption { margin: .5rem 0 0; text-align: center; opacity: .8; }
+</style>
+
+<blockquote>
+<p>本文是“离散时间信号处理”系列的第 05 章，主题为“线性时不变系统的变换分析”。</p>
+</blockquote>
+<a href="/2026/07/23/discrete-time-signal-processing-ch04/" title="离散时间信号处理 Ch04：连续时间信号的采样">上一篇：连续时间信号的采样</a> · <a href="/2026/07/23/discrete-time-signal-processing-ch06/" title="离散时间信号处理 Ch06：离散时间系统结构">下一篇：离散时间系统结构</a>
+
+<span id="more"></span>
+
+<h1 id="线性时不变系统的变换分析"><a href="#线性时不变系统的变换分析" class="headerlink" title="线性时不变系统的变换分析"></a>线性时不变系统的变换分析</h1><h2 id="LTI系统的频率响应"><a href="#LTI系统的频率响应" class="headerlink" title="LTI系统的频率响应"></a>LTI系统的频率响应</h2><blockquote>
+<p>理想低通滤波器<br>\[
+H_\mathrm{lp}(e^{j\omega})=
+\begin{cases}
+1 &amp; |\omega|&lt;\omega_c\\
+0 &amp; \omega_c&lt;|\omega|\leq\pi
+\end{cases}
+\]<br>\[
+h_\mathrm{lp}[n]=\frac{\sin\omega_cn}{\pi n},-\infty&lt;n&lt;\infty
+\]</p>
+<p>理想高通滤波器<br>\[
+H_\mathrm{hp}(e^{j\omega})=
+\begin{cases}
+0 &amp; |\omega|&lt;\omega_c\\
+1 &amp; \omega_c&lt;|\omega|\leq\pi
+\end{cases}
+\]<br>\[
+h_\mathrm{hp}[n]=\delta[n]-h_\mathrm{lp}[n]=\delta[n]-\frac{\sin\omega_cn}{\pi n}
+\]</p>
+</blockquote>
+<blockquote>
+<p>理想延迟系统<br>\[
+h_\mathrm{id}[n]=\delta[n-n_d]
+\]<br>\[
+H_\mathrm{id}(e^{j\omega})=e^{-j\omega n_d}
+\]</p>
+<p>幅频特性和相频特性<br>\[
+|H_\mathrm{id}(e^{j\omega})|=1
+\]<br>\[
+\angle H_\mathrm{id}(e^{j\omega})=-\omega n_d
+\]</p>
+</blockquote>
+<blockquote>
+<p>群延迟的定义<br>\[
+\tau(\omega)=\mathrm{grd}[H(e^{j\omega})]=-\frac{\mathrm{d}}{\mathrm{d}\omega}\{\mathrm{arg}[H(e^{j\omega})]\}\quad\text{(}\mathrm{arg}[H(e^{j\omega})]\text{为连续相位)}
+\]</p>
+<p>群延迟在时域表现为信号包络的移位.</p>
+</blockquote>
+<blockquote>
+<p>相位函数的主值<br>\[
+\mathrm{ARG}[H(e^{j\omega})]=\arctan\left[\frac{H_I(e^{j\omega})}{H_R(e^{j\omega})}\right]
+\]</p>
+<p>\(H_R(e^{j\omega})\)和\(H_I(e^{j\omega})\)分别是\(H(e^{j\omega})\)的实部和虚部.</p>
+</blockquote>
+<h2 id="逆系统与有理系统函数"><a href="#逆系统与有理系统函数" class="headerlink" title="逆系统与有理系统函数"></a>逆系统与有理系统函数</h2><blockquote>
+<p>逆系统的定义<br>\[
+H_i(z)=\frac{1}{H(z)}
+\]</p>
+<p>\(H_i(z)\)的极点就是\(H(z)\)的零点, \(H_i(z)\)的零点就是\(H(z)\)的极点.</p>
+</blockquote>
+<blockquote>
+<p>任何具有一阶极点的、以\(z^{-1}\)为幂给出的有理函数可表示为<br>\[
+H(z)=\underbrace{\sum_{r=0}^{M-N}B_rz^{-r}}_{\text{仅当}M\leq N\text{时存在}}+\sum_{k=1}^{N}\frac{A_k}{1-d_kz^{-1}}
+\]</p>
+<p>对应的单位脉冲响应<br>\[
+h[n]=\underbrace{\sum_{r=0}^{M-N}B_r\delta[n-r]}_{\text{FIR系统}}+\underbrace{\sum_{k=1}^{N}A_kd_k^nu[n]}_{\text{IIR系统}}
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(N\)点FIR系统的性质</p>
+<p>系统函数<br>\[
+H(z)=\sum_{k=0}^{N-1}b_kz^{-k}
+\]</p>
+<p>单位脉冲响应<br>\[
+h[n]=\sum_{k=0}^{N-1}b_k\delta[n-k]=
+\begin{cases}
+b_n &amp; 0\leq n\leq N-1\\
+0 &amp; \text{其他}
+\end{cases}
+\]</p>
+<p>(1) \(N\)点FIR系统有\((N-1)\)个零点.</p>
+<p>(2) FIR系统在有限平面内没有非零的极点, 且极点个数与零点个数相同. 若系统函数的最高阶负次项为\(z^{-k}\), 则在原点处有\(k\)阶极点.</p>
+<p>(3) 对于FIR系统, 其差分方程与卷积和是一致的, 即<br>\[
+y[n]=\sum_{k=0}^{N-1}b_kx[n-k]
+\]</p>
+</blockquote>
+<h2 id="有理系统函数的频率响应"><a href="#有理系统函数的频率响应" class="headerlink" title="有理系统函数的频率响应"></a>有理系统函数的频率响应</h2><blockquote>
+<p>有理系统函数的频率响应的形式<br>\[
+H(e^{j\omega})=\frac{\displaystyle\sum_{k=0}^{M}b_ke^{-j\omega k}}{\displaystyle\sum_{k=0}^{N}a_ke^{-j\omega k}}
+\]</p>
+<p>系统的幅度平方函数<br>\[
+|H(e^{j\omega})|^2=H(e^{j\omega})H^*(e^{j\omega})
+\]</p>
+<p>系统的增益(对数幅度)<br>\[
+\text{增益(dB)}=20\log_{10}|H(e^{j\omega})|=10\log_{10}|H(e^{j\omega})|^2
+\]</p>
+<p>系统的衰减<br>\[
+\text{衰减(dB)}=-20\log_{10}|H(e^{j\omega})|=-\text{增益(dB)}
+\]</p>
+</blockquote>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch05/5-8.svg" style="width: 60.8%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch05/5-8.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch05/5-8.svg" alt="\(r=0.9\)和3种\(\theta\)值时, 单一零点的频率响应；(a) 对数幅度; (b) 相位; (c) 群延迟"></a>
+<p class="signals-figure-caption">\(r=0.9\)和3种\(\theta\)值时, 单一零点的频率响应；(a) 对数幅度; (b) 相位; (c) 群延迟</p>
+</div>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch05/5-11.svg" style="width: 60.8%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch05/5-11.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch05/5-11.svg" alt="\(\theta=\pi\)和4种\(r\)值时, 单一零点的频率响应；(a) 对数幅度; (b) 相位; (c) 群延迟"></a>
+<p class="signals-figure-caption">\(\theta=\pi\)和4种\(r\)值时, 单一零点的频率响应；(a) 对数幅度; (b) 相位; (c) 群延迟</p>
+</div>
+
+<blockquote>
+<p>单个零点或极点的频率响应</p>
+<p>一阶系统函数<br>\[
+H(z)=(1-re^{j\theta}z^{-1})=\frac{(z-rz^{j\theta})}{z},r&lt;1
+\]</p>
+<p>对应的幅度<br>\[
+|1-re^{j\theta}e^{-j\omega}|=\left|\frac{e^{j\omega}-re^{j\theta}}{e^{j\omega}}\right|=\frac{|\boldsymbol{v_3}|}{|\boldsymbol{v_1}|}
+\]</p>
+<p>对应的相位<br>\[
+\begin{aligned}
+\angle(1-re^{j\theta}e^{-j\omega})&amp;=\angle(e^{j\omega}-re^{j\theta})-\angle(e^{j\omega})=\angle(\boldsymbol{v_3})-\angle(\boldsymbol{v_1})\\&amp;=\phi_3-\omega
+\end{aligned}
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch05/5-9.svg" style="width: 30.4%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch05/5-9.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch05/5-9.svg" alt="一阶系统函数在单位圆上求值的\(z\)平面"></a>
+<p class="signals-figure-caption">一阶系统函数在单位圆上求值的\(z\)平面</p>
+</div>
+
+<p>(1) 对于如上一阶系统函数, 极点向量\(\boldsymbol{v_1}\)的长度恒为1, 因此对幅度响应没有任何影响, 幅度响应即为零点向量\(\boldsymbol{v_3}\)的长度; 当\(\omega=\theta\)时, 该向量长度最小, 因此造成幅度函数在\(\omega=\theta\)处剧烈下降. 相位函数等于零点向量的相角\(\phi_3\)与极点向量的相角\(\omega\)之差.</p>
+<p>(2) 若有在单位圆上的零点, 当\(\omega\)接近于零点(\(\omega\rightarrow\theta\))时, 向量\(\boldsymbol{v_3}\)的长度趋于0, 因此对频率响应的贡献为\(-\infty\)dB; 当\(\omega\)从\(\theta\)穿过时, 向量\(\boldsymbol{v_3}\)的相角突变\(\pi\)rad.</p>
+<p>(3) 当\(r\)越趋近于1, 对数幅度函数下降得越剧烈; 相位函数在\(\omega=\theta\)附近具有正斜率, 当\(r\)趋于1时, 该斜率变得无穷大, 因此, 对于\(r=1\), 相位函数在\(\omega=\theta\)处突变\(\pi\)rad; 群延迟是相位曲线斜率的负数, 因此群延迟在\(\omega=\theta\)附近为负值, 并且随着\(r\)趋近于1, 群延迟急剧下降, 当\(r=1\)时成为脉冲.</p>
+</blockquote>
+<h2 id="幅度和相位之间的关系"><a href="#幅度和相位之间的关系" class="headerlink" title="幅度和相位之间的关系"></a>幅度和相位之间的关系</h2><blockquote>
+<p>系统函数的幅度平方特性<br>\[
+\begin{aligned}
+C(z)&amp;=H(z)H^*\left(\dfrac{1}{z^*}\right)\\
+&amp;=\left(\frac{b_0}{a_0}\right)^2\frac{\displaystyle\prod\limits_{k=1}^{M}(1-c_kz^{-1})(1-c_k^*z)}{\displaystyle\prod\limits_{k=1}^{N}(1-d_kz^{-1})(1-d_k^*z)}
+\end{aligned}
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch05/5-20.svg" style="width: 34.4%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch05/5-20.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch05/5-20.svg" alt="幅度平方函数的零极点图"></a>
+<p class="signals-figure-caption">幅度平方函数的零极点图</p>
+</div>
+
+<p>(1) \(C(z)\)的零极点是以共轭倒数对的形式出现的(极点和极点共轭倒数, 零点和零点共轭倒数), 如果每对中的一个在单位圆内, 那么另一个一定在单位圆外.</p>
+<p>(2) 如果\(H(z)\)是对应于一个因果稳定系统, 那么它的全部极点都位于单位圆内; 如果\(H(z)\)是对应于一个最小相位系统, 那么它的全部极点和零点都位于单位圆内.</p>
+<p>(3) 因果稳定系统函数\(H(z)\)的极点可以从\(C(z)\)的极点中分离出来, 但\(H(z)\)的零点不能从\(C(z)\)的零点中唯一地被确定.</p>
+</blockquote>
+<h2 id="全通系统"><a href="#全通系统" class="headerlink" title="全通系统"></a>全通系统</h2><div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch05/5-21.svg" style="width: 40%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch05/5-21.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch05/5-21.svg" alt="全通系统的零极点图"></a>
+<p class="signals-figure-caption">全通系统的零极点图</p>
+</div>
+
+<blockquote>
+<p>全通系统的标准型<br>\[
+H_\mathrm{ap}(z)=\frac{z^{-1}-a^*}{1-az^{-1}},|a|&lt;1
+\]</p>
+<p>对应的频率响应<br>\[
+\begin{aligned}
+H_\mathrm{ap}(e^{j\omega})&amp;=\frac{e^{-j\omega}-a^*}{1-ae^{-j\omega}}\\
+&amp;=\underbrace{e^{-j\omega}}_{\text{幅度为1}}\cdot\underbrace{\frac{1-a^*e^{j\omega}}{1-ae^{-j\omega}}}_{\text{分子分母共轭}}\Rightarrow|H_\mathrm{ap}(e^{j\omega})|=1
+\end{aligned}
+\]</p>
+<p>(1) \(H_\mathrm{ap}(z)\)的每一个极点都有一个与之配对的共轭倒数零点.</p>
+<p>(2) 全通系统相位的负值性和群延迟的正值性:</p>
+<p>因果全通系统的(连续)相位\(\arg[H_\mathrm{ap}(e^{j\omega})]\)在\(0&lt;\omega&lt;\pi\)内总是非正的, 而群延迟总是正的.</p>
+</blockquote>
+<blockquote>
+<p>若系统的单位脉冲响应\(h[n]\)为实数, 则\(H(z)\)的极点和极点共轭, 零点和零点共轭.<br>\[
+h[n]=h^*[n]\Rightarrow H(z_0)=H^*(z_0^*)
+\]</p>
+</blockquote>
+<h2 id="最小相位系统"><a href="#最小相位系统" class="headerlink" title="最小相位系统"></a>最小相位系统</h2><blockquote>
+<p>当且仅当\(H(z)\)的零点和极点都在单位圆内时, 一个稳定因果的线性时不变系统也有一个稳定因果的逆系统, 这样的系统称为最小相位系统\(H_{\min}(z)\).</p>
+</blockquote>
+<blockquote>
+<p>最小相位和全通分解</p>
+<p>任何有理系统函数都能表示成<br>\[
+H(z)=H_{\min}(z)H_\mathrm{ap}(z)
+\]</p>
+</blockquote>
+<blockquote>
+<p>最小相位系统的性质</p>
+<p>(1) 最小相位滞后性质(相位最大)<br>\[
+\arg[H(e^{j\omega})]=\arg[H_{\min}(e^{j\omega})]+\underbrace{\arg[H_\mathrm{ap}(e^{j\omega})]}_{\text{负值性}}
+\]</p>
+<p>(2) 最小群延迟性质(群延迟最小)<br>\[
+\mathrm{grd}[H(e^{j\omega})]=\mathrm{grd}[H_{\min}(e^{j\omega})]+\underbrace{\mathrm{grd}[H_\mathrm{ap}(e^{j\omega})]}_{\text{正值性}}
+\]</p>
+<p>(3) 最小能量延迟性质(初值最大、平方和(能量)最大)<br>\[
+|h[0]|&lt;|h_{\min}[0]|
+\]</p>
+<p>定义单位脉冲响应的部分能量为<br>\[
+E[n]=\sum_{m=0}^{n}|h[m]|^2
+\]</p>
+<p>则有<br>\[
+\sum_{m=0}^{n}|h[m]|^2\leq\sum_{m=0}^{n}|h_{\min}[m]|^2
+\]</p>
+</blockquote>
+<h2 id="广义线性相位的线性系统"><a href="#广义线性相位的线性系统" class="headerlink" title="广义线性相位的线性系统"></a>广义线性相位的线性系统</h2><blockquote>
+<p>理想延迟系统<br>\[
+H_\mathrm{id}(e^{j\omega})=e^{-j\omega\alpha}
+\]</p>
+<p>该系统有恒定的幅度响应、线性相位和恒定的群延迟<br>\[
+|H_\mathrm{id}(e^{j\omega})|=1
+\]<br>\[
+\angle H_\mathrm{id}(e^{j\omega})=-\omega\alpha
+\]<br>\[
+\mathrm{grd}[H_\mathrm{id}(e^{j\omega})]=\alpha
+\]</p>
+<p>对应的单位脉冲响应<br>\[
+h_\mathrm{id}[n]=\frac{\sin\pi(n-\alpha)}{\pi(n-\alpha)},-\infty&lt;n&lt;\infty
+\]</p>
+<p>若\(\alpha=n_d\), \(n_d\)为整数, 则有<br>\[
+h_\mathrm{id}[n]=\delta[n-n_d]
+\]</p>
+</blockquote>
+<blockquote>
+<p>线性相位系统<br>\[
+H(e^{j\omega})=|H(e^{j\omega})|e^{-j\omega\alpha}
+\]</p>
+<p>如果\(2\alpha\)是整数, 则相应的单位脉冲响应关于\(\alpha\)偶对称, 即<br>\[
+h[2\alpha-n]=h[n]
+\]</p>
+<p>当\(\alpha=0\)时为零相位系统, 其单位脉冲响应关于原点对称, 系统函数满足<br>\[
+\hat{H}(e^{j\omega})=|H(e^{j\omega})|
+\]</p>
+</blockquote>
+<blockquote>
+<p>广义线性相位系统<br>\[
+H(e^{j\omega})=\underset{\text{可正可负}}{\underbrace{A(e^{j\omega})}_{\omega\text{的实函数}}}e^{-j\omega\alpha+j\beta}
+\]</p>
+<p>对应的幅度响应、相位响应和群延迟为<br>\[
+|H(e^{j\omega})|=|A(e^{j\omega})e^{j\beta}|
+\]<br>\[
+\angle H(e^{j\omega})=\beta-\omega\alpha,0&lt;\omega&lt;\pi
+\]<br>\[
+\tau(\omega)=\mathrm{grd}[H(e^{j\omega})]=\alpha
+\]</p>
+<p>满足广义线性相位的两组条件</p>
+<p>(1)<br>\[
+\beta=0\text{或}\pi
+\]<br>\[
+2\alpha=M=\text{整数}
+\]<br>\[
+h[2\alpha-n]=h[n]\quad\text{(关于}\alpha\text{偶对称)}
+\]</p>
+<p>(2)<br>\[
+\beta=\frac{\pi}{2}\text{或}\frac{3\pi}{2}
+\]<br>\[
+2\alpha=M=\text{整数}
+\]<br>\[
+h[2\alpha-n]=-h[n]\quad\text{(关于}\alpha\text{奇对称)}
+\]</p>
+</blockquote>
+<blockquote>
+<p>四类FIR线性相位系统</p>
+<div class="table-container signals-table">
+<table>
+<thead><tr><th>类型</th><th>I</th><th>II</th><th>III</th><th>IV</th></tr></thead>
+<tbody><tr><td>&#92;(h[n]&#92;)</td><td>偶对称</td><td>偶对称</td><td>奇对称</td><td>奇对称</td></tr><tr><td>&#92;(\beta&#92;)</td><td>&#92;(0&#92;)或&#92;(\pi&#92;)</td><td>&#92;(0&#92;)或&#92;(\pi&#92;)</td><td>&#92;(\pi/2&#92;)或&#92;(3\pi/2&#92;)</td><td>&#92;(\pi/2&#92;)或&#92;(3\pi/2&#92;)</td></tr><tr><td>阶数&#92;(M&#92;)</td><td>偶数</td><td>奇数</td><td>偶数</td><td>奇数</td></tr><tr><td>&#92;(H(e^{j\omega})&#92;)关于&#92;(\omega=0&#92;)的对称性</td><td>偶对称</td><td>偶对称</td><td>奇对称</td><td>奇对称</td></tr><tr><td>&#92;(H(e^{j\omega})&#92;)关于&#92;(\omega=\pi&#92;)的对称性</td><td>偶对称</td><td>奇对称</td><td>奇对称</td><td>偶对称</td></tr><tr><td>&#92;(H(e^{j\omega})|_{\omega=0}&#92;)</td><td>任意</td><td>任意</td><td>0</td><td>0</td></tr><tr><td>&#92;(H(e^{j\omega})|_{\omega=\pi}&#92;)</td><td>任意</td><td>0</td><td>0</td><td>任意</td></tr><tr><td>适用的滤波器类型</td><td>任意</td><td>LP, BP</td><td>BP</td><td>BP, HP<br>微分器</td></tr></tbody>
+</table>
+</div>
+
+<p>频率响应为<br>\[
+H(e^{j\omega})=
+\begin{cases}
+e^{-j\omega M/2}\left(\displaystyle\sum_{k=0}^{M/2}a[k]\cos\omega k\right) &amp; \text{I类}\\[16pt]
+e^{-j\omega M/2}\left\lbrace\displaystyle\sum_{k=1}^{(M+1)/2}b[k]\cos\left[\omega\left(k-\dfrac{1}{2}\right)\right]\right\rbrace &amp; \text{II类}\\[16pt]
+je^{-j\omega M/2}\left(\displaystyle\sum_{k=1}^{M/2}c[k]\sin\omega k\right) &amp; \text{III类}\\[16pt]
+je^{-j\omega M/2}\left\lbrace\displaystyle\sum_{k=1}^{(M+1)/2}d[k]\sin\left[\omega\left(k-\dfrac{1}{2}\right)\right]\right\rbrace &amp; \text{IV类}
+\end{cases}
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch05/5-36.svg" style="width: 68.8%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch05/5-36.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch05/5-36.svg" alt="FIR线性相位系统的例子；(a) I类, \(M\)为偶, \(h[n]=h[M-n]\); (b) II类, \(M\)为奇, \(h[n]=h[M-n]\); ；(c) III类, \(M\)为偶, \(h[n]=-h[M-n]\); (d) IV类, \(M\)为奇, \(h[n]=-h[M-n]\)"></a>
+<p class="signals-figure-caption">FIR线性相位系统的例子；(a) I类, \(M\)为偶, \(h[n]=h[M-n]\); (b) II类, \(M\)为奇, \(h[n]=h[M-n]\); ；(c) III类, \(M\)为偶, \(h[n]=-h[M-n]\); (d) IV类, \(M\)为奇, \(h[n]=-h[M-n]\)</p>
+</div>
+
+<p>\(M\)阶FIR线性相位系统的单位脉冲响应有\(N=M+1\)个点.</p>
+</blockquote>
+<blockquote>
+<p>I类FIR线性相位系统\(\beta\)值的推导(已知\(h[n]=h[M-n]\), \(M\)为偶数)<br>\[
+\begin{aligned}
+H(e^{j\omega})&amp;=\sum_{n=0}^{M}h[n]e^{-j\omega n}\\
+&amp;=\sum_{n=0}^{M/2-1}h[n]e^{-j\omega n}+\sum_{n=M/2+1}^{M}h[n]e^{-j\omega n}+h\left[\frac{M}{2}\right]e^{-j\omega M/2}\\
+&amp;=\sum_{n=0}^{M/2-1}h[n]e^{-j\omega n}+\sum_{n=M/2+1}^{M}h[M-n]e^{-j\omega n}+h\left[\frac{M}{2}\right]e^{-j\omega M/2}\\
+&amp;=\sum_{n=0}^{M/2-1}h[n]e^{-j\omega n}+\sum_{n'=0}^{M/2-1}h[n']e^{-j\omega(M-n')}+h\left[\frac{M}{2}\right]e^{-j\omega M/2}\quad(n'=M-n)\\
+&amp;=\sum_{n=0}^{M/2-1}(h[n]e^{-j\omega n}+h[n]e^{-j\omega(M-n)})+h\left[\frac{M}{2}\right]e^{-j\omega M/2}\\
+&amp;=e^{-j\omega M/2}\left\lbrace\sum_{n=0}^{M/2-1}(h[n]e^{j\omega(M/2-n)}+h[n]e^{-j\omega(M/2-n)})+h\left[\frac{M}{2}\right]\right\rbrace\\
+&amp;=e^{-j\omega M/2}\left\lbrace\sum_{n=0}^{M/2-1}2h[n]\cos[\omega(\frac{M}{2}-n)]+h\left[\frac{M}{2}\right]\right\rbrace\\
+&amp;=e^{-j\omega M/2}\underbrace{\left(\sum_{k=0}^{M/2}2h\left[\frac{M}{2}-k\right]\cos\omega k\right)}_{\text{实数}}\quad\left(k=\frac{M}{2}-n\right)
+\end{aligned}
+\]</p>
+<p>而广义线性相位系统的标准型为\(H(e^{j\omega})=A(e^{j\omega})e^{-j\omega\alpha+j\beta}\), 故\(\beta\)为\(0\)或\(\pi\).</p>
+</blockquote>
+<blockquote>
+<p>FIR线性相位系统的零极点位置</p>
+<p>(1) 若\(z_0=re^{j\theta}\)是\(H(z)\)的零点, 则\(z_0^{-1}=r^{-1}e^{-j\theta}\)也是\(H(z)\)的零点(零点和零点倒数).</p>
+<p>(2) 当\(h[n]\)为实数时, \(z_0^*=re^{-j\theta}\)和\((z_0^*)^{-1}=r^{-1}e^{j\theta}\)也是\(H(z)\)的零点.</p>
+<p>(3) i. 偶对称情况下(I类和II类)<br>\[
+H(z)=\sum_{n=0}^{M}h[M-n]z^{-n}=z^{-M}H(z^{-1})
+\]<br>\[
+H(-1)=(-1)^MH(-1)
+\]</p>
+<p>若\(M\)为奇数(II类), 则系统函数必有一个零点在\(z=-1\).</p>
+<p>ii.奇对称情况下(III类和IV类)<br>\[
+H(z)=-\sum_{n=0}^{M}h[M-n]z^{-n}=-z^{-M}H(z^{-1})
+\]<br>\[
+H(-1)=(-1)^{-M+1}H(-1)
+\]</p>
+<p>若\(M\)为偶数(III类), 则系统函数必有一个零点在\(z=-1\).<br>\[
+H(1)=-H(1)
+\]</p>
+<p>系统函数必有一个零点在\(z=1\), 与\(M\)的奇偶性无关.</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch05/5-41.svg" style="width: 48%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch05/5-41.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch05/5-41.svg" alt="线性相位系统典型零极点图；(a) I类; (b) II类; ；(c) III类; (d) IV类"></a>
+<p class="signals-figure-caption">线性相位系统典型零极点图；(a) I类; (b) II类; ；(c) III类; (d) IV类</p>
+</div>
+
+<p>(扩展) 四类FIR线性相位系统在\(z_k=\pm1\)的零点特性</p>
+<div class="table-container signals-table">
+<table>
+<thead><tr><th>类型</th><th>I</th><th>II</th><th>III</th><th>IV</th></tr></thead>
+<tbody><tr><td>在&#92;(z_k=1&#92;)的零点数</td><td rowspan="2">无/偶数</td><td>无/偶数</td><td rowspan="2">奇数</td><td>奇数</td></tr><tr><td>在&#92;(z_k=-1&#92;)的零点数</td><td>奇数</td><td>无/偶数</td></tr></tbody>
+</table>
+</div>
+</blockquote>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch05/5-37-38-.svg" style="width: 80%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch05/5-37-38-.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch05/5-37-38-.svg" alt="I类FIR线性相位系统典型频率响应II类FIR线性相位系统典型频率响应； (a) 幅度; (b) 相位; (c) 群延迟"></a>
+<p class="signals-figure-caption">I类FIR线性相位系统典型频率响应II类FIR线性相位系统典型频率响应； (a) 幅度; (b) 相位; (c) 群延迟</p>
+</div>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch05/5-39-40-.svg" style="width: 80%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch05/5-39-40-.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch05/5-39-40-.svg" alt="III类FIR线性相位系统典型频率响应IV类FIR线性相位系统典型频率响应； (a) 幅度; (b) 相位; (c) 群延迟"></a>
+<p class="signals-figure-caption">III类FIR线性相位系统典型频率响应IV类FIR线性相位系统典型频率响应； (a) 幅度; (b) 相位; (c) 群延迟</p>
+</div>
+
+<blockquote>
+<p>FIR线性相位系统设计微分器</p>
+<p>微分器的时域要求\(h[n]=-h[M-n]\) (奇对称), 频域要求\(H(e^{j\omega})|_{\omega=\pi}\neq0\).</p>
+<p>(1) IV类FIR在时域和频域上都能满足微分器的要求, 可以最好地逼近微分器.</p>
+<p>(2) I类FIR能满足频率响应在\(\omega=\pi\)不为0的要求, 但不能从时域逼近微分器.</p>
+<p>(3) III类FIR能满足时域奇对称的要求, 但其频率响应会有幅度的失真.</p>
+</blockquote>
+<blockquote>
+<p>FIR线性相位系统与最小相位系统的关系</p>
+<p>任何FIR线性相位系统的系统函数都能因式分解为最小相位项\(H_{\min}\)、最大相位项\(H_{\max}(z)\)以及包含单位圆上零点的项\(H_\mathrm{uc}\), 即<br>\[
+H(z)=H_{\min}(z)H_\mathrm{uc}(z)H_{\max}(z)
+\]</p>
+<p>其中<br>\[
+H_{\max}=H_{\min}(z^{-1})z^{-M_i}
+\]</p>
+<p>(1) \(M_i\)是\(H_{\min}(z)\)零点的个数, \(H_{\min}(z)\)的全部\(M_i\)个零点都在单位圆内.</p>
+<p>(2) \(H_\mathrm{uc}(z)\)的全部\(M_0\)个零点都在单位圆上.</p>
+<p>(3) \(H_{\max}\)的全部\(M_i\)个零点都在单位圆外, 且其零点就是\(H_{\min}(z)\)零点的倒数.</p>
+<p>(4) 系统函数\(H(z)\)的阶为\(M=2M_i+M_0\).</p>
+</blockquote>
+<hr>
+<a href="/2026/07/23/discrete-time-signal-processing-ch04/" title="离散时间信号处理 Ch04：连续时间信号的采样">上一篇：连续时间信号的采样</a> · <a href="/2026/07/23/discrete-time-signal-processing-ch06/" title="离散时间信号处理 Ch06：离散时间系统结构">下一篇：离散时间系统结构</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/discrete-time-signal-processing-ch06/">← Next 离散时间信号处理 Ch06：离散时间系统结构</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/discrete-time-signal-processing-ch04/">离散时间信号处理 Ch04：连续时间信号的采样 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%97%B6%E4%B8%8D%E5%8F%98%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8F%98%E6%8D%A2%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">线性时不变系统的变换分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#LTI%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%A2%91%E7%8E%87%E5%93%8D%E5%BA%94"><span class="toc-number">1.1.</span> <span class="toc-text">LTI系统的频率响应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%86%E7%B3%BB%E7%BB%9F%E4%B8%8E%E6%9C%89%E7%90%86%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">逆系统与有理系统函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E7%90%86%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E7%9A%84%E9%A2%91%E7%8E%87%E5%93%8D%E5%BA%94"><span class="toc-number">1.3.</span> <span class="toc-text">有理系统函数的频率响应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%85%E5%BA%A6%E5%92%8C%E7%9B%B8%E4%BD%8D%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.4.</span> <span class="toc-text">幅度和相位之间的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E9%80%9A%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.5.</span> <span class="toc-text">全通系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E7%9B%B8%E4%BD%8D%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.6.</span> <span class="toc-text">最小相位系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BF%E4%B9%89%E7%BA%BF%E6%80%A7%E7%9B%B8%E4%BD%8D%E7%9A%84%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.7.</span> <span class="toc-text">广义线性相位的线性系统</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

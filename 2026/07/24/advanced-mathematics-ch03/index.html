@@ -1,0 +1,310 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>高等数学 Ch03：一元函数积分学 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>高等数学 Ch03：一元函数积分学</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-24T02:03:00.000Z" id="date"> 2026-07-24</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:46:47.673Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.math-table { margin: 1.2em auto; overflow-x: auto; }
+.math-table table { width: auto; min-width: 60%; margin: 0 auto; border-collapse: collapse; }
+.math-table th, .math-table td { text-align: center; vertical-align: middle; padding: .45em .8em; white-space: nowrap; }
+.math-table-note { margin: -.5em auto 1em; text-align: center; color: #888; font-size: .92em; }
+.post-content mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
+</style>
+
+<blockquote>
+<p>本文是“高等数学”系列的第 03 章，主题为“一元函数积分学”。</p>
+</blockquote>
+<a href="/2026/07/24/advanced-mathematics-ch02/" title="高等数学 Ch02：一元函数微分学">上一篇：高等数学 Ch02：一元函数微分学</a> · <a href="/2026/07/24/advanced-mathematics-ch04/" title="高等数学 Ch04：常微分方程">下一篇：高等数学 Ch04：常微分方程</a>
+
+<span id="more"></span>
+
+<blockquote>
+<p>原函数的存在性(不定积分)</p>
+<p>(1) \(f(x)\)在区间\(I\)上连续\(\Rightarrow f(x)\)在区间\(I\)上必有原函数.</p>
+<p>(2) \(f(x)\)在区间\(I\)上有第一类间断点\(\Rightarrow f(x)\)在区间\(I\)上没有原函数.</p>
+<p>(3) \(f(x)\)在区间\(I\)上有第二类间断点\(\Rightarrow f(x)\)在区间\(I\)上可能有原函数.</p>
+<p>可积性(定积分)</p>
+<p>(1) \(f(x)\)在\([a,b]\)上连续\(\Rightarrow\displaystyle\int_{a}^{b}f(x)\mathrm{d}x\)必定存在.</p>
+<p>(2) \(f(x)\)在\([a,b]\)上有界, 且只有有限个间断点\(\Rightarrow\displaystyle\int_{a}^{b}f(x)\mathrm{d}x\)必定存在.</p>
+<p>(3) \(f(x)\)在\([a,b]\)上只有有限个第一类间断点\(\Rightarrow\displaystyle\int_{a}^{b}f(x)\mathrm{d}x\)必定存在.</p>
+</blockquote>
+<blockquote>
+<p>基本积分公式</p>
+<p>\(\displaystyle\int\dfrac{1}{x}\mathrm{d}x=\ln|x|+C\)  \(\displaystyle\int a^x\mathrm{d}x=\dfrac{a^x}{\ln a}+C(a&gt;0,a\neq1)\)</p>
+<p>\(\displaystyle\int\sec^2x\mathrm{d}x=\tan x+C\)  \(\displaystyle\int\csc^2x\mathrm{d}x=-\cot x+C\)  \(\displaystyle\int\tan^2x\mathrm{d}x=\tan x-x+C\)</p>
+<p>\(\displaystyle\int\sec x\tan x\mathrm{d}x=\sec x+C\)  \(\displaystyle\int\csc x\cot x\mathrm{d}x=-\csc x+C\)</p>
+<p>\(\displaystyle\int\sec x\mathrm{d}x=\ln|\sec x+\tan x|+C\) \(\displaystyle\int\csc x\mathrm{d}x=-\ln|\csc x+\cot x|+C\) \(\displaystyle\int\tan x\mathrm{d}x=-\ln|\cos x|+C\)</p>
+<p>\(\displaystyle\int\dfrac{\mathrm{d}x}{a^2+x^2}=\dfrac{1}{a}\arctan\dfrac{x}{a}+C\) \(\displaystyle\int\dfrac{\mathrm{d}x}{a^2-x^2}=\dfrac{1}{2a}\ln\left| \dfrac{a+x}{a-x}\right| +C\) \(\displaystyle\int\dfrac{\mathrm{d}x}{\sqrt{a^2-x^2}}=\arcsin\dfrac{x}{a}+C\)</p>
+<p>\(\displaystyle\int\dfrac{\mathrm{d}x}{\sqrt{x^2+a^2}}=\ln|x+\sqrt{x^2+a^2}|+C\)  \(\displaystyle\int\dfrac{\mathrm{d}x}{\sqrt{x^2-a^2}}=\ln|x+\sqrt{x^2-a^2}|+C\)</p>
+</blockquote>
+<blockquote>
+<p>常见可积函数积分</p>
+<p>(一) 第二类换元法常用变量代换</p>
+<p>(1) 被积函数中含有\(\sqrt{a^2-x^2}\)时, 令\(x=a\sin t\)或\(a\cos t\);</p>
+<p>(2) 被积函数中含有\(\sqrt{a^2+x^2}\)时, 令\(x=a\tan t\);</p>
+<p>(3) 被积函数中含有\(\sqrt{x^2-a^2}\)时, 令\(x=a\sec t\).</p>
+<p>(二) 三角有理式积分</p>
+<p>(1) 万能代换: 令\(\tan\dfrac{x}{2}=t\),<br>\[
+\int R(\sin x,\cos x)\mathrm{d}x=\int R\left( \dfrac{2t}{1+t^2},\dfrac{1-t^2}{1+t^2}\right) \dfrac{2}{1+t^2}\mathrm{d}t
+\]</p>
+<p>(2) 常用换元法</p>
+<p>若\(R(-\sin x,\cos x)=-R(\sin x,\cos x)\), 则令\(u=\cos x\), 即凑d\(\cos x\);</p>
+<p>若\(R(\sin x,-\cos x)=-R(\sin x,\cos x)\), 则令\(u=\sin x\), 即凑d\(\sin x\);</p>
+<p>若\(R(-\sin x,-\cos x)=R(\sin x,\cos x)\), 则令\(u=\tan x\), 即凑d\(\tan x\).</p>
+<p>(三) 简单无理函数积分<br>\[
+\int R\left( x,\sqrt[n]{\frac{ax+b}{cx+d}}\right) \mathrm{d}x
+\]</p>
+<p>令\(\sqrt[n]{\dfrac{ax+b}{cx+d}}=t\), 将其化为有理函数积分进行计算.</p>
+<p>(四) 表格积分法求分部积分<br>\[
+\int uv^{(n+1)}\mathrm{d}x=uv^{(n)}-u'v^{(n-1)}+u''v^{(n-2)}-\cdots+(-1)^nu^{(n)}v+(-1)^{n+1}\int u^{(n+1)}v\mathrm{d}x
+\]</p>
+<p>即(注意正负交替, 且最后一项是积分)</p>
+<div class="table-container math-table">
+<table>
+<thead><tr><th>求导</th><th>&#92;(u&#92;)</th><th>&#92;(u'&#92;)</th><th>&#92;(u''&#92;)</th><th>&#92;(&#92;cdots&#92;)</th><th>&#92;(u^{(n)}&#92;)</th><th>&#92;(u^{(n+1)}&#92;)</th></tr></thead>
+<tbody><tr><td>积分</td><td>&#92;(v^{(n+1)}&#92;)</td><td>&#92;(v^{(n)}&#92;)</td><td>&#92;(v^{(n-1)}&#92;)</td><td>&#92;(&#92;cdots&#92;)</td><td>&#92;(v'&#92;)</td><td>&#92;(v&#92;)</td></tr></tbody>
+</table>
+</div>
+<div class="math-table-note">按左上至右下的对应项交叉相乘，符号正负交替。</div>
+
+<p>表格积分法举例: \(\displaystyle\int e^{2x}\cos2x\mathrm{d}x\)</p>
+<div class="table-container math-table">
+<table>
+<thead><tr><th>求导</th><th>&#92;(&#92;cos2x&#92;)</th><th>&#92;(-2&#92;sin2x&#92;)</th><th>&#92;(-4&#92;cos2x&#92;)</th></tr></thead>
+<tbody><tr><td>积分</td><td>&#92;(e^{2x}&#92;)</td><td>&#92;(&#92;dfrac{1}{2}e^{2x}&#92;)</td><td>&#92;(&#92;dfrac{1}{4}e^{2x}&#92;)</td></tr></tbody>
+</table>
+</div>
+<div class="math-table-note">按左上至右下的对应项交叉相乘，符号正负交替。</div>
+
+<p>由上表知, \(\displaystyle\int e^{2x}\cos2x\mathrm{d}x=\dfrac{1}{2}e^{2x}\cos2x-\dfrac{1}{4}e^{2x}(-2\sin2x)+\int\dfrac{1}{4}e^{2x}(-4\cos2x)\mathrm{d}x\)</p>
+<p>\(\Rightarrow\displaystyle\int e^{2x}\cos2x\mathrm{d}x=\dfrac{1}{4}e^{2x}(\cos2x+\sin2x)+C\)</p>
+</blockquote>
+<blockquote>
+<p>(1) \[
+\displaystyle\int_{0}^{\frac{\pi}{2}}\sin^nx\mathrm{d}x=\displaystyle\int_{0}^{\frac{\pi}{2}}\cos^nx\mathrm{d}x=\begin{cases}
+\dfrac{n-1}{n}\cdot\dfrac{n-3}{n-2}\cdot\cdots\cdot\dfrac{1}{2}\cdot\dfrac{\pi}{2} &amp; n\text{为偶数}\\[8pt]
+\dfrac{n-1}{n}\cdot\dfrac{n-3}{n-2}\cdot\cdots\cdot\dfrac{2}{3} &amp; n\text{为大于1的奇数}\\[2pt]
+1 &amp; n=1
+\end{cases}
+\]</p>
+<p>\[
+\displaystyle\int_{0}^{2\pi}\sin^nx\mathrm{d}x=\displaystyle\int_{0}^{2\pi}\cos^nx\mathrm{d}x=\begin{cases}
+4\displaystyle\int_{0}^{\frac{\pi}{2}}\sin^nx\mathrm{d}x &amp; n\text{为偶数}\\[2pt]
+0 &amp; n\text{为奇数}
+\end{cases}
+\]</p>
+<p>(2) 定积分几何意义: \(\displaystyle\int_{0}^{a}\sqrt{a^2-x^2}\mathrm{d}x=\displaystyle\int_{0}^{a}\sqrt{2ax-x^2}\mathrm{d}x=\dfrac{\pi}{4}a^2\), \(\displaystyle\int_{0}^{2a}\sqrt{2ax-x^2}\mathrm{d}x=\dfrac{\pi}{2}a^2(a&gt;0)\).</p>
+</blockquote>
+<blockquote>
+<p>定积分计算技巧</p>
+<p>(1) 区间再现:<br>\[
+\int_{a}^{b}f(x)\mathrm{d}x=\int_{a}^{b}f(a+b-x)\mathrm{d}x
+\]</p>
+<p>(2) 积分对称原理:</p>
+<p>若\(f(x)\)关于\(\dfrac{a+b}{2}\)对称, 则<br>\[
+\int_{a}^{b}xf(x)\mathrm{d}x=\frac{a+b}{2}\int_{a}^{b}f(x)\mathrm{d}x
+\]</p>
+<p>推论:</p>
+<p>(1) \(\displaystyle\int_{0}^{\frac{\pi}{2}}f(\sin x)\mathrm{d}x=\displaystyle\int_{0}^{\frac{\pi}{2}}f(\cos x)\mathrm{d}x\)</p>
+<p>(2) \(\displaystyle\int_{0}^{\pi}xf(\sin x)\mathrm{d}x=\dfrac{\pi}{2}\displaystyle\int_{0}^{\pi}f(\sin x)\mathrm{d}x=\pi\displaystyle\int_{0}^{\frac{\pi}{2}}f(\sin x)\mathrm{d}x\)</p>
+<p>(3) \(\displaystyle\int_{a}^{b}\dfrac{f(x)}{f(x)+f(a+b-x)}\mathrm{d}x=\dfrac{b-a}{2}\)</p>
+</blockquote>
+<blockquote>
+<p>定积分的性质</p>
+<p>(1) \(\left| \displaystyle\int_{a}^{b}f(x)\mathrm{d}x\right| \leqslant\displaystyle\int_{a}^{b}|f(x)|\mathrm{d}x\).</p>
+<p>(2) 柯西积分不等式: \(\left( \displaystyle\int_{a}^{b}f(x)g(x)\mathrm{d}x\right) ^2\leqslant\displaystyle\int_{a}^{b}f^2(x)\mathrm{d}x\displaystyle\int_{a}^{b}g^2(x)\mathrm{d}x\).</p>
+<p>(3) 积分中值定理: \(f(x)\)在\([a,b]\)上连续\(\Rightarrow\displaystyle\int_{a}^{b}f(x)\mathrm{d}x=f(\xi)(b-a),a&lt;\xi&lt;b\).</p>
+<p>(4) 广义积分中值定理: \(f(x),g(x)\)在\([a,b]\)上连续, 且\(g(x)\)不变号, 则<br>\[
+\int_{a}^{b}f(x)g(x)\mathrm{d}x=f(\xi)\int_{a}^{b}g(x)\mathrm{d}x,a\leqslant \xi\leqslant b
+\]</p>
+</blockquote>
+<blockquote>
+<p>变上限求导<br>\[
+\left( \displaystyle\int_{\varphi(x)}^{\psi(x)}f(t)\mathrm{d}t\right) '=f(\psi(x))\psi'(x)-f(\varphi(x))\varphi'(x)
+\]</p>
+</blockquote>
+<blockquote>
+<p>变上限积分\(F(x)=\displaystyle\int_a^xf(t)\mathrm{d}t\)的性质</p>
+<p>连续性: \(f(x)\)在\([a,b]\)上可积\(\Rightarrow F(x)\)在\([a,b]\)上连续.</p>
+<p>可导性: \(f(x)\)在\([a,b]\)上除点\(x=x_0\in(a,b)\)外均连续, 则在点\(x=x_0\)处</p>
+<div class="table-container math-table">
+<table>
+<thead><tr><th>&#92;(f(x)&#92;)</th><th>&#92;(F(x)&#92;)</th></tr></thead>
+<tbody><tr><td>连续</td><td>可导, 且&#92;(F'(x_0)=f(x_0)&#92;)</td></tr><tr><td>可去</td><td>可导, 且&#92;(F'(x_0)=&#92;lim&#92;limits_{x&#92;rightarrow x_0}f(x)&#92;)</td></tr><tr><td>跳跃</td><td>连续但不可导, 且&#92;(F_-'(x_0)=f(x_0^-),F_+'(x_0)=f(x_0^+)&#92;)</td></tr></tbody>
+</table>
+</div>
+
+<p>奇偶性: 设\(f(x)\)连续,</p>
+<p>(1) \(f(x)\)为奇函数\(\Rightarrow\displaystyle\int_a^xf(t)\mathrm{d}t\)为偶函数;</p>
+<p>(2) \(f(x)\)为偶函数\(\Rightarrow\displaystyle\int_0^xf(t)\mathrm{d}t\)为奇函数.</p>
+</blockquote>
+<blockquote>
+<p>无穷区间上反常积分的敛散性</p>
+<p>(比较判别法) 设\(f(x),g(x)\)在\([a,+\infty)\)上连续, 且\(0\leqslant f(x)\leqslant g(x)\), 则</p>
+<p>(1) \(\displaystyle\int_a^{+\infty}g(x)\mathrm{d}x\)收敛\(\Rightarrow\displaystyle\int_a^{+\infty}f(x)\mathrm{d}x\)收敛;</p>
+<p>(2) \(\displaystyle\int_a^{+\infty}f(x)\mathrm{d}x\)发散\(\Rightarrow\displaystyle\int_a^{+\infty}g(x)\mathrm{d}x\)发散.</p>
+<p>(比较法的极限形式) 设\(f(x),g(x)\)在\([a,+\infty)\)上非负连续, 且\(\lim\limits_{x\rightarrow+\infty}\dfrac{f(x)}{g(x)}=\lambda\) (有限或无穷), 则</p>
+<p>(1) \(\lambda&gt;0\Rightarrow\displaystyle\int_a^{+\infty}f(x)\mathrm{d}x\)与\(\displaystyle\int_a^{+\infty}g(x)\mathrm{d}x\)同敛散;</p>
+<p>(2) \(\lambda=0,\displaystyle\int_a^{+\infty}g(x)\mathrm{d}x\)收敛\(\Rightarrow\displaystyle\int_a^{+\infty}f(x)\mathrm{d}x\)收敛;</p>
+<p>(3) \(\lambda=+\infty,\displaystyle\int_a^{+\infty}g(x)\mathrm{d}x\)发散\(\Rightarrow\displaystyle\int_a^{+\infty}f(x)\mathrm{d}x\)发散.</p>
+<p>常用结论: \[
+\displaystyle\int_a^{+\infty}\dfrac{1}{x^p}\mathrm{d}x\begin{cases}
+p&gt;1 &amp; \text{收敛}\\
+p\leqslant1 &amp; \text{发散}
+\end{cases}(a&gt;0)
+\].</p>
+</blockquote>
+<blockquote>
+<p>无界函数反常积分的敛散性</p>
+<p>(比较判别法) 设\(f(x),g(x)\)在\((a,b]\)上连续, 且\(0\leqslant f(x)\leqslant g(x)\), \(x=a\)为\(f(x)\)和\(g(x)\)的瑕点, 则</p>
+<p>(1) \(\displaystyle\int_a^{b}g(x)\mathrm{d}x\)收敛\(\Rightarrow\displaystyle\int_a^{b}f(x)\mathrm{d}x\)收敛;</p>
+<p>(2) \(\displaystyle\int_a^{b}f(x)\mathrm{d}x\)发散\(\Rightarrow\displaystyle\int_a^{b}g(x)\mathrm{d}x\)发散.</p>
+<p>(比较法的极限形式) 设\(f(x),g(x)\)在\((a,b]\)上非负连续, 且\(\lim\limits_{x\rightarrow a^+}\dfrac{f(x)}{g(x)}=\lambda\) (有限或无穷), 则</p>
+<p>(1) \(\lambda&gt;0\Rightarrow\displaystyle\int_a^{b}f(x)\mathrm{d}x\)与\(\displaystyle\int_a^{b}g(x)\mathrm{d}x\)同敛散;</p>
+<p>(2) \(\lambda=0,\displaystyle\int_a^{b}g(x)\mathrm{d}x\)收敛\(\Rightarrow\displaystyle\int_a^{b}f(x)\mathrm{d}x\)收敛;</p>
+<p>(3) \(\lambda=+\infty,\displaystyle\int_a^{b}g(x)\mathrm{d}x\)发散\(\Rightarrow\displaystyle\int_a^{b}f(x)\mathrm{d}x\)发散.</p>
+<p>常用结论: \[
+\displaystyle\int_a^{b}\dfrac{1}{(x-a)^q}\mathrm{d}x\begin{cases}
+q&lt;1 &amp; \text{收敛}\\
+q\geqslant1 &amp; \text{发散}
+\end{cases}
+\]; \[
+\displaystyle\int_a^{b}\dfrac{1}{(b-x)^q}\mathrm{d}x\begin{cases}
+q&lt;1 &amp; \text{收敛}\\
+q\geqslant1 &amp; \text{发散}
+\end{cases}
+\].</p>
+</blockquote>
+<blockquote>
+<p>含有对数\(\ln x\)的反常积分</p>
+<p>(1) \(\displaystyle\int_{2}^{+\infty}\dfrac{1}{\ln^ax}\mathrm{d}x\)和\(\displaystyle\int_{0}^{\frac{1}{2}}\ln^ax\mathrm{d}x\)型</p>
+<p>对任意的\(a\), \(\displaystyle\int_{2}^{+\infty}\dfrac{1}{\ln^ax}\mathrm{d}x\)都发散, \(\displaystyle\int_{0}^{\frac{1}{2}}\ln^ax\mathrm{d}x\)都收敛.</p>
+<p>(2) \(\displaystyle\int_{2}^{+\infty}\dfrac{\ln^ax}{x^p}\mathrm{d}x\)和\(\displaystyle\int_{0}^{\frac{1}{2}}\dfrac{\ln^ax}{x^p}\mathrm{d}x\)型</p>
+<p>敛散性仅取决于\(\dfrac{1}{x^p}\), \(\ln^ax\)的作用可忽略.</p>
+<p>(3) \(\displaystyle\int_{2}^{+\infty}\dfrac{1}{x^p\ln^ax}\mathrm{d}x\)和\(\displaystyle\int_{0}^{\frac{1}{2}}\dfrac{1}{x^p\ln^ax}\mathrm{d}x\)型</p>
+<p>当\(p\neq1\)时, 敛散性仅取决于\(\dfrac{1}{x^p}\), \(\ln^ax\)的作用可忽略.</p>
+<p>当\(p=1\)时, 敛散性取决于\[
+a\begin{cases}
+a&gt;1 &amp; \text{收敛}\\
+a\leqslant1 &amp; \text{发散}
+\end{cases}
+\]. 事实上此时的积分是容易计算的, 有<br>\[
+\int\frac{1}{x\ln^ax}\mathrm{d}x=\int\dfrac{1}{\ln^ax}\mathrm{d}(\ln x)=\frac{\ln^{1-a}x}{1-a}
+\]</p>
+</blockquote>
+<blockquote>
+<p>定积分应用</p>
+<p>(一) 平面图形的面积<br>\[
+S=\iint\limits_{D}1\mathrm{d}\sigma
+\]</p>
+<p>(二) 旋转体的体积<br>\[
+V=2\pi\iint\limits_{D}r(x,y)\mathrm{d}\sigma
+\]</p>
+<p>其中\(r(x,y)\)为点\((x,y)\)到旋转轴的距离, 即\(r(x,y)=\dfrac{|ax+by+c|}{\sqrt{a^2+b^2}}\).</p>
+<p>(三) 曲线弧长</p>
+<p>(1) 曲线段\(C\)由直角坐标方程\(y=y(x),x\in[\alpha,\beta]\)给出\(\Rightarrow s=\displaystyle\int_{\alpha}^{\beta}\sqrt{1+y'^2}\mathrm{d}x\).</p>
+<p>(2) 曲线段\(C\)由参数方程\[
+\begin{cases}
+x=x(t)\\ y=y(t)
+\end{cases} ,t\in[\alpha,\beta]
+\]给出\(\Rightarrow s=\displaystyle\int_{\alpha}^{\beta}\sqrt{x'^2(t)+y'^2(t)}\mathrm{d}t\).</p>
+<p>(3) 曲线段\(C\)由极坐标方程\(r=r(\theta),\theta\in[\alpha,\beta]\)给出\(\Rightarrow s=\displaystyle\int_{\alpha}^{\beta}\sqrt{r^2(\theta)+r'^2(\theta)}\mathrm{d}\theta\).</p>
+<p>(四) 旋转体侧面积</p>
+<p>曲线\(y=f(x)(\geqslant0)\)和直线\(x=a,x=b(0\leqslant a&lt;b)\)及\(x\)轴所围区域绕\(x\)轴旋转体侧面积为<br>\[
+S=2\pi\int_{a}^{b}f(x)\sqrt{1+f'^2(x)}\mathrm{d}x
+\]</p>
+</blockquote>
+<hr>
+<a href="/2026/07/24/advanced-mathematics-ch02/" title="高等数学 Ch02：一元函数微分学">上一篇：高等数学 Ch02：一元函数微分学</a> · <a href="/2026/07/24/advanced-mathematics-ch04/" title="高等数学 Ch04：常微分方程">下一篇：高等数学 Ch04：常微分方程</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/24/advanced-mathematics-ch04/">← Next 高等数学 Ch04：常微分方程</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/24/advanced-mathematics-ch02/">高等数学 Ch02：一元函数微分学 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

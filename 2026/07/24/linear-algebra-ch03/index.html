@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>线性代数 Ch03：n维向量 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>线性代数 Ch03：n维向量</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-24T02:10:00.000Z" id="date"> 2026-07-24</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:46:47.677Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.math-table { margin: 1.2em auto; overflow-x: auto; }
+.math-table table { width: auto; min-width: 60%; margin: 0 auto; border-collapse: collapse; }
+.math-table th, .math-table td { text-align: center; vertical-align: middle; padding: .45em .8em; white-space: nowrap; }
+.math-table-note { margin: -.5em auto 1em; text-align: center; color: #888; font-size: .92em; }
+.post-content mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
+</style>
+
+<blockquote>
+<p>本文是“线性代数”系列的第 03 章，主题为“n维向量”。</p>
+</blockquote>
+<a href="/2026/07/24/linear-algebra-ch02/" title="线性代数 Ch02：矩阵">上一篇：线性代数 Ch02：矩阵</a> · <a href="/2026/07/24/linear-algebra-ch04/" title="线性代数 Ch04：线性方程组">下一篇：线性代数 Ch04：线性方程组</a>
+
+<span id="more"></span>
+
+<blockquote>
+<p>向量内积 \((\boldsymbol{\alpha},\boldsymbol{\beta})=\boldsymbol{\alpha}^T\boldsymbol{\beta}=\boldsymbol{\beta}^T\boldsymbol{\alpha}=a_1b_1+a_2b_2+\cdots+a_nb_n\)</p>
+<p>(1) 向量\(\boldsymbol{\alpha}=(a_1,a_2,\cdots,a_n)^T\)的长度<br>\[
+||\boldsymbol{\alpha}||=\sqrt{\boldsymbol{\alpha}^T\boldsymbol{\alpha}}=\sqrt{a_1^2+a_2^2+\cdots+a_n^2}
+\]</p>
+<p>(2) \(\boldsymbol{\alpha}^T\boldsymbol{\alpha}=0\Leftrightarrow a_1^2+a_2^2+\cdots+a_n^2=0\Leftrightarrow\boldsymbol{\alpha}=\boldsymbol{0}\).</p>
+<p>(3) \((\boldsymbol{\alpha},\boldsymbol{\beta})=0\Leftrightarrow\boldsymbol{\alpha}\perp\boldsymbol{\beta}\).</p>
+</blockquote>
+<blockquote>
+<p>向量\(\boldsymbol{\beta}\)可由向量组\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s\)线性表出</p>
+<p>\(\Leftrightarrow k_1\boldsymbol{\alpha}_1+k_2\boldsymbol{\alpha}_2+\cdots+k_s\boldsymbol{\alpha}_s=\boldsymbol{\beta}\)</p>
+<p>\(\Leftrightarrow\)非齐次线性方程组\[
+[\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s]\left[ \begin{array}{c}
+x_1\\ x_2\\ \vdots \\ x_s
+\end{array}\right] =\boldsymbol{\beta}
+\]有解</p>
+<p>\(\Leftrightarrow r[\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s]=r[\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s,\boldsymbol{\beta}]\).</p>
+</blockquote>
+<blockquote>
+<p>向量组\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s\)线性相关</p>
+<p>\(\Leftrightarrow k_1\boldsymbol{\alpha}_1+k_2\boldsymbol{\alpha}_2+\cdots+k_s\boldsymbol{\alpha}_s=0,k_i\)不全为零</p>
+<p>\(\Leftrightarrow\)齐次线性方程组\[
+[\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s]\left[ \begin{array}{c}
+x_1\\ x_2\\ \vdots \\ x_s
+\end{array}\right] =\boldsymbol{0}
+\]有非零解</p>
+<p>\(\Leftrightarrow r[\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s]&lt;s\).</p>
+<p>推论:</p>
+<p>(1) \(n\)个\(n\)维向量线性相关\(\Leftrightarrow|\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_n|=0\).</p>
+<p>(2) \(n+1\)个\(n\)维向量一定线性相关.</p>
+</blockquote>
+<blockquote>
+<p>线性相关和线性表出的关系</p>
+<p>(1) 向量组\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s\)相关\(\Leftrightarrow\)存在一个向量可由其余\(s-1\)个向量表出.</p>
+<p>(2) 向量组\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s\)无关, \(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s,\boldsymbol{\beta}\)相关\(\Rightarrow\boldsymbol{\beta}\)可由\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s\)唯一表出.</p>
+</blockquote>
+<blockquote>
+<p>向量组\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s\)可由向量组\(\boldsymbol{\beta}_1,\boldsymbol{\beta}_2,\cdots,\boldsymbol{\beta}_t\)线性表出</p>
+<p>\(\Leftrightarrow\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s\)中的每个向量都可由\(\boldsymbol{\beta}_1,\boldsymbol{\beta}_2,\cdots,\boldsymbol{\beta}_t\)中的向量线性表出</p>
+<p>若两个向量组可以互相线性表出, 则向量组等价.</p>
+</blockquote>
+<blockquote>
+<p>(1) 部分组\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_r\)相关\(\Rightarrow\)整体组\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_r,\cdots,\boldsymbol{\alpha}_s\)相关.</p>
+<p>“子集合相关, 整体必相关”.</p>
+<p>(2) \(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_m\)无关\(\Rightarrow\)延伸组\(\tilde{\boldsymbol{\alpha}}_1,\tilde{\boldsymbol{\alpha}}_2,\cdots,\tilde{\boldsymbol{\alpha}}_m\)无关.</p>
+<p>“低维无关, 高维必无关”.</p>
+<p>(3) \(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s\)可由\(\boldsymbol{\beta}_1,\boldsymbol{\beta}_2,\cdots,\boldsymbol{\beta}_t\)表出, 且\(s&gt;t\Rightarrow\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s\)相关.</p>
+<p>“多由少表出, 则多必相关”.</p>
+<p>推论: \(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s\)无关, 且可由\(\boldsymbol{\beta}_1,\boldsymbol{\beta}_2,\cdots,\boldsymbol{\beta}_t\)表出\(\Rightarrow s\leqslant t\).</p>
+<p>(四) \(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s\)可由\(\boldsymbol{\beta}_1,\boldsymbol{\beta}_2,\cdots,\boldsymbol{\beta}_t\)表出\(\Rightarrow r(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s)\leqslant r(\boldsymbol{\beta}_1,\boldsymbol{\beta}_2,\cdots,\boldsymbol{\beta}_t)\).</p>
+<p>推论:</p>
+<p>(a) 向量组(I), (II)等价\(\Rightarrow r(\mathrm{I})=r(\mathrm{II})\).</p>
+<p>(b) 由向量组秩相等一般不能得到向量组等价, 还需增加以下条件:</p>
+<p>若\(r(\mathrm{I})=r(\mathrm{II})\), 且(I)可由(II)线性表出\(\Rightarrow\)向量组等价.</p>
+<p>若\(r(\mathrm{I})=r(\mathrm{II})=r(\mathrm{I},\mathrm{II})\Rightarrow\)向量组等价.</p>
+</blockquote>
+<blockquote>
+<p>已知向量组\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\boldsymbol{\alpha}_3\)线性无关, 若\(\boldsymbol{\beta}_1,\boldsymbol{\beta}_2,\boldsymbol{\beta}_3\)可由\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\boldsymbol{\alpha}_3\)表出, 设<br>\[
+[\boldsymbol{\beta}_1,\boldsymbol{\beta}_2,\boldsymbol{\beta}_3]=[\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\boldsymbol{\alpha}_3]\boldsymbol{C}
+\]</p>
+<p>则\(\boldsymbol{\beta}_1,\boldsymbol{\beta}_2,\boldsymbol{\beta}_3\)线性无关的充要条件是\(|\boldsymbol{C}|\neq0\).</p>
+</blockquote>
+<blockquote>
+<p>\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_m\)为向量空间\(V\)的一个基, 则</p>
+<p>(1) \(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_m\)线性无关;</p>
+<p>(2) \(V\)中任意向量\(\boldsymbol{\beta}\)均可由向量组\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_m\)线性表出, 即<br>\[
+x_1\boldsymbol{\alpha}_1+x_2\boldsymbol{\alpha}_2+\cdots+x_m\boldsymbol{\alpha}_m=\boldsymbol{\beta}
+\]</p>
+<p>向量空间\(V\)的维数\(\dim V=m\), \(\boldsymbol{\beta}\)的系数\(x_1,x_2,\cdots,x_m\)称为\(\boldsymbol{\beta}\)在基底\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_m\)下的坐标.</p>
+<p>规范正交基\(\boldsymbol{e}_1,\boldsymbol{e}_2,\cdots,\boldsymbol{e}_n\)满足<br>\[
+(\boldsymbol{e}_i,\boldsymbol{e}_j)=\begin{cases}
+1 &amp; i=j\\
+0 &amp; i\neq j
+\end{cases}
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(n\)维向量空间中的两组基(I) \(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_n\), (II) \(\boldsymbol{\beta}_1,\boldsymbol{\beta}_2,\cdots,\boldsymbol{\beta}_n\), 若有<br>\[
+[\boldsymbol{\beta}_1,\boldsymbol{\beta}_2,\cdots,\boldsymbol{\beta}_n]=[\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_n]\boldsymbol{C}
+\]</p>
+<p>其中<br>\[
+\boldsymbol{C}=\left[ \begin{array}{cccc}
+c_{11} &amp; c_{12} &amp; \cdots &amp; c_{1n}\\
+c_{21} &amp; c_{22} &amp; \cdots &amp; c_{2n}\\
+\vdots &amp; \vdots &amp;  &amp; \vdots\\
+c_{n1} &amp; c_{n2} &amp; \cdots &amp; c_{nn}\\
+\end{array}\right]
+\]</p>
+<p>则称\(\boldsymbol{C}\)为由基\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_n\)到基\(\boldsymbol{\beta}_1,\boldsymbol{\beta}_2,\cdots,\boldsymbol{\beta}_n\)的过渡矩阵.</p>
+</blockquote>
+<blockquote>
+<p>(1) 过渡矩阵\(\boldsymbol{C}\)为可逆矩阵.</p>
+<p>(2) 若\(\gamma\)在基\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_n\)下的坐标为\(x_1,x_2,\cdots,x_n\), 在基\(\boldsymbol{\beta}_1,\boldsymbol{\beta}_2,\cdots,\boldsymbol{\beta}_n\)下的坐标为\(y_1,y_2,\cdots,y_n\), 则坐标变换公式<br>\[
+\left[ \begin{array}{c}
+x_1\\ x_2\\ \vdots\\ x_n\\
+\end{array}\right] =\boldsymbol{C}\left[ \begin{array}{c}
+y_1\\ y_2\\ \vdots\\ y_n\\
+\end{array}\right]
+\]<br>\[
+\boldsymbol{x}=\boldsymbol{C}\boldsymbol{y}
+\]</p>
+<p>其中\(\boldsymbol{C}\)为由基\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_n\)到基\(\boldsymbol{\beta}_1,\boldsymbol{\beta}_2,\cdots,\boldsymbol{\beta}_n\)的过渡矩阵.</p>
+<p>(3) \(\boldsymbol{e}_1,\boldsymbol{e}_2,\cdots,\boldsymbol{e}_n\)为规范正交基, 设<br>\[
+[\boldsymbol{\varepsilon}_1,\boldsymbol{\varepsilon}_2,\cdots,\boldsymbol{\varepsilon}_n]=[\boldsymbol{e}_1,\boldsymbol{e}_2,\cdots,\boldsymbol{e}_n]\boldsymbol{C}
+\]</p>
+<p>则\(\boldsymbol{\varepsilon}_1,\boldsymbol{\varepsilon}_2,\cdots,\boldsymbol{\varepsilon}_n\)是规范正交基\(\Leftrightarrow \boldsymbol{C}\)为正交矩阵.</p>
+</blockquote>
+<hr>
+<a href="/2026/07/24/linear-algebra-ch02/" title="线性代数 Ch02：矩阵">上一篇：线性代数 Ch02：矩阵</a> · <a href="/2026/07/24/linear-algebra-ch04/" title="线性代数 Ch04：线性方程组">下一篇：线性代数 Ch04：线性方程组</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/24/linear-algebra-ch04/">← Next 线性代数 Ch04：线性方程组</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/24/linear-algebra-ch02/">线性代数 Ch02：矩阵 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

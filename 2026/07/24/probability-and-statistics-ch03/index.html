@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>概率论与数理统计 Ch03：多维随机变量及其分布 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>概率论与数理统计 Ch03：多维随机变量及其分布</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-24T02:16:00.000Z" id="date"> 2026-07-24</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:46:47.679Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.math-table { margin: 1.2em auto; overflow-x: auto; }
+.math-table table { width: auto; min-width: 60%; margin: 0 auto; border-collapse: collapse; }
+.math-table th, .math-table td { text-align: center; vertical-align: middle; padding: .45em .8em; white-space: nowrap; }
+.math-table-note { margin: -.5em auto 1em; text-align: center; color: #888; font-size: .92em; }
+.post-content mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
+</style>
+
+<blockquote>
+<p>本文是“概率论与数理统计”系列的第 03 章，主题为“多维随机变量及其分布”。</p>
+</blockquote>
+<a href="/2026/07/24/probability-and-statistics-ch02/" title="概率论与数理统计 Ch02：随机变量及其分布">上一篇：概率论与数理统计 Ch02：随机变量及其分布</a> · <a href="/2026/07/24/probability-and-statistics-ch04/" title="概率论与数理统计 Ch04：随机变量的数字特征">下一篇：概率论与数理统计 Ch04：随机变量的数字特征</a>
+
+<span id="more"></span>
+
+<blockquote>
+<p>二维随机变量\((X,Y)\)的分布函数<br>\[
+F(x,y)=P\{X\leqslant x,Y\leqslant y\},-\infty&lt;x&lt;\infty,-\infty&lt;y&lt;+\infty
+\]</p>
+<p>(1) \(F(x,y)\)关于\(x\)和关于\(y\)均单调非减.</p>
+<p>(2) \(F(-\infty,y)=F(x,-\infty)=F(-\infty,-\infty)=0,F(+\infty,+\infty)=1\).</p>
+<p>(3) \(F(x,y)\)关于\(x\)和关于\(y\)是右连续的.</p>
+<p>(4) \(P\{a&lt;X\leqslant b,c&lt;Y\leqslant d\}=F(b,d)-F(b,c)-F(a,b)+F(a,c)\) (正定性).</p>
+</blockquote>
+<blockquote>
+<p>二维随机变量\((X,Y)\)关于\(X\)和关于\(Y\)的边缘分布函数<br>\[
+F_X(x)=P\{X\leqslant x\}=P\{X\leqslant x,Y&lt;+\infty\}=F(x,+\infty)
+\]<br>\[
+F_Y(y)=P\{Y\leqslant y\}=P\{X&lt;+\infty,Y\leqslant y\}=F(+\infty,y)
+\]</p>
+</blockquote>
+<blockquote>
+<p>随机变量\(X\)与\(Y\)相互独立<br>\[
+P\{X\leqslant x,Y\leqslant y\}=P\{X\leqslant x\}P\{Y\leqslant y\}\Rightarrow F(x,y)=F_X(x)F_Y(y)
+\]</p>
+<p>(1) 离散型随机变量\(X\)与\(Y\)相互独立的充要条件<br>\[
+p_{ij}=p_{i\cdot}p_{\cdot j}
+\]</p>
+<p>在离散的\((X,Y)\)中, \(X\)与\(Y\)相互独立\(\Leftrightarrow\)分布律行与行之间成比例, 列与列之间成比例.</p>
+<p>(2) 连续型随机变量\(X\)与\(Y\)相互独立的充要条件<br>\[
+f(x,y)=f_X(x)f_Y(y)
+\]</p>
+</blockquote>
+<blockquote>
+<p>\((X,Y)\)服从区域\(G\)上的均匀分布<br>\[
+f(x,y)=\begin{cases}
+\dfrac{1}{A} &amp; (x,y)\in G\\[2pt]
+0 &amp; \text{其他}
+\end{cases}
+\]</p>
+<p>其中\(A\)是区域\(G\)的面积, \(P\{(x,y)\in D\}=\dfrac{S_D}{S_G}\) (面积之比).</p>
+</blockquote>
+<blockquote>
+<p>\((X,Y)\)服从参数为\(\mu_1,\mu_2,\sigma_1,\sigma_2\)和\(\rho\)的二维正态分布\((X,Y)\sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;\rho)\)<br>\[
+f(x,y)=\frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}e^{-\frac{1}{2(1-\rho^2)}\left[ \frac{(x-\mu_1)^2}{\sigma_1^2}-\frac{2\rho(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\frac{(y-\mu_2)^2}{\sigma_2^2}\right] }
+\]</p>
+<p>(1) 由\((X,Y)\)正态可推\(X\)正态, \(Y\)正态, 但由\(X\)正态, \(Y\)正态不能得到\((X,Y)\)正态.</p>
+<p>\((X,Y)\sim N(\mu_1,\mu_2;\sigma_1^2,\sigma_2^2;\rho)\Rightarrow X\sim N(\mu_1,\sigma_1^2),Y\sim N(\mu_2,\sigma_2^2)\).</p>
+<p>(2) \(X\)正态, \(Y\)正态且相互独立\(\Leftrightarrow\)\((X,Y)\)正态且\(\rho=0\).</p>
+<p>(3) \((X,Y)\)正态\(\Leftrightarrow\)\((aX+bY,cX+dY)\)正态, 当\[
+\left| \begin{array}{cc}
+a &amp; b\\
+c &amp; d\\
+\end{array}\right| \neq0
+\].</p>
+<p>(4) \(aX+bY\sim N(a\mu_1+b\mu_2,a^2\sigma_1^2+2ab\sigma_1\sigma_2\rho+b^2\sigma_2^2)\).</p>
+</blockquote>
+<blockquote>
+<p>两个随机变量函数\(Z=g(X,Y)\)的分布(\(X,Y\)均为连续型随机变量)<br>\[
+\begin{aligned}
+F_Z(z)&amp;=P\{Z\leqslant z\}=P\{g(X,Y)\leqslant z\}\\
+&amp;=\iint\limits_{g(x,y)\leqslant z}f(x,y)\mathrm{d}x\mathrm{d}y
+\end{aligned}
+\]</p>
+<p>特别当\(Z=X+Y\)时,<br>\[
+\begin{aligned}
+F_Z(z)&amp;=\int_{-\infty}^{+\infty}\mathrm{d}x\int_{-\infty}^{z-x}f(x,y)\mathrm{d}y\\
+&amp;=\int_{-\infty}^{+\infty}\mathrm{d}y\int_{-\infty}^{z-y}f(x,y)\mathrm{d}x
+\end{aligned}
+\]</p>
+<p>对应的概率密度为<br>\[
+\begin{aligned}
+f_Z(z)&amp;=\int_{-\infty}^{+\infty}f(x,z-x)\mathrm{d}x\\
+&amp;=\int_{-\infty}^{+\infty}f(z-y,y)\mathrm{d}y
+\end{aligned}
+\]</p>
+<p>注意\(Z=g(X,Y)\)是一维随机变量, 其分布函数只可能是一元函数.</p>
+</blockquote>
+<hr>
+<a href="/2026/07/24/probability-and-statistics-ch02/" title="概率论与数理统计 Ch02：随机变量及其分布">上一篇：概率论与数理统计 Ch02：随机变量及其分布</a> · <a href="/2026/07/24/probability-and-statistics-ch04/" title="概率论与数理统计 Ch04：随机变量的数字特征">下一篇：概率论与数理统计 Ch04：随机变量的数字特征</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/24/probability-and-statistics-ch04/">← Next 概率论与数理统计 Ch04：随机变量的数字特征</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/24/probability-and-statistics-ch02/">概率论与数理统计 Ch02：随机变量及其分布 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

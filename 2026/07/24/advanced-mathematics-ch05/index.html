@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>高等数学 Ch05：多元函数微分学与二重积分 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>高等数学 Ch05：多元函数微分学与二重积分</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-24T02:05:00.000Z" id="date"> 2026-07-24</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:46:47.674Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.math-table { margin: 1.2em auto; overflow-x: auto; }
+.math-table table { width: auto; min-width: 60%; margin: 0 auto; border-collapse: collapse; }
+.math-table th, .math-table td { text-align: center; vertical-align: middle; padding: .45em .8em; white-space: nowrap; }
+.math-table-note { margin: -.5em auto 1em; text-align: center; color: #888; font-size: .92em; }
+.post-content mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
+</style>
+
+<blockquote>
+<p>本文是“高等数学”系列的第 05 章，主题为“多元函数微分学与二重积分”。</p>
+</blockquote>
+<a href="/2026/07/24/advanced-mathematics-ch04/" title="高等数学 Ch04：常微分方程">上一篇：高等数学 Ch04：常微分方程</a> · <a href="/2026/07/24/advanced-mathematics-ch06/" title="高等数学 Ch06：无穷级数">下一篇：高等数学 Ch06：无穷级数</a>
+
+<span id="more"></span>
+
+<h2 id="多元函数微分学"><a href="#多元函数微分学" class="headerlink" title="多元函数微分学"></a>多元函数微分学</h2><blockquote>
+<p>偏导数<br>\[
+f'_x(x_0,y_0)=\lim\limits_{\Delta x\rightarrow0}\frac{f(x_0+\Delta x,y_0)-f(x_0,y_0)}{\Delta x}=\frac{\mathrm{d}}{\mathrm{d}x}f(x,y_0)\big|_{x=x_0}
+\]</p>
+<p>\(f'_x(x_0,y_0)\)即为一元函数\(f(x,y_0)\)在\(x_0\)处的导数\(\Rightarrow\)求具体点处的偏导数时可用先代后求的方法.</p>
+</blockquote>
+<blockquote>
+<p>二阶混合偏导数</p>
+<p>设\(z=f(x,y)\), 则<br>\[
+\frac{\partial^2z}{\partial x\partial y}=f''_{xy}(x,y)=\frac{\partial}{\partial y}\left( \frac{\partial z}{\partial x}\right)   \frac{\partial^2z}{\partial y\partial x}=f''_{yx}(x,y)=\frac{\partial}{\partial x}\left( \frac{\partial z}{\partial y}\right)
+\]</p>
+<p>若\(f''_{xy}(x,y)\)及\(f''_{yx}(x,y)\)在区域\(D\)内连续, 则恒有<br>\[
+f''_{xy}(x,y)=f''_{yx}(x,y)
+\]</p>
+</blockquote>
+<blockquote>
+<p>函数\(f(x,y)\)在点\((x_0,y_0)\)处可微的等价形式</p>
+<p>(1) \(\Delta z=f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)=A\Delta x+B\Delta y+o(\rho)\);</p>
+<p>(2) \(\lim\limits_{\substack{\Delta x\rightarrow0\\ \Delta y\rightarrow0}}\dfrac{[f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)]-(A\Delta x+B\Delta y)}{\sqrt{(\Delta x)^2+(\Delta y)^2}}=0\);</p>
+<p>(3) \(\Delta z=f(x,y)-f(x_0,y_0)=A(x-x_0)+B(y-y_0)+o(\rho)\);</p>
+<p>(4) \(\lim\limits_{\substack{x\rightarrow x_0\\ y\rightarrow y_0}}\dfrac{[f(x,y)-f(x_0,y_0)]-[A(x-x_0)+B(y-y_0])}{\sqrt{(x-x_0)^2+(y-y_0)^2}}=0\).</p>
+<p>其中\(f'_x(x_0,y_0)=A,f'_y(x,y)=B\).</p>
+</blockquote>
+<blockquote>
+<p>连续、可导、可微的关系</p>
+<p>一阶偏导数存在\(\nLeftrightarrow\)连续, 可微\(\Rightarrow\)一阶偏导存在, 可微\(\Rightarrow\)连续, 一阶偏导连续\(\Rightarrow\)可微.</p>
+<p>注意:</p>
+<p>(1) 偏导数存在只有\(x\)、\(y\)轴方向有关, 而连续和可微都要求以任意方式趋于\((x_0,y_0)\).</p>
+<p>(2) 由\(\lim\limits_{x\rightarrow0}f'_x(x,0)=f'_x(0,0)\nRightarrow\lim\limits_{\substack{x\rightarrow0\\ y\rightarrow0}}f'_x(x,y)=f'_x(0,0)\), 即得不出\(f'_x(x,y)\)在\((0,0)\)点连续.</p>
+</blockquote>
+<blockquote>
+<p>隐函数求导公式</p>
+<p>设\(F(x,y,z)\)有连续一阶偏导数, \(F'_z\neq0,z=z(x,y)\)由\(F(x,y,z)=0\)所确定, 则<br>\[
+\frac{\partial z}{\partial x}=-\frac{F'_x}{F'_z}  \frac{\partial z}{\partial y}=-\frac{F'_y}{F'_z}
+\]</p>
+</blockquote>
+<blockquote>
+<p>二元函数极值</p>
+<p>必要条件: 极值只可能在驻点和偏导数不存在的点上取得.</p>
+<p>充分条件: \(z=f(x,y)\)在点\((x_0,y_0)\)的某邻域内有二阶连续偏导数, \(f'_x(x_0,y_0)=0,f'(x_0,y_0)=0\),<br>\[
+A=f''_{xx}(x_0,y_0),B=f''_{xy}(x_0,y_0),C=f''_{yy}(x_0,y_0)
+\]</p>
+<p>则有下述结论:</p>
+<p>(1) \[
+AC-B^2&gt;0\Rightarrow\begin{cases}
+(x_0,y_0)\text{为极大值点} &amp; A&lt;0\\
+(x_0,y_0)\text{为极小值点} &amp; A&gt;0
+\end{cases}
+\];</p>
+<p>(2) \(AC-B^2&lt;0\Rightarrow(x_0,y_0)\)不为极值点;</p>
+<p>(3) \(AC-B^2=0\), 无法判断(使用定义).</p>
+</blockquote>
+<h2 id="二重积分"><a href="#二重积分" class="headerlink" title="二重积分"></a>二重积分</h2><blockquote>
+<p>二重积分的性质</p>
+<p>(一) 不等式性质</p>
+<p>(1) 若在\(D\)上\(f(x,y)\leqslant g(x,y)\), 则\(\displaystyle\iint\limits_Df(x,y)\mathrm{d}\sigma\leqslant\displaystyle\iint\limits_Dg(x,y)\mathrm{d}\sigma\).</p>
+<p>(2) 若\(f(x,y)\)在\(D\)上连续, 则\(mS\leqslant\displaystyle\iint\limits_Df(x,y)\mathrm{d}\sigma\leqslant MS\), 其中\(m\)和\(M\)分别为\(f(x,y)\)在\(D\)上的最小值和最大值, \(S\)为积分域\(D\)的面积.</p>
+<p>(3) \(\left| \displaystyle\iint\limits_Df(x,y)\mathrm{d}\sigma\right| \leqslant\displaystyle\iint\limits_D|f(x,y)|\mathrm{d}\sigma\).</p>
+<p>(二) 积分中值定理</p>
+<p>若\(f(x,y)\)在\(D\)上连续, 则\(\displaystyle\iint\limits_Df(x,y)\mathrm{d}\sigma=f(\xi,\eta)S\), 其中\((\xi,\eta)\in D\), \(S\)为积分域\(D\)的面积.</p>
+</blockquote>
+<hr>
+<a href="/2026/07/24/advanced-mathematics-ch04/" title="高等数学 Ch04：常微分方程">上一篇：高等数学 Ch04：常微分方程</a> · <a href="/2026/07/24/advanced-mathematics-ch06/" title="高等数学 Ch06：无穷级数">下一篇：高等数学 Ch06：无穷级数</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/24/advanced-mathematics-ch06/">← Next 高等数学 Ch06：无穷级数</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/24/advanced-mathematics-ch04/">高等数学 Ch04：常微分方程 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6"><span class="toc-number">1.</span> <span class="toc-text">多元函数微分学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E9%87%8D%E7%A7%AF%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">二重积分</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

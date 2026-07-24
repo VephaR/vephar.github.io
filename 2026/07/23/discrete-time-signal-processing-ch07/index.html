@@ -1,0 +1,460 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>离散时间信号处理 Ch07：滤波器设计方法 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>离散时间信号处理 Ch07：滤波器设计方法</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T06:07:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:20:53.139Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.signals-table { display: block; overflow-x: auto; text-align: center; }
+.signals-table table { width: auto; margin-left: auto; margin-right: auto; }
+.signals-table th, .signals-table td { text-align: center !important; vertical-align: middle; }
+.signals-figure { text-align: center; margin: 1.25rem 0; }
+.signals-figure a { display: block; max-width: 100%; margin: 0 auto; }
+.signals-figure img { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
+.signals-figure-caption { margin: .5rem 0 0; text-align: center; opacity: .8; }
+</style>
+
+<blockquote>
+<p>本文是“离散时间信号处理”系列的第 07 章，主题为“滤波器设计方法”。</p>
+</blockquote>
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/" title="离散时间信号处理 Ch06：离散时间系统结构">上一篇：离散时间系统结构</a> · <a href="/2026/07/23/discrete-time-signal-processing-ch08/" title="离散时间信号处理 Ch08：离散傅里叶变换">下一篇：离散傅里叶变换</a>
+
+<span id="more"></span>
+
+<h1 id="滤波器设计方法"><a href="#滤波器设计方法" class="headerlink" title="滤波器设计方法"></a>滤波器设计方法</h1><h2 id="IIR滤波器的设计"><a href="#IIR滤波器的设计" class="headerlink" title="IIR滤波器的设计"></a>IIR滤波器的设计</h2><h3 id="脉冲响应不变法"><a href="#脉冲响应不变法" class="headerlink" title="脉冲响应不变法"></a>脉冲响应不变法</h3><blockquote>
+<p>离散时间滤波器与连续时间滤波器的时域关系<br>\[
+h[n]=T_dh_c(nT_d)\quad\text{(}T_d\text{表示采样间隔)}
+\]</p>
+</blockquote>
+<blockquote>
+<p>(频域设计) 离散时间滤波器和连续时间滤波器的频域关系<br>\[
+H(e^{j\omega})=\sum_{k=-\infty}^{\infty}H_c\left(j\frac{\omega}{T_d}+j\frac{2\pi}{T_d}k\right)\quad\text{(注意无}\frac{1}{T_d}\text{加权)}
+\]</p>
+<p>如果连续时间滤波器是带限的, 即<br>\[
+H_c(j\Omega)=0,|\Omega|\geq\frac{\pi}{T_d}
+\]</p>
+<p>则离散时间滤波器在一个周期内可表示为<br>\[
+H(e^{j\omega})=H_c(j\Omega)\big|_{\Omega=\omega/T_d}=H_c\left(j\frac{\omega}{T_d}\right),|\omega|\leq\pi
+\]</p>
+</blockquote>
+<blockquote>
+<p>(时域设计) 连续时间滤波器的系统函数<br>\[
+H_c(s)=\sum_{k=1}^{N}\frac{A_k}{s-s_k}
+\]</p>
+<p>对应的脉冲响应<br>\[
+h_c(t)=\begin{cases}
+\displaystyle\sum\limits_{k=1}^{N}A_ke^{s_kt} &amp; t\geq0\\[2pt]
+0 &amp; t&lt;0
+\end{cases}
+\]</p>
+<p>采样后得到离散时间滤波器的脉冲响应<br>\[
+h[n]=T_dh_c(nT_d)=\sum_{k=1}^{N}T_dA_ke^{s_knT_d}u[n]
+\]</p>
+<p>经过\(z\)变换后得到离散时间滤波器的系统函数<br>\[
+H(z)=\sum_{k=1}^{N}\frac{T_dA_k}{1-e^{s_kT_d}z^{-1}}
+\]</p>
+</blockquote>
+<h3 id="双线性变换法"><a href="#双线性变换法" class="headerlink" title="双线性变换法"></a>双线性变换法</h3><blockquote>
+<p>复变量\(s\)和\(z\)的关系<br>\[
+s=\frac{2}{T_d}\left(\frac{1-z^{-1}}{1+z^{-1}}\right)\quad\text{(}\frac{2}{T_d}\text{的作用是预畸变)}
+\]</p>
+<p>由此可得系统函数的关系为<br>\[
+H(z)=H_c\left[\frac{2}{T_d}\left(\frac{1-z^{-1}}{1+z^{-1}}\right)\right]
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散时间频率\(\omega\)和连续时间频率\(\Omega\)的关系<br>\[
+\Omega=\frac{2}{T_d}\tan\frac{\omega}{2}
+\]<br>\[
+\begin{aligned}
+\omega&amp;=2\arctan\frac{\Omega T_d}{2}\quad\text{(非线性压缩)}\\
+&amp;=\Omega_1T\quad\text{(}\Omega_1\text{为压缩后的连续时间频率)}
+\end{aligned}
+\]</p>
+</blockquote>
+<blockquote>
+<p>复变量关系和频率关系的推导</p>
+<p>(1) 由频率关系导出复变量关系, 已知\(\Omega=\dfrac{2}{T_d}\tan\dfrac{\omega}{2}\)<br>\[
+\begin{aligned}
+\Omega&amp;=\frac{2}{T_d}\left(\frac{\sin\dfrac{\omega}{2}}{\cos\dfrac{\omega}{2}}\right)\\
+&amp;=\frac{2}{jT_d}\left(\frac{e^{j\omega/2}-e^{-j\omega/2}}{e^{j\omega/2}+e^{-j\omega/2}}\right)\\
+&amp;=\frac{2}{jT_d}\left(\frac{1-e^{-j\omega}}{1+e^{-j\omega}}\right)\Rightarrow s=\frac{2}{T_d}\left(\frac{1-z^{-1}}{1+z^{-1}}\right)
+\end{aligned}
+\]</p>
+<p>(2) 由复变量关系导出频率关系, 已知\(s=\dfrac{2}{T_d}\left(\dfrac{1-z^{-1}}{1+z^{-1}}\right)\)<br>\[
+\begin{aligned}
+j\Omega&amp;=\frac{2}{T_d}\left(\frac{1-e^{-j\omega}}{1+e^{-j\omega}}\right)\\
+&amp;=\frac{2}{T_d}\left(\frac{e^{-j\omega/2}}{e^{-j\omega/2}}\cdot\frac{e^{j\omega/2}-e^{-j\omega/2}}{e^{j\omega/2}+e^{-j\omega/2}}\right)\\
+&amp;=\frac{2}{T_d}\left(\frac{2j\sin\dfrac{\omega}{2}}{2\cos\dfrac{\omega}{2}}\right)\Rightarrow\Omega=\frac{2}{T_d}\tan\frac{\omega}{2}
+\end{aligned}
+\]</p>
+</blockquote>
+<h2 id="巴特沃兹低通滤波器的设计"><a href="#巴特沃兹低通滤波器的设计" class="headerlink" title="巴特沃兹低通滤波器的设计"></a>巴特沃兹低通滤波器的设计</h2><blockquote>
+<p>离散时间滤波器的指标</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch07/7-2.svg" style="width: 43.2%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch07/7-2.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch07/7-2.svg" alt="离散时间滤波器的指标(容限图)"></a>
+<p class="signals-figure-caption">离散时间滤波器的指标(容限图)</p>
+</div>
+
+<p>(1) 通带截止频率\(\omega_p\)、阻带截止频率\(\omega_s\)</p>
+<p>截止频率\(\omega_c=\dfrac{\omega_p+\omega_s}{2}\)</p>
+<p>(2) 通带逼近误差\(\delta_1\)、阻带逼近误差\(\delta_2\)</p>
+<p>最大通带增益(分贝)\(=20\log_{10}(1+\delta_1)\)、最大阻带增益(分贝)\(=20\log_{10}(\delta_2)\)</p>
+<p>最大通带衰减(分贝)\(=-20\log_{10}(1-\delta_1)\)、最小阻带衰减(分贝)\(=-20\log_{10}(\delta_2)\)</p>
+</blockquote>
+<blockquote>
+<p>\(N\)阶连续时间巴特沃兹低通滤波器的幅度平方函数<br>\[
+|H_c(j\Omega)|^2=\frac{1}{1+\left(\dfrac{j\Omega}{j\Omega_c}\right)^{2N}}=\frac{1}{1+\left(\dfrac{\Omega}{\Omega_c}\right)^{2N}}
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch07/b-1.svg" style="width: 28.8%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch07/b-1.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch07/b-1.svg" alt="连续时间巴特沃兹滤波器的幅度平方曲线"></a>
+<p class="signals-figure-caption">连续时间巴特沃兹滤波器的幅度平方曲线</p>
+</div>
+
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch07/b-2.svg" style="width: 38.64%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch07/b-2.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch07/b-2.svg" alt="巴特沃兹滤波器的幅度特性曲线与阶次\(N\)的关系"></a>
+<p class="signals-figure-caption">巴特沃兹滤波器的幅度特性曲线与阶次\(N\)的关系</p>
+</div>
+
+<p>(1) 随着\(N\)的增加, 滤波器的特性曲线变得更加尖锐, 更加趋近于理想滤波器.</p>
+<p>(2) 在截止频率\(\Omega_c\)处, 幅度平方函数始终为\(\dfrac{1}{2}\), 与滤波器的阶次无关.</p>
+</blockquote>
+<blockquote>
+<p>巴特沃兹低通滤波器的零极点特性</p>
+<p>将\(j\Omega=s\)代入幅度平方函数可得<br>\[
+H_c(s)H_c(-s)=\frac{1}{1+\left(\dfrac{s}{j\Omega_c}\right)^{2N}}
+\]</p>
+<p>幅度平方函数的极点\(s_k\)满足\(1+\left(\dfrac{s_k}{j\Omega_c}\right)^{2N}=0\), 则<br>\[
+\begin{aligned}
+s_k&amp;=j\Omega_c\cdot(-1)^{1/2N}\\
+&amp;=\Omega_ce^{j\pi/2}\cdot(e^{-j\pi+j2k\pi})^{1/2N}\\
+&amp;=\Omega_ce^{(j\pi/2N)(N-1+2k)},k=0,1,\cdots,2N-1
+\end{aligned}
+\]</p>
+<p>(1) 滤波器的幅度平方函数在\(s\)平面中半径为\(\Omega_c\)的圆周上有\(2N\)个等分排列的极点, 相邻极点间的角度为\(\dfrac{\pi}{N}\)弧度, 在无穷处有\(2N\)阶零点(滤波器的系统函数为\(N\)阶).</p>
+<p>(2) 幅度平方函数的极点关于虚轴(原点)对称分布, 但没有极点落在虚轴上, 并且当\(N\)为奇数时有一个极点位于实轴上, 而当\(N\)为偶数时则没有.</p>
+<p>(3) 幅度平方函数的极点总是成对出现, 因此为了得到一个稳定和因果的滤波器, 应当选取位于\(s\)平面左半平面上的极点.</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch07/b-3.svg" style="width: 27.6%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch07/b-3.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch07/b-3.svg" alt="一个三阶巴特沃兹滤波器在\(s\)平面上极点的位置"></a>
+<p class="signals-figure-caption">一个三阶巴特沃兹滤波器在\(s\)平面上极点的位置</p>
+</div>
+</blockquote>
+<h2 id="窗函数法设计FIR滤波器"><a href="#窗函数法设计FIR滤波器" class="headerlink" title="窗函数法设计FIR滤波器"></a>窗函数法设计FIR滤波器</h2><blockquote>
+<p>使用矩形窗得到因果FIR滤波器的脉冲响应<br>\[
+\begin{aligned}
+h[n]&amp;=\begin{cases}
+h_d[n] &amp; 0\leq n\leq M\\
+0 &amp; \text{其他}
+\end{cases}\\
+&amp;=h_d[n]\cdot w[n]
+\end{aligned}
+\]</p>
+<p>其中\(h_d[n]\)为理想滤波器的脉冲响应, 则FIR滤波器的频率响应<br>\[
+H(e^{j\omega})=\frac{1}{2\pi}\int_{-\pi}^{\pi}H_d(e^{j\theta})W(e^{j(\omega-\theta)})\mathrm{d}\theta
+\]</p>
+<p>矩形窗的脉冲响应<br>\[
+w[n]=
+\begin{cases}
+1 &amp; 0\leq n\leq M\\
+0 &amp; \text{其他}
+\end{cases}
+\]</p>
+<p>矩形窗的频率响应<br>\[
+W(e^{j\omega})=\sum_{n=0}^{M}e^{-j\omega n}=\frac{1-e^{-j\omega(M+1)}}{1-e^{-j\omega}}=e^{-j\omega M/2}\cdot\frac{\sin\dfrac{\omega(M+1)}{2}}{\sin\dfrac{\omega}{2}}
+\]</p>
+</blockquote>
+<blockquote>
+<p>吉布斯现象的形成</p>
+<p>(1) 矩形窗\(W(e^{j\omega})\)的主瓣宽度为\(\Delta\omega_m=\dfrac{4\pi}{M+1}\), 大于\(H(e^{j\omega})\)的过渡带宽度.</p>
+<p>(2) 矩形窗的主瓣幅度为\((M+1)\), 每个瓣的幅度随\(M\)的增大而增大, 宽度随\(M\)的增大而减小, 但是每个瓣的面积却是常量.</p>
+<p>(3) 随着\(M\)的增大, \(H(e^{j\omega})\)出现的振荡将加快, 但是其幅度不随\(M\)的增大而减小.</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch07/7-19.svg" style="width: 56%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch07/7-19.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch07/7-19.svg" alt="(a) 截断理想脉冲响应所包含的卷积过程; (b) 对理想脉冲响应加窗后得到的典型逼近"></a>
+<p class="signals-figure-caption">(a) 截断理想脉冲响应所包含的卷积过程; (b) 对理想脉冲响应加窗后得到的典型逼近</p>
+</div>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch07/7-20.svg" style="width: 45.6%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch07/7-20.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch07/7-20.svg" alt="矩形窗傅里叶变换的幅度(\(M=7\))"></a>
+<p class="signals-figure-caption">矩形窗傅里叶变换的幅度(\(M=7\))</p>
+</div>
+</blockquote>
+<blockquote>
+<p>常用窗函数的性质</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch07/7-21.svg" style="width: 48%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch07/7-21.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch07/7-21.svg" alt="常用的窗函数"></a>
+<p class="signals-figure-caption">常用的窗函数</p>
+</div>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch07/7-22.svg" style="width: 40%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch07/7-22.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch07/7-22.svg" alt="\(M=50\)时各种窗函数的傅里叶变换(对数幅度)；(a) 矩形窗; (b) Bartlett窗; (c) Hanning窗; (d) Hamming窗; (e) Blackman窗"></a>
+<p class="signals-figure-caption">\(M=50\)时各种窗函数的傅里叶变换(对数幅度)；(a) 矩形窗; (b) Bartlett窗; (c) Hanning窗; (d) Hamming窗; (e) Blackman窗</p>
+</div>
+<div class="table-container signals-table">
+<table>
+<thead><tr><th>窗的类型</th><th>最大旁瓣幅度<br>（相对值）</th><th>主瓣近似宽度</th><th>最大逼近误差<br>&#92;(20\log_{10}\delta\,(\mathrm{dB})&#92;)</th><th>等效 Kaiser 窗<br>&#92;(\beta&#92;)</th><th>等效 Kaiser 窗<br>过渡带宽度</th></tr></thead>
+<tbody><tr><td>矩形</td><td>&#92;(-13&#92;)</td><td>&#92;(4\pi/(M+1)&#92;)</td><td>&#92;(-21&#92;)</td><td>&#92;(0&#92;)</td><td>&#92;(1.81\pi/M&#92;)</td></tr><tr><td>Bartlett</td><td>&#92;(-25&#92;)</td><td>&#92;(8\pi/M&#92;)</td><td>&#92;(-25&#92;)</td><td>&#92;(1.33&#92;)</td><td>&#92;(2.37\pi/M&#92;)</td></tr><tr><td>Hanning</td><td>&#92;(-31&#92;)</td><td>&#92;(8\pi/M&#92;)</td><td>&#92;(-44&#92;)</td><td>&#92;(3.86&#92;)</td><td>&#92;(5.01\pi/M&#92;)</td></tr><tr><td>Hamming</td><td>&#92;(-41&#92;)</td><td>&#92;(8\pi/M&#92;)</td><td>&#92;(-53&#92;)</td><td>&#92;(4.86&#92;)</td><td>&#92;(6.27\pi/M&#92;)</td></tr><tr><td>Blackman</td><td>&#92;(-57&#92;)</td><td>&#92;(12\pi/M&#92;)</td><td>&#92;(-74&#92;)</td><td>&#92;(7.04&#92;)</td><td>&#92;(9.19\pi/M&#92;)</td></tr></tbody>
+</table>
+</div>
+</blockquote>
+<blockquote>
+<p>广义线性相位的合并</p>
+<p>全部窗函数均关于点\(\dfrac{M}{2}\)偶对称, 即<br>\[
+w[n]=
+\begin{cases}
+w[M-n] &amp; 0\leq n\leq M\\
+0 &amp; \text{其他}
+\end{cases}
+\]</p>
+<p>对应的傅里叶变换<br>\[
+W(e^{j\omega})=W_e(e^{j\omega})e^{-j\omega M/2}
+\]</p>
+<p>其中\(W_e(e^{j\omega})\)是\(\omega\)的实偶函数.</p>
+<p>(1) 若理想滤波器的脉冲响应关于点\(\dfrac{M}{2}\)偶对称, 即\(h_d[M-n]=h_d[n]\), 则加窗后的脉冲响应也是关于点\(\dfrac{M}{2}\)偶对称的, 且所得出的频率响应将有广义线性相位.</p>
+<p>(2) 若理想滤波器的脉冲响应关于点\(\dfrac{M}{2}\)奇对称, 即\(h_d[M-n]=-h_d[n]\), 则加窗后的脉冲响应也是关于点\(\dfrac{M}{2}\)奇对称的, 且所得出的频率响应将有附带\(90^\circ\)常数相移的广义线性相位.</p>
+</blockquote>
+<blockquote>
+<p>Kaiser窗的定义<br>\[
+w[n]=
+\begin{cases}
+\displaystyle\frac{I_0[\beta(1-[(n-\alpha)/\alpha]^2)^{1/2}]}{I_0(\beta)} &amp; 0\leq n\leq M\\[2pt]
+0 &amp; \text{其他}
+\end{cases}
+\]</p>
+<p>其中<br>\[
+\alpha=\frac{M}{2}
+\]</p>
+<p>对于低通滤波器逼近, 其过渡区的宽度为<br>\[
+\Delta\omega=\omega_s-\omega_p
+\]</p>
+<p>定义<br>\[
+A=-20\log_{10}\delta
+\]</p>
+<p>Kaiser窗的长度参数<br>\[
+M=\frac{A-8}{2.285\Delta\omega}
+\]</p>
+<p>Kaiser窗的形状参数<br>\[
+\beta=
+\begin{cases}
+0.1102(A-8.7) &amp; A&gt;50\\
+0.5842(A-21)^{0.4}+0.07886(A-21) &amp; 21\leq A\leq50\\
+0 &amp; A&lt;21
+\end{cases}
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch07/7-24.svg" style="width: 56%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch07/7-24.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch07/7-24.svg" alt="(a) \(\beta=0,3,6\)以及\(M=20\)时的Kaiser窗; (b) 各窗函数的傅里叶变换; ；(c) 取\(\beta=6\)以及\(M=10,20,40\)时Kaiser窗的傅里叶变换"></a>
+<p class="signals-figure-caption">(a) \(\beta=0,3,6\)以及\(M=20\)时的Kaiser窗; (b) 各窗函数的傅里叶变换; ；(c) 取\(\beta=6\)以及\(M=10,20,40\)时Kaiser窗的傅里叶变换</p>
+</div>
+
+<p>(1) 窗的两端越尖, 其傅里叶变换的旁瓣就越低, 但是主瓣也就越宽.</p>
+<p>(2) 若增大\(M\)而同时保持\(\beta\)不变, 可使主瓣宽度减小, 且不影响旁瓣的幅度.</p>
+</blockquote>
+<blockquote>
+<p>设计广义的多频带滤波器</p>
+<p>计算窗参数的 Kaiser 公式可以用于预估多频带滤波器的逼近误差和过渡带宽度。应当注意，逼近误差的大小将与产生这些误差的跳变幅度成正比：如果幅度为 1 的间断点能产生 \(\delta\) 的峰值逼近误差，则幅度为 2 的间断点将产生 \(2\delta\) 的峰值逼近误差。</p>
+</blockquote>
+<h2 id="补充知识点"><a href="#补充知识点" class="headerlink" title="补充知识点"></a>补充知识点</h2><blockquote>
+<p>IIR滤波器</p>
+<p>优点: 采用递归结构, 能以较低阶数实现.</p>
+<p>缺点: 不能设计成严格线性相位.</p>
+<p>FIR滤波器</p>
+<p>优点: 很容易设计成严格线性相位.</p>
+<p>缺点: 要达到同样性能指标情况, 比IIR阶数高, 且设计过程需反复多次.</p>
+<p>首先根据要求选择滤波器类型: 如果要求线性相位则必须选择FIR滤波器, 否则最好选择IIR.</p>
+</blockquote>
+<blockquote>
+<p>IIR滤波器的设计(模拟滤波器法)</p>
+<p>(1) 等效的模拟系统指标: \(\omega_p=\Omega_pT_d\), \(\omega_s=\Omega_sT_d\)</p>
+<p>(2) 数字指标: \(\Omega_p=\dfrac{\omega_p}{T_d}\), \(\Omega_s=\dfrac{\omega_s}{T_s}\); \(\Omega_p=\dfrac{2}{T_d}\tan\dfrac{\omega_p}{2}\), \(\Omega_s=\dfrac{2}{T_s}\tan\dfrac{\omega_s}{2}\)</p>
+<p>(3) 原型模拟滤波器的指标</p>
+<p>i. 脉冲响应不变法<br>\[
+H_c(s)=\sum_{k=1}^{N}\frac{A_k}{s-s_k}\Rightarrow H(z)=\sum_{k=1}^{N}\frac{T_dA_k}{1-e^{s_kT_d}z^{-1}}
+\]</p>
+<p>ii. 双线性变换法<br>\[
+s=\frac{2}{T_d}\left(\frac{1-z^{-1}}{1+z^{-1}}\right)
+\]</p>
+<p>(4) 特点</p>
+<p>i. 脉冲响应不变法: 无频率畸变, 有频响混叠, 不适用非带限的模拟滤波器.</p>
+<p>ii. 双线性变换法: 有频率畸变(注意预畸变), 无频响混叠, 不适用微分器&#x2F;积分器.</p>
+</blockquote>
+<blockquote>
+<p>线性相位FIR滤波器的设计步骤(窗函数法)</p>
+<p>设计之前分析通带阻带等波动频响特性, 明确窗形状和窗长对通带阻带误差以及过渡带宽的影响, 注意四类线性相位FIR各自适用的滤波器类型.</p>
+<p>(1) 利用IDTFT求出\(h_d[n]=\mathscr{F}^{-1}[H_d(e^{j\omega})]\).</p>
+<p>(2) 根据最大逼近误差\(\delta=\min\{\delta_p,\delta_s\}\)确定窗形状.</p>
+<p>(3) 根据主瓣宽度\(\Delta\omega_{m}\approx2|\omega_p-\omega_s|\)确定窗长\(L\).</p>
+<p>(4) 求\(h[n]=h_d[n]\cdot w[n]\), 检验\(H(e^{j\omega})=\mathscr{F}[h(n)]\)是否满足所给滤波器的性能要求, 如不满足, 则需考虑改变窗形状或改变窗长\(L\), 到满足要求为止.</p>
+</blockquote>
+<blockquote>
+<p>给定一个连续时间全通系统<br>\[
+H(s)=K\frac{s-a}{s+a}
+\]</p>
+<p>若利用双线性变换法将其变换成一个离散时间系统, 得到的也是一个全通系统.<br>\[
+H(z)=-K\frac{z^{-1}-b}{1-bz^{-1}}
+\]</p>
+<p>其中<br>\[
+b=\frac{\dfrac{2}{T_d}-a}{\dfrac{2}{T_d}+a}
+\]</p>
+</blockquote>
+<blockquote>
+<p>假设\(H_c(s)\)在\(s=s_0\)处有一个\(r\)阶极点, 使得\(H_c(s)\)可以表示成<br>\[
+H_c(s)=\sum_{k=1}^{r}\frac{A_k}{(s-s_0)^k}+G_c(s)
+\]</p>
+<p>式中\(G_c(s)\)只有一阶极点. 设\(H_c(s)\)是因果的, 则有<br>\[
+A_k=\frac{1}{(r-k)!}\cdot\frac{\mathrm{d}^{r-k}}{\mathrm{d}s^{r-k}}[(s-s_0)^rH_c(s)]\big|_{s=s_0}
+\]</p>
+<p>若\(g_c(t)\)为\(G_c(s)\)的\(s\)反变换, 则\(H_c(s)\)的脉冲响应可表示为<br>\[
+h_c(t)=\mathscr{L}^{-1}[H_c(s)]=\sum_{k=1}^{r}\frac{A_kt^{k-1}}{(k-1)!}e^{s_0t}\varepsilon(t)+g_c(t)
+\]</p>
+</blockquote>
+<blockquote>
+<p>阶跃响应不变法设计IIR滤波器</p>
+<p>连续时间单位脉冲响应对应的\(s\)变换<br>\[
+H_c(s)=\sum_{k=1}^{N}\frac{A_k}{s-s_k}
+\]</p>
+<p>连续时间单位阶跃响应对应的\(s\)变换<br>\[
+S_c(s)=\frac{1}{s}H_c(s)=\sum_{k=1}^{N}\frac{A'_k}{s-s_k}+\frac{B}{s}
+\]</p>
+<p>离散时间单位阶跃响应对应的\(z\)变换<br>\[
+S(z)=\sum_{k=1}^{N}\frac{T_dA'_k}{1-e^{s_kT_d}z^{-1}}+\frac{T_dB}{1-z^{-1}}
+\]</p>
+<p>离散时间滤波器的系统函数<br>\[
+H(z)=(1-z^{-1})S(z)=(1-z^{-1})\sum_{k=1}^{N}\frac{T_dA'_k}{1-e^{s_kT_d}z^{-1}}+T_dB
+\]</p>
+</blockquote>
+<blockquote>
+<p>自相关函数不变法设计IIR滤波器</p>
+<p>(1) 考虑一个具有脉冲响应\(h_c(t)\)和系统函数\(H_c(s)\)的稳定连续时间系统.该系统的自相关函数定义为<br>\[
+\phi_c(\tau)=\int_{-\infty}^{\infty}h_c(t)h_c(t+\tau)\mathrm{d}t
+\]</p>
+<p>对于实脉冲响应, 其拉氏变换为<br>\[
+\begin{aligned}
+\Phi_c(s)&amp;=\int_{-\infty}^{\infty}\phi_c(\tau)e^{-s\tau}\mathrm{d}\tau\\
+&amp;=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}h_c(t)h_c(t+\tau)e^{-s\tau}\mathrm{d}\tau\mathrm{d}t\\
+&amp;=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}h_c(t)h_c(t+\tau)e^{-s(\tau+t)}e^{st}\mathrm{d}\tau\mathrm{d}t\\
+&amp;=\int_{-\infty}^{\infty}h_c(t+\tau)e^{-s(\tau+t)}\mathrm{d}(t+\tau)\cdot\int_{-\infty}^{\infty}h_c(t)e^{st}\mathrm{d}t\\
+&amp;=H_c(s)H_c(-s)
+\end{aligned}
+\]</p>
+<p>考虑一个具有脉冲响应\(h[n]\)和系统函数\(H(z)\)的稳定离散时间系统.该系统的自相关函数定义为<br>\[
+\phi[m]=\sum_{n=-\infty}^{\infty}h[n]h[n+m]
+\]</p>
+<p>对于实脉冲响应, 其\(z\)变换为<br>\[
+\begin{aligned}
+\Phi(z)&amp;=\sum_{m=-\infty}^{\infty}\phi[m]z^{-m}\\
+&amp;=\sum_{m=-\infty}^{\infty}\sum_{n=-\infty}^{\infty}h[n]h[n+m]z^{-m}\\
+&amp;=\sum_{m=-\infty}^{\infty}\sum_{n=-\infty}^{\infty}h[n]h[n+m]z^{-(m+n)}z^{n}\\
+&amp;=\sum_{m=-\infty}^{\infty}h[n+m]z^{-(m+n)}\cdot\sum_{n=-\infty}^{\infty}h[n]z^{n}\\
+&amp;=H(z)H(z^{-1})
+\end{aligned}
+\]</p>
+<p>(2) 自相关函数不变法的时域关系<br>\[
+\phi[m]=T_d\phi_c(mT_d),\infty&lt;m&lt;\infty
+\]</p>
+<p>(3) 当\(H_c(s)\)是一个有理函数, 在\(s_k(k=1,2,\cdots,N)\)处有\(N\)个一阶极点并有\(M&lt;N\)个零点时, 自相关函数不变法的设计步骤</p>
+<p>i. 根据\(\Phi_c(s)=H_c(s)H_c(-s)\)求出\(\phi_c(\tau)\)的\(s\)变换, 然后进行部分分式展开, 形式为<br>\[
+\Phi_c(s)=\sum_{k=1}^{N}\left(\frac{A_k}{s-s_k}+\frac{B_k}{s+s_k}\right)
+\]</p>
+<p>ii. 根据时域关系求出\(\phi[m]\)的\(z\)变换, 其具有和脉冲响应不变法相同的形式, 即<br>\[
+\Phi(z)=\sum_{k=1}^{N}\left(\frac{T_dA_k}{1-e^{s_kT_d}z^{-1}}+\frac{T_dB_k}{1-e^{-s_kT_d}z^{-1}}\right)
+\]</p>
+<p>iii. 根据\(\Phi(z)=H(z)H(z^{-1})\)得到\(H(z)\). 求出\(\Phi(z)\)的极点和零点, \(H(z)\)是由\(\Phi(z)\)在单位圆内的极点和零点构成的最小相位系统函数.</p>
+<p>(4) 自相关函数不变法的频域关系<br>\[
+\Phi(e^{j\omega})=\sum_{k=-\infty}^{\infty}\Phi_c\left(j\frac{\omega}{T_d}+j\frac{2\pi}{T_d}k\right)
+\]</p>
+<p>因此, 当频域不发生混叠, 即<br>\[
+\Phi_c(j\Omega)\simeq0,|\Omega|\geq\dfrac{\pi}{T_d}
+\]</p>
+<p>此时\(\Phi(e^{j\omega})\simeq\Phi(j\dfrac{\omega}{T_d})\), 因此\(|H(e^{j\omega})|^2\simeq|H(j\dfrac{\omega}{T_d})|^2\).</p>
+<p>(5) \(H(z)\)与全通系统相乘后的新系统依然满足\(\Phi(z)=H(z)H(z^{-1})\), 因此, 使用自相关函数不变法得出的系统函数不唯一.</p>
+</blockquote>
+<hr>
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/" title="离散时间信号处理 Ch06：离散时间系统结构">上一篇：离散时间系统结构</a> · <a href="/2026/07/23/discrete-time-signal-processing-ch08/" title="离散时间信号处理 Ch08：离散傅里叶变换">下一篇：离散傅里叶变换</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/discrete-time-signal-processing-ch08/">← Next 离散时间信号处理 Ch08：离散傅里叶变换</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/discrete-time-signal-processing-ch06/">离散时间信号处理 Ch06：离散时间系统结构 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BB%A4%E6%B3%A2%E5%99%A8%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">滤波器设计方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IIR%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.1.</span> <span class="toc-text">IIR滤波器的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%84%89%E5%86%B2%E5%93%8D%E5%BA%94%E4%B8%8D%E5%8F%98%E6%B3%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">脉冲响应不变法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%E6%B3%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">双线性变换法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%B4%E7%89%B9%E6%B2%83%E5%85%B9%E4%BD%8E%E9%80%9A%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text">巴特沃兹低通滤波器的设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%87%BD%E6%95%B0%E6%B3%95%E8%AE%BE%E8%AE%A1FIR%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="toc-number">1.3.</span> <span class="toc-text">窗函数法设计FIR滤波器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">1.4.</span> <span class="toc-text">补充知识点</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

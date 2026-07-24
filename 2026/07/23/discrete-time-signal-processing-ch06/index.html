@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>离散时间信号处理 Ch06：离散时间系统结构 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>离散时间信号处理 Ch06：离散时间系统结构</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T06:06:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:20:44.088Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.signals-table { display: block; overflow-x: auto; text-align: center; }
+.signals-table table { width: auto; margin-left: auto; margin-right: auto; }
+.signals-table th, .signals-table td { text-align: center !important; vertical-align: middle; }
+.signals-figure { text-align: center; margin: 1.25rem 0; }
+.signals-figure a { display: block; max-width: 100%; margin: 0 auto; }
+.signals-figure img { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
+.signals-figure-caption { margin: .5rem 0 0; text-align: center; opacity: .8; }
+</style>
+
+<blockquote>
+<p>本文是“离散时间信号处理”系列的第 06 章，主题为“离散时间系统结构”。</p>
+</blockquote>
+<a href="/2026/07/23/discrete-time-signal-processing-ch05/" title="离散时间信号处理 Ch05：线性时不变系统的变换分析">上一篇：线性时不变系统的变换分析</a> · <a href="/2026/07/23/discrete-time-signal-processing-ch07/" title="离散时间信号处理 Ch07：滤波器设计方法">下一篇：滤波器设计方法</a>
+
+<span id="more"></span>
+
+<h1 id="离散时间系统结构"><a href="#离散时间系统结构" class="headerlink" title="离散时间系统结构"></a>离散时间系统结构</h1><h2 id="线性常系数差分方程的方框图表示"><a href="#线性常系数差分方程的方框图表示" class="headerlink" title="线性常系数差分方程的方框图表示"></a>线性常系数差分方程的方框图表示</h2><blockquote>
+<p>基本单元的方框图符号</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/6-1.svg" style="width: 19.2%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch06/6-1.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch06/6-1.svg" alt="方框图符号；(a) 加法器; (b) 乘法器; (c) 延迟器"></a>
+<p class="signals-figure-caption">方框图符号；(a) 加法器; (b) 乘法器; (c) 延迟器</p>
+</div>
+</blockquote>
+<blockquote>
+<p>IIR系统的方框图表示</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/6-3.svg" style="width: 73.6%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch06/6-3.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch06/6-3.svg" alt="(a) \(N\)阶系统直接I型结构的方框图; (b) \(N\)阶系统直接II型结构(规范型)的方框图"></a>
+<p class="signals-figure-caption">(a) \(N\)阶系统直接I型结构的方框图; (b) \(N\)阶系统直接II型结构(规范型)的方框图</p>
+</div>
+</blockquote>
+<h2 id="IIR系统的基本结构"><a href="#IIR系统的基本结构" class="headerlink" title="IIR系统的基本结构"></a>IIR系统的基本结构</h2><blockquote>
+<p>直接型</p>
+<p>IIR系统的差分方程<br>\[
+y[n]-\sum_{k=1}^{N}a_ky[n-k]=\sum_{k=0}^{N}b_kx[n-k]
+\]</p>
+<p>对应的有理系统函数<br>\[
+H(z)=\frac{\displaystyle\sum\limits_{k=0}^{N}b_kz^{-k}}{1-\displaystyle\sum\limits_{k=1}^{N}a_kz^{-k}}
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/6-14.svg" style="width: 55.2%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch06/6-14.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch06/6-14.svg" alt="\(N\)阶系统直接I型结构的信号流图；(延迟单元个数最多)"></a>
+<p class="signals-figure-caption">\(N\)阶系统直接I型结构的信号流图；(延迟单元个数最多)</p>
+</div>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/6-15.svg" style="width: 47.2%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch06/6-15.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch06/6-15.svg" alt="\(N\)阶系统直接II型结构的信号流图；(延迟单元个数最少)"></a>
+<p class="signals-figure-caption">\(N\)阶系统直接II型结构的信号流图；(延迟单元个数最少)</p>
+</div>
+</blockquote>
+<blockquote>
+<p>级联型和并联型</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/6-18.svg" style="width: 56%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch06/6-18.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch06/6-18.svg" alt="每个2阶子系统用直接II型实现的一个6阶系统的级联型结构"></a>
+<p class="signals-figure-caption">每个2阶子系统用直接II型实现的一个6阶系统的级联型结构</p>
+</div>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/6-20.svg" style="width: 52.8%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch06/6-20.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch06/6-20.svg" alt="将实极点和复数极点成对组合的6阶系统的并联型结构"></a>
+<p class="signals-figure-caption">将实极点和复数极点成对组合的6阶系统的并联型结构</p>
+</div>
+</blockquote>
+<blockquote>
+<p>IIR系统中反馈的差分方程表示<br>\[
+y[n]=ay[n-1]+x[n]
+\]</p>
+<p>(1) 没有回路(反馈)的结构即为非递推结构.</p>
+<p>(2) 网络不可计算指的是无法将信号流图中的节点变量都能依次计算出来. 一个流图可计算性的关键是全部回路都必须至少包含一个单位延迟单元.</p>
+</blockquote>
+<h2 id="转置定理"><a href="#转置定理" class="headerlink" title="转置定理"></a>转置定理</h2><blockquote>
+<p>流图的转置&#x2F;倒置</p>
+<p>(1) 网络中所有支路的方向颠倒, 输入和输出颠倒.</p>
+<p>(2) 支路增益保持不变.</p>
+<p>(3) 转置后与原流图具有相同的系统函数.</p>
+</blockquote>
+<h2 id="FIR系统的基本结构"><a href="#FIR系统的基本结构" class="headerlink" title="FIR系统的基本结构"></a>FIR系统的基本结构</h2><blockquote>
+<p>直接型(抽头延迟线结构&#x2F;横向滤波器结构)</p>
+<p>FIR系统的差分方程<br>\[
+y[n]=\sum_{k=0}^{M}b_kx[n-k]
+\]</p>
+<p>其单位脉冲响应为<br>\[
+h[n]=
+\begin{cases}
+b_n &amp; n=0,1,\cdots,M\\
+0 &amp; \text{其他}
+\end{cases}
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/6-31.svg" style="width: 49.6%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch06/6-31.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch06/6-31.svg" alt="FIR系统的直接型实现"></a>
+<p class="signals-figure-caption">FIR系统的直接型实现</p>
+</div>
+</blockquote>
+<blockquote>
+<p>级联型</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/6-33.svg" style="width: 55.2%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch06/6-33.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch06/6-33.svg" alt="FIR系统的级联型实现"></a>
+<p class="signals-figure-caption">FIR系统的级联型实现</p>
+</div>
+</blockquote>
+<blockquote>
+<p>线性相位FIR系统的结构</p>
+<p>(1) \(M\)为偶数</p>
+<p>I类FIR线性相位系统结构<br>\[
+y[n]=\sum_{k=0}^{M/2-1}h[k](x[n-k]+x[n-M+k])+h\left[\frac{M}{2}\right]x\left[n-\frac{M}{2}\right]
+\]</p>
+<p>III类FIR线性相位系统结构<br>\[
+y[n]=\sum_{k=0}^{M/2-1}h[k](x[n-k]-x[n-M+k])
+\]</p>
+<p>(2) \(M\)为奇数</p>
+<p>II类FIR线性相位系统结构<br>\[
+y[n]=\sum_{k=0}^{(M-1)/2}h[k](x[n-k]+x[n-M+k])
+\]</p>
+<p>IV类FIR线性相位系统结构<br>\[
+y[n]=\sum_{k=0}^{(M-1)/2}h[k](x[n-k]-x[n-M+k])
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/6-34.svg" style="width: 48.8%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch06/6-34.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch06/6-34.svg" alt="当\(M\)为偶数时FIR线性相位系统的直接型结构"></a>
+<p class="signals-figure-caption">当\(M\)为偶数时FIR线性相位系统的直接型结构</p>
+</div>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/6-35.svg" style="width: 50.4%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch06/6-35.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch06/6-35.svg" alt="当\(M\)为奇数时FIR线性相位系统的直接型结构"></a>
+<p class="signals-figure-caption">当\(M\)为奇数时FIR线性相位系统的直接型结构</p>
+</div>
+</blockquote>
+<blockquote>
+<p>I类FIR线性相位系统结构的推导(已知\(h[n]=h[M-n]\), \(M\)为偶数)<br>\[
+\begin{aligned}
+y[n]&amp;=\sum_{k=0}^{M}h[k]x[n-k]\\
+&amp;=\sum_{k=0}^{M/2-1}h[k]x[n-k]+\sum_{k=M/2+1}^{M}h[k]x[n-k]+h\left[\frac{M}{2}\right]x\left[n-\frac{M}{2}\right]\\
+&amp;=\sum_{k=0}^{M/2-1}h[k]x[n-k]+\sum_{k'=0}^{M/2-1}h[M-k']x[n-M+k']+h\left[\frac{M}{2}\right]x\left[n-\frac{M}{2}\right]\quad(k'=M-k)\\
+&amp;=\sum_{k=0}^{M/2-1}(h[k]x[n-k]+h[M-k]x[n-M+k])+h\left[\frac{M}{2}\right]x\left[n-\frac{M}{2}\right]\\
+&amp;=\sum_{k=0}^{M/2-1}h[k](x[n-k]+x[n-M+k])+h\left[\frac{M}{2}\right]x\left[n-\frac{M}{2}\right]
+\end{aligned}
+\]</p>
+</blockquote>
+<h2 id="全通系统的流图表示"><a href="#全通系统的流图表示" class="headerlink" title="全通系统的流图表示"></a>全通系统的流图表示</h2><blockquote>
+<p>单节全通节<br>\[
+H(z)=\frac{z^{-1}-\alpha}{1-\alpha z^{-1}}
+\]</p>
+<p>可求得对应的差分方程<br>\[
+\frac{z^{-1}-\alpha}{1-\alpha z^{-1}}=\frac{Y(z)}{X(z)}\Rightarrow y(n)-\alpha y(n-1)=x(n-1)-\alpha x(n)
+\]<br>\[
+y(n)=\alpha [y(n-1)-x(n)]+x(n-1)\quad\text{(1个延迟器, 1个乘法器)}
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/6-12.svg" style="width: 36%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch06/6-12.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch06/6-12.svg" alt="不是用标准的直接型给出的流图"></a>
+<p class="signals-figure-caption">不是用标准的直接型给出的流图</p>
+</div>
+
+<p>利用梅森增益公式验证上述流图满足全通系统函数. 该流图有1个环路, 其环路增益为<br>\[
+L_1=\alpha z^{-1}
+\]</p>
+<p>输入\(x[n]\)到输出\(y[n]\)有4条向前通路, 通路增益分别为<br>\[
+\begin{aligned}
+g_1&amp;=-\alpha\\
+g_2&amp;=z^{-1}\\
+g_3&amp;=-\alpha z^{-1}\\
+g_4&amp;=\alpha z^{-1}
+\end{aligned}
+\]</p>
+<p>由于\(L_1\)与4条通路均接触, 因此向前通路特征行列式余因子\(\Delta_i(i=1,2,3,4)\)均为1. 则系统函数<br>\[
+H(z)=\frac{\displaystyle\sum_{i=1}^{4}g_i}{1-L_1}=\frac{z^{-1}-\alpha}{1-\alpha z^{-1}}
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/6-13.svg" style="width: 36%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch06/6-13.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch06/6-13.svg" alt="等效的直接I型流图"></a>
+<p class="signals-figure-caption">等效的直接I型流图</p>
+</div>
+</blockquote>
+<blockquote>
+<p>用于级联的全通节(2个延迟器, 1个乘法器)</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/6-e1.svg" style="width: 28.8%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch06/6-e1.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch06/6-e1.svg" alt="用于级联的全通节"></a>
+<p class="signals-figure-caption">用于级联的全通节</p>
+</div>
+</blockquote>
+<blockquote>
+<p>全通节级联(3个延迟器, 2个乘法器)<br>\[
+H(z)=\frac{z^{-1}-a}{1-az^{-1}}\cdot\frac{z^{-1}-b}{1-bz^{-1}}
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch06/6-e2.svg" style="width: 44%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch06/6-e2.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch06/6-e2.svg" alt="全通节级联"></a>
+<p class="signals-figure-caption">全通节级联</p>
+</div>
+</blockquote>
+<h2 id="有理系统的运算次数"><a href="#有理系统的运算次数" class="headerlink" title="有理系统的运算次数"></a>有理系统的运算次数</h2><blockquote>
+<p>IIR系统的运算次数</p>
+<p>考虑一个具体的IIR系统的差分方程<br>\[
+y[n]-a_1y[n-1]-a_2y[n-2]=b_0x[n]+b_1x[n-1]
+\]</p>
+<p>将等号左端\(y[n]\)以外的项移到等号右端, 可得<br>\[
+y[n]=b_0x[n]+b_1x[n-1]+a_1y[n-1]+a_2y[n-2]
+\]</p>
+<p>计算某一具体点的输出时需要进行\(4\)次乘法和\(3\)次加法, 因此计算\(N\)点的输出总共需要\(4N\)次乘法和\(3N\)次加法.</p>
+</blockquote>
+<blockquote>
+<p>FIR系统的运算次数</p>
+<p>考虑一个\(N\)点FIR系统的差分方程<br>\[
+y[n]=\sum_{k=0}^{N-1}b_kx[n-k]
+\]</p>
+<p>计算某一具体点的输出时需要进行\(N\)次乘法和\((N-1)\)次加法, 因此计算\(N\)点的输出总共需要\(N^2\)次乘法和\(N(N-1)\)次加法.</p>
+</blockquote>
+<hr>
+<a href="/2026/07/23/discrete-time-signal-processing-ch05/" title="离散时间信号处理 Ch05：线性时不变系统的变换分析">上一篇：线性时不变系统的变换分析</a> · <a href="/2026/07/23/discrete-time-signal-processing-ch07/" title="离散时间信号处理 Ch07：滤波器设计方法">下一篇：滤波器设计方法</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/discrete-time-signal-processing-ch07/">← Next 离散时间信号处理 Ch07：滤波器设计方法</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/discrete-time-signal-processing-ch05/">离散时间信号处理 Ch05：线性时不变系统的变换分析 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E6%97%B6%E9%97%B4%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">离散时间系统结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%B8%B8%E7%B3%BB%E6%95%B0%E5%B7%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E6%96%B9%E6%A1%86%E5%9B%BE%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.1.</span> <span class="toc-text">线性常系数差分方程的方框图表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IIR%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">IIR系统的基本结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AC%E7%BD%AE%E5%AE%9A%E7%90%86"><span class="toc-number">1.3.</span> <span class="toc-text">转置定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FIR%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.</span> <span class="toc-text">FIR系统的基本结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E9%80%9A%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%B5%81%E5%9B%BE%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.5.</span> <span class="toc-text">全通系统的流图表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E7%90%86%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E7%AE%97%E6%AC%A1%E6%95%B0"><span class="toc-number">1.6.</span> <span class="toc-text">有理系统的运算次数</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

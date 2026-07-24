@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>信号与系统 Ch07：离散时间系统的时域分析 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>信号与系统 Ch07：离散时间系统的时域分析</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T05:07:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:19:17.802Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.signals-table { display: block; overflow-x: auto; text-align: center; }
+.signals-table table { width: auto; margin-left: auto; margin-right: auto; }
+.signals-table th, .signals-table td { text-align: center !important; vertical-align: middle; }
+.signals-figure { text-align: center; }
+.signals-figure a { display: block; max-width: 100%; margin: 0 auto; }
+.signals-figure img { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
+</style>
+
+<blockquote>
+<p>本文是“信号与系统”系列的第 07 章，主题为“离散时间系统的时域分析”。</p>
+</blockquote>
+<a href="/2026/07/23/signals-and-systems-ch06/" title="信号与系统 Ch06：连续时间系统的 s 域分析">上一篇：连续时间系统的 s 域分析</a> · <a href="/2026/07/23/signals-and-systems-ch08/" title="信号与系统 Ch08：离散时间系统的频域分析">下一篇：离散时间系统的频域分析</a>
+
+<span id="more"></span>
+
+<h2 id="离散时间信号"><a href="#离散时间信号" class="headerlink" title="离散时间信号"></a>离散时间信号</h2><blockquote>
+<p>有限长序列的表示方法</p>
+<p>(1) 分段函数表示<br>\[
+x(n)=\begin{cases}
+x_{-1} &amp; n=-1\\
+x_0 &amp; n=0\\
+\cdots\\
+x_k &amp; n=k\\
+0 &amp; \mbox{其他}
+\end{cases}
+\]</p>
+<p>(2) 冲激函数表示<br>\[
+x(n)=x_{-1}\delta(n+1)+x_0\delta(n)+\cdots+x_k\delta(n-k)
+\]</p>
+<p>(3) 数列表示<br>\[
+x(n)=\{x_{-1},\underline{x_0},\cdots,x_k\}
+\]<br>\[
+x(n)=\{\underset{\underset{n=-1}{\uparrow}}{x_{-1}},x_0,\cdots,x_k\}
+\]</p>
+<p>(4) 图像表示</p>
+<div class="signals-figure">
+<a href="/2026/07/23/signals-and-systems-ch07/signal.svg" style="width: 46.4%;" class='item-img' data-src='/2026/07/23/signals-and-systems-ch07/signal.svg'><img src="/2026/07/23/signals-and-systems-ch07/signal.svg" alt="连续时间信号抽样示意图"></a>
+</div>
+</blockquote>
+<blockquote>
+<p>单位阶跃序列\(\varepsilon(n)=\begin{cases}
+1,n\geq0\\
+0,n&lt;0
+\end{cases}\)的性质</p>
+<p>(1) 尺度变换性质<br>\[
+\varepsilon(an)=\varepsilon(n),a&gt;0
+\]</p>
+<p>(2) 卷积性质<br>\[
+x(n)*\varepsilon(n)=\sum_{k=-\infty}^{n}x(k)
+\]</p>
+</blockquote>
+<blockquote>
+<p>单位冲激序列\(\delta(n)=\begin{cases}
+1,n=0\\
+0,\mbox{其他}
+\end{cases}\)的性质</p>
+<p>(1) 尺度变换性质<br>\[
+\delta(an)=\delta(n)
+\]</p>
+<p>(2) 筛选性质<br>\[
+\sum_{n=-\infty}^{\infty}x(n)\delta(n)=x(0)
+\]</p>
+<p>(3) 求和性质<br>\[
+\sum_{k=-\infty}^{n}\delta(k)=\varepsilon(n)
+\]<br>\[
+\sum_{k=-\infty}^{\infty}\delta(k)=1
+\]</p>
+</blockquote>
+<blockquote>
+<p>矩形序列\(G_N(n)=\begin{cases}
+1,0\leq n\leq N-1\\
+0,\mbox{其他}
+\end{cases}\)的单位阶跃序列表示<br>\[
+G_N(n)=\varepsilon(n)-\varepsilon(n-N)\quad\mbox{(总点数为}N\mbox{)}
+\]</p>
+</blockquote>
+<blockquote>
+<p>复指数信号的周期性</p>
+<div class="table-container signals-table">
+<table>
+<thead><tr><th>连续时间 &#92;(e^{j\omega_0t}&#92;)</th><th>离散时间 &#92;(e^{j\omega_0n}&#92;)</th></tr></thead>
+<tbody><tr><td rowspan="2">&#92;(T=\dfrac{2\pi}{\omega_0}&#92;)</td><td>若 &#92;(\dfrac{2\pi}{\omega_0}&#92;) 为无理数，则为非周期信号</td></tr><tr><td>若 &#92;(\dfrac{2\pi}{\omega_0}=\dfrac{m}{N}&#92;)，则 &#92;(T=m&#92;)</td></tr></tbody>
+</table>
+</div>
+</blockquote>
+<h2 id="离散系统的性质"><a href="#离散系统的性质" class="headerlink" title="离散系统的性质"></a>离散系统的性质</h2><blockquote>
+<p>离散系统的线性</p>
+<p>线性系统满足<br>\[
+T[c_1x_1(n)+c_2x_2(n)]=c_1T[x_1(n)]+c_2T[x_2(n)]=c_1y_1(n)+c_2y_2(n)
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散系统的非移变性</p>
+<p>非移变系统满足<br>\[
+T[x(n-k)]=y(n-k)
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散系统的稳定性</p>
+<p>对于一般系统, 若每一个有界输入产生一个有界的输出, 则该系统为稳定系统(BIBO准则).</p>
+<p>对于线性非移变系统, 稳定的充分必要条件为<br>\[
+\sum_{n=-\infty}^{\infty}|h(n)&lt;\infty|\quad\mbox{(绝对可加)}
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散系统的因果性</p>
+<p>对于一般系统, 若其输出变化不会发生在输入变化之前, 则该系统为因果系统.</p>
+<p>对于线性非移变系统, 因果的充分必要条件为<br>\[
+h(n)=0,n&lt;0
+\]</p>
+</blockquote>
+<h2 id="常系数线性差分方程及其求解"><a href="#常系数线性差分方程及其求解" class="headerlink" title="常系数线性差分方程及其求解"></a>常系数线性差分方程及其求解</h2><blockquote>
+<p>常系数线性差分方程的求解方法</p>
+<p>(1) 迭代法(用于求边界条件)</p>
+<p>(2) 时域法(用于求零输入响应)</p>
+<p>(3) 卷积法&#x2F;\(z\)域法(用于求零状态响应)</p>
+</blockquote>
+<blockquote>
+<p>常系数线性差分方程的特征方程</p>
+<p>一般形式<br>\[
+\sum_{k=0}^{N}a_ky(n-k)=\sum_{r=0}^{M}b_rx(n-r)
+\]</p>
+<p>对应的齐次差分方程可表示为<br>\[
+\sum_{k=0}^{N}a_ky(n-k)=0
+\]</p>
+<p>对应的特征方程为<br>\[
+\sum_{k=0}^{N}a_k\alpha^{N-k}=0
+\]</p>
+</blockquote>
+<blockquote>
+<p>差分方程的齐次解</p>
+<p>(1) 特征根为单根</p>
+<p>若特征根为\(\alpha_k(k=1,2,\cdots,N)\), 且无重根, 则差分方程的齐次解为<br>\[
+y_h(n)=\sum_{k=1}^{N}C_k\alpha_{k}^{n}
+\]</p>
+<p>(2) 特征根有重根</p>
+<p>若\(\alpha_1\)是特征方程的\(K\)重根, 即有\(\alpha_1=\alpha_2=\cdots=\alpha_K\), 则相应于\(\alpha_1\)的齐次解为<br>\[
+y_h(n)=\sum_{k=1}^{K}C_kn^{K-k}\alpha_1^n=(C_1n^{K-1}+\cdots+C_{K-1}n+C_K)\alpha_1^n
+\]</p>
+<p>(3) 特征根有复数根</p>
+<p>若特征方程有复数根\(\alpha\pm j\beta\), 则相应的齐次解为<br>\[
+\begin{aligned}
+y_h(n)&amp;=C_1(\alpha+j\beta)^n+C_2(\alpha-j\beta)^n\\
+&amp;[=C_1(\sqrt{\alpha^2+\beta^2}e^{j\arctan(\beta/\alpha)})^n+C_2(\sqrt{\alpha^2+\beta^2}e^{-j\arctan(\beta/\alpha)})^n]\\
+&amp;=C_1r^ne^{j\omega n}+C_2r^ne^{-j\omega n}\\
+&amp;[=C_1r^n(\cos\omega n+j\sin\omega n)+C_2r^n(\cos\omega n-j\sin\omega n)]\\
+&amp;=A_1r^n\cos\omega n+jA_2r^n\sin\omega n
+\end{aligned}
+\]</p>
+</blockquote>
+<blockquote>
+<p>差分方程的特解</p>
+<div class="table-container signals-table">
+<table>
+<thead><tr><th>激励函数 &#92;(x(n)&#92;)</th><th>特解 &#92;(y_s(n)&#92;)</th><th>条件</th></tr></thead>
+<tbody><tr><td rowspan="2">&#92;(n^k&#92;)</td><td>&#92;(B_kn^k+B_{k-1}n^{k-1}+\cdots+B_1n+B_0&#92;)</td><td>所有特征根均不等于 1</td></tr><tr><td>&#92;(n(B_1n+B_0)&#92;)</td><td>有一个特征根等于 1</td></tr><tr><td rowspan="2">&#92;(\alpha^n&#92;)</td><td>&#92;(B\alpha^n&#92;)</td><td>&#92;(\alpha&#92;) 不是特征根</td></tr><tr><td>&#92;(Bn\alpha^n&#92;)</td><td>&#92;(\alpha&#92;) 是特征单根</td></tr><tr><td>&#92;(\cos\beta n&#92;)</td><td rowspan="2">&#92;(B_1\cos\beta n+B_2\sin\beta n&#92;)</td><td rowspan="2">所有特征根均不等于 &#92;(e^{\pm j\beta}&#92;)</td></tr><tr><td>&#92;(\sin\beta n&#92;)</td></tr></tbody>
+</table>
+</div>
+</blockquote>
+<blockquote>
+<p>\(N\)阶差分方程的边界条件</p>
+<p>完全响应<br>\[
+y(n)=y_{zp}(n)+y_{zs}(n)
+\]</p>
+<p>对于因果系统</p>
+<p>(1) 求零输入响应\(y_{zp}(n)\)时利用\(y(-1),y(-2),\cdots,y(-N)\).</p>
+<p>非因果时利用\(y(0),y(1),\cdots,y(N-1)\).</p>
+<p>(2) 求零状态响应\(y_{zs}(n)\)时利用\(y_{zs}(0),y_{zs}(1),\cdots,y_{zs}(N-1)\).</p>
+<p>条件：\(y(-1),y(-2),\cdots,y(-N)\)都等于零.</p>
+<p>(3) 求完全响应\(y(n)\)时利用\(y(0),y(1),\cdots,y(N-1)\).</p>
+</blockquote>
+<h2 id="卷积和及其性质"><a href="#卷积和及其性质" class="headerlink" title="卷积和及其性质"></a>卷积和及其性质</h2><blockquote>
+<p>卷积和<br>\[
+y(n)=\sum_{k=-\infty}^{\infty}x(k)h(n-k)
+\]</p>
+<p>若\(x(n)\)为\(N\)点长序列, \(h(n)\)为\(M\)点长序列, 则\(y(n)=x(n)*h(n)\)为\((N+M-1)\)点长序列.</p>
+</blockquote>
+<blockquote>
+<p>卷积和的性质</p>
+<p>(1) 交换律<br>\[
+x(n)*h(n)=h(n)*x(n)
+\]</p>
+<p>(2) 结合律<br>\[
+h(n)*[x_1(n)*x_2(n)]=[h(n)*x_1(n)]*x_2(n)
+\]</p>
+<p>(3) 分配律<br>\[
+h(n)*[x_1(n)+x_2(n)]=h(n)*x_1(n)+h(n)*x_2(n)
+\]</p>
+</blockquote>
+<blockquote>
+<p>卷积和的计算(错位相乘不进位法)</p>
+<p>(1) 将两序列排成两行, 且按右端对齐.</p>
+<p>(2) 作乘法运算, 但是不要进位.</p>
+<p>(3) 将同一列的乘积值相加得到新序列.</p>
+<p>(4) 检查起始点位置(若两序列分别从\(n=a\)和\(n=b\)开始, 则新序列从\(n=a+b\)开始).</p>
+</blockquote>
+<hr>
+<a href="/2026/07/23/signals-and-systems-ch06/" title="信号与系统 Ch06：连续时间系统的 s 域分析">上一篇：连续时间系统的 s 域分析</a> · <a href="/2026/07/23/signals-and-systems-ch08/" title="信号与系统 Ch08：离散时间系统的频域分析">下一篇：离散时间系统的频域分析</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch08/">← Next 信号与系统 Ch08：离散时间系统的频域分析</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch06/">信号与系统 Ch06：连续时间系统的 s 域分析 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E6%97%B6%E9%97%B4%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.</span> <span class="toc-text">离散时间信号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">2.</span> <span class="toc-text">离散系统的性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%B3%BB%E6%95%B0%E7%BA%BF%E6%80%A7%E5%B7%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%8F%8A%E5%85%B6%E6%B1%82%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">常系数线性差分方程及其求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E5%92%8C%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8"><span class="toc-number">4.</span> <span class="toc-text">卷积和及其性质</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>离散时间信号处理 Ch08：离散傅里叶变换 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>离散时间信号处理 Ch08：离散傅里叶变换</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T06:08:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:21:00.372Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.signals-table { display: block; overflow-x: auto; text-align: center; }
+.signals-table table { width: auto; margin-left: auto; margin-right: auto; }
+.signals-table th, .signals-table td { text-align: center !important; vertical-align: middle; }
+.signals-figure { text-align: center; margin: 1.25rem 0; }
+.signals-figure a { display: block; max-width: 100%; margin: 0 auto; }
+.signals-figure img { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
+.signals-figure-caption { margin: .5rem 0 0; text-align: center; opacity: .8; }
+</style>
+
+<blockquote>
+<p>本文是“离散时间信号处理”系列的第 08 章，主题为“离散傅里叶变换”。</p>
+</blockquote>
+<a href="/2026/07/23/discrete-time-signal-processing-ch07/" title="离散时间信号处理 Ch07：滤波器设计方法">上一篇：滤波器设计方法</a> · <a href="/2026/07/23/discrete-time-signal-processing-ch09/" title="离散时间信号处理 Ch09：离散傅里叶变换的计算">下一篇：离散傅里叶变换的计算</a>
+
+<span id="more"></span>
+
+<h1 id="离散傅里叶变换"><a href="#离散傅里叶变换" class="headerlink" title="离散傅里叶变换"></a>离散傅里叶变换</h1><h2 id="周期序列的离散傅里叶级数"><a href="#周期序列的离散傅里叶级数" class="headerlink" title="周期序列的离散傅里叶级数"></a>周期序列的离散傅里叶级数</h2><blockquote>
+<p>周期序列\(\tilde{x}[n]\)的傅里叶级数表示<br>\[
+\tilde{x}[n]=\frac{1}{N}\sum_{k=0}^{N-1}\tilde{X}[k]e^{j(2\pi/N)kn}
+\]</p>
+<p>傅里叶级数的系数<br>\[
+\tilde{X}[k]=\sum_{n=0}^{N-1}\tilde{x}[n]e^{-j(2\pi/N)kn}
+\]</p>
+<p>(\(\tilde{x}[n]\)和\(\tilde{X}[k]\)均是周期为\(N\)的周期序列)</p>
+</blockquote>
+<blockquote>
+<p>傅里叶级数系数的推导<br>\[
+\begin{aligned}
+\sum_{n=0}^{N-1}\tilde{x}[n]e^{-j(2\pi/N)rn}&amp;=\sum_{n=0}^{N-1}\frac{1}{N}\sum_{k=0}^{N-1}\tilde{X}[k]e^{j(2\pi/N)(k-r)n}\\
+&amp;=\sum_{k=0}^{N-1}\tilde{X}[k]\left[\frac{1}{N}\sum_{n=0}^{N-1}e^{j(2\pi/N)(k-r)n}\right]\\
+\end{aligned}
+\]</p>
+<p>而复指数具有正交性, 则<br>\[
+\frac{1}{N}\sum_{n=0}^{N-1}e^{j(2\pi/N)(k-r)n}=
+\begin{cases}
+1 &amp; k-r=mN\text{, }m\text{为整数}\\
+0 &amp; \text{其他}
+\end{cases}
+\]</p>
+<p>因此可以得到<br>\[
+\sum_{n=0}^{N-1}\tilde{x}[n]e^{-j(2\pi/N)rn}=\tilde{X}[r]
+\]</p>
+</blockquote>
+<blockquote>
+<p>周期序列的离散傅里叶级数(DFS)<br>\[
+W_N=e^{-j(2\pi/N)}\text{ (旋转因子)}
+\]</p>
+<p>分析式<br>\[
+\tilde{X}[k]=\sum_{n=0}^{N-1}\tilde{x}[n]W_N^{kn}
+\]</p>
+<p>综合式<br>\[
+\tilde{x}[n]=\frac{1}{N}\sum_{k=0}^{N-1}\tilde{X}[k]W_N^{-kn}
+\]</p>
+</blockquote>
+<blockquote>
+<p>周期脉冲串 \(\tilde{x}[n]\) 定义为<br>\[
+\tilde{x}[n]=\displaystyle\sum\limits_{r=-\infty}^{\infty}\delta[n-rN]=
+\begin{cases}
+1 &amp; n=rN\text{, }r\text{为任意整数}\\
+0 &amp; \text{其他}
+\end{cases}
+\]<br>其离散傅里叶级数如下。</p>
+<p>DFS系数<br>\[
+\tilde{X}[k]=\sum_{n=0}^{N-1}\delta[n]W_N^{kn}=W_N^0=1
+\]</p>
+<p>则离散傅里叶级数表示式为<br>\[
+\tilde{x}[n]=\frac{1}{N}\sum_{k=0}^{N-1}W_N^{-kn}=\frac{1}{N}\sum_{k=0}^{N-1}e^{j(2\pi/N)kn}
+\]</p>
+</blockquote>
+<blockquote>
+<p>DFS系数为周期脉冲串\(\tilde{Y}[k]=\displaystyle\sum\limits_{r=-\infty}^{\infty}N\delta[k-rN]\)的序列<br>\[
+\tilde{y}[n]=\frac{1}{N}\sum_{k=0}^{N-1}N\delta[k]W_N^{-kn}=W_N^{-0}=1
+\]</p>
+</blockquote>
+<h2 id="离散傅里叶级数的性质"><a href="#离散傅里叶级数的性质" class="headerlink" title="离散傅里叶级数的性质"></a>离散傅里叶级数的性质</h2><blockquote>
+<p>线性</p>
+<p>若\(\tilde{x}_1[n]\stackrel{\mathcal{DFS}}{\longleftrightarrow}\tilde{X}_1[k]\), \(\tilde{x}_2[n]\stackrel{\mathcal{DFS}}{\longleftrightarrow}\tilde{X}_2[k]\), 则<br>\[
+a\tilde{x}_1[n]+b\tilde{x}_2[n]\stackrel{\mathcal{DFS}}{\longleftrightarrow}a\tilde{X}_1[k]+b\tilde{X}_2[k]
+\]</p>
+</blockquote>
+<blockquote>
+<p>序列的移位</p>
+<p>(1) 时域移位<br>\[
+\tilde{x}[n-m]\stackrel{\mathcal{DFS}}{\longleftrightarrow}W_N^{km}\tilde{X}[k]
+\]</p>
+<p>(2) 频域移位<br>\[
+W_N^{-nl}\tilde{x}[n]\stackrel{\mathcal{DFS}}{\longleftrightarrow}\tilde{X}[k-l]
+\]</p>
+</blockquote>
+<blockquote>
+<p>对偶性</p>
+<p>若\(\tilde{x}[n]\stackrel{\mathcal{DFS}}{\longleftrightarrow}\tilde{X}[k]\), 则<br>\[
+\tilde{X}[n]\stackrel{\mathcal{DFS}}{\longleftrightarrow}N\tilde{x}[-k]
+\]</p>
+</blockquote>
+<blockquote>
+<p>对称性<br>\[
+\tilde{x}_e[n]=\frac{1}{2}(\tilde{x}[n]+\tilde{x}^*[-n])=\tilde{x}_e^*[-n]\quad\text{(共轭对称序列)}
+\]<br>\[
+\tilde{x}_o[n]=\frac{1}{2}(\tilde{x}[n]-\tilde{x}^*[-n])=-\tilde{x}_o^*[-n]\quad\text{(共轭反对称序列)}
+\]</p>
+<div class="table-container signals-table">
+<table>
+<thead><tr><th>周期序列</th><th>DFS的系数</th></tr></thead>
+<tbody><tr><td>&#92;(\tilde{x}[n]&#92;)</td><td>&#92;(\tilde{X}[k]&#92;)</td></tr><tr><td>&#92;(\tilde{x}^*[n]&#92;)</td><td>&#92;(\tilde{X}^*[-k]&#92;)</td></tr><tr><td>&#92;(\tilde{x}[-n]&#92;)</td><td>&#92;(\tilde{X}[-k]&#92;)</td></tr><tr><td>&#92;(\tilde{x}^*[-n]&#92;)</td><td>&#92;(\tilde{X}^*[k]&#92;)</td></tr><tr><td>&#92;(\mathcal{R}e\{\tilde{x}[n]\}&#92;)</td><td>&#92;(\tilde{X}_e[k]&#92;)</td></tr><tr><td>&#92;(j\mathcal{I}m\{\tilde{x}[n]\}&#92;)</td><td>&#92;(\tilde{X}_o[k]&#92;)</td></tr><tr><td>&#92;(\tilde{x}_e[n]&#92;)</td><td>&#92;(\mathcal{R}e\{\tilde{X}[k]\}&#92;)</td></tr><tr><td>&#92;(\tilde{x}_o[n]&#92;)</td><td>&#92;(j\mathcal{I}m\{\tilde{X}[k]\}&#92;)</td></tr></tbody>
+</table>
+</div>
+
+<p>当\(\tilde{x}[n]\)为实数时<br>\[
+\begin{cases}
+\tilde{X}[k]=\tilde{X}^*[-k]\\
+\mathcal{R}e\{\tilde{X}[k]\}=\mathcal{R}e\{\tilde{X}[-k]\}\\
+\mathcal{I}m\{\tilde{X}[k]\}=-\mathcal{I}m\{\tilde{X}[-k]\}\\
+|\tilde{X}[k]|=|\tilde{X}[-k]|\\
+\angle\tilde{X}[k]=-\angle\tilde{X}[-k]
+\end{cases}
+\]</p>
+</blockquote>
+<blockquote>
+<p>周期卷积</p>
+<p>若\(\tilde{x}_1[n]\stackrel{\mathcal{DFS}}{\longleftrightarrow}\tilde{X}_1[k]\), \(\tilde{x}_2[n]\stackrel{\mathcal{DFS}}{\longleftrightarrow}\tilde{X}_2[k]\), 则周期卷积<br>\[
+\tilde{x}_1[n]\circledast\tilde{x}_2[n]=\sum_{m=0}^{N-1}\tilde{x}_1[m]\tilde{x}_2[n-m]
+\]</p>
+<p>周期卷积只需要在\(0\leq m\leq N-1\)上求和, 然后将所得结果周期延拓即可.<br>\[
+\tilde{x}_1[n]\circledast\tilde{x}_2[n]\stackrel{\mathcal{DFS}}{\longleftrightarrow}\tilde{X}_1[k]\tilde{X}_2[k]
+\]<br>\[
+\tilde{x}_1[n]\tilde{x}_2[n]\stackrel{\mathcal{DFS}}{\longleftrightarrow}\frac{1}{N}\tilde{X}_1[k]\circledast\tilde{X}_2[k]
+\]</p>
+</blockquote>
+<h2 id="周期序列的傅里叶变换"><a href="#周期序列的傅里叶变换" class="headerlink" title="周期序列的傅里叶变换"></a>周期序列的傅里叶变换</h2><blockquote>
+<p>周期信号\(\tilde{x}[n]\)的傅里叶变换<br>\[
+\tilde{X}(e^{j\omega})=\sum_{k=-\infty}^{\infty}\frac{2\pi}{N}\tilde{X}[k]\delta\left(\omega-\frac{2\pi k}{N}\right)
+\]</p>
+</blockquote>
+<blockquote>
+<p>周期脉冲串\(\tilde{p}[n]=\displaystyle\sum\limits_{r=-\infty}^{\infty}\delta[n-rN]\)的傅里叶变换</p>
+<p>\[
+\tilde{P}(e^{j\omega})=\sum_{k=-\infty}^{\infty}\frac{2\pi}{N}\delta\left(\omega-\frac{2\pi k}{N}\right)
+\]</p>
+</blockquote>
+<blockquote>
+<p>时域周期延拓\(\stackrel{\mathcal{DFS}}{\longrightarrow}\)频域采样的推导</p>
+<p>给定有限长序列<br>\[
+x[n]=
+\begin{cases}
+\tilde{x}[n] &amp; 0\leq n\leq N-1\\
+0 &amp; \text{其他}
+\end{cases}
+\]</p>
+<p>\(\tilde{x}[n]\)是由有限长序列\(x[n]\)以\(N\)为周期进行周期延拓得到的, 则有<br>\[
+\tilde{x}[n]=x[n]*p[n]=x[n]*\sum_{r=-\infty}^{\infty}\delta[n-rN]
+\]</p>
+<p>两边同时进行傅里叶变换<br>\[
+\begin{aligned}
+\tilde{X}(e^{j\omega})&amp;=X(e^{j\omega})\cdot\sum_{k=-\infty}^{\infty}\frac{2\pi}{N}\delta\left(\omega-\frac{2\pi k}{N}\right)\\
+&amp;=\sum_{k=-\infty}^{\infty}\frac{2\pi}{N}X(e^{j(2\pi/N)k})\delta\left(\omega-\frac{2\pi k}{N}\right)
+\end{aligned}
+\]</p>
+<p>因此<br>\[
+\tilde{X}[k]=X(e^{j(2\pi/N)k})=X(e^{j\omega})\big|_{\omega=2\pi k/N}\quad\text{(以}\frac{2\pi}{N}\text{为间隔采样)}
+\]</p>
+</blockquote>
+<blockquote>
+<p>频域采样\(\stackrel{\mathcal{IDFS}}{\longrightarrow}\)时域周期延拓的推导</p>
+<p>考虑一个非周期序列\(x[m]\), 其傅里叶变换为\(X(e^{j\omega})\), 序列\(\tilde{X}[k]\)是通过对\(X(e^{j\omega})\)在\(\omega_k=\dfrac{2\pi k}{N}\)频率处采样得到的, 即<br>\[
+X(e^{j\omega})=\sum_{m=-\infty}^{\infty}x[m]e^{-j\omega m}
+\]<br>\[
+\tilde{X}[k]=X(e^{j\omega})\big|_{\omega=2\pi k/N}=\sum_{m=-\infty}^{\infty}x[m]e^{-j(2\pi k/N)m}
+\]</p>
+<p>假设\(\tilde{X}[k]\)是序列\(\tilde{x}[n]\)的傅里叶级数的系数, 则\(\tilde{x}[n]\)可表示为<br>\[
+\begin{aligned}
+\tilde{x}[n]&amp;=\frac{1}{N}\sum_{k=0}^{N-1}\tilde{X}[k]e^{j(2\pi/N)kn}\\
+&amp;=\frac{1}{N}\sum_{k=0}^{N-1}\left[\sum_{m=-\infty}^{\infty}x[m]e^{-j(2\pi/N)km}\right]e^{j(2\pi/N)kn}\\
+&amp;=\frac{1}{N}\sum_{m=-\infty}^{\infty}x[m]\sum_{k=0}^{N-1}e^{-j(2\pi/N)k(m-n)}\\
+&amp;=\sum_{m=-\infty}^{\infty}x[m]\left[\frac{1}{N}\sum_{k=0}^{N-1}W_N^{-k(n-m)}\right]\\
+&amp;=\sum_{m=-\infty}^{\infty}x[m]\sum_{r=-\infty}^{\infty}\delta[n-m-rN]\\
+&amp;=\sum_{r=-\infty}^{\infty}x[n-rN]\\
+&amp;=x[n]*\sum_{r=-\infty}^{\infty}\delta[n-rN]\quad\text{(以}N\text{为周期延拓)}
+\end{aligned}
+\]</p>
+</blockquote>
+<h2 id="有限长序列的离散傅里叶变换"><a href="#有限长序列的离散傅里叶变换" class="headerlink" title="有限长序列的离散傅里叶变换"></a>有限长序列的离散傅里叶变换</h2><blockquote>
+<p>有限长序列\(x[n]\)和周期序列\(\tilde{x}[n]\)的关系<br>\[
+\tilde{x}[n]=\sum_{r=-\infty}^{\infty}x[n-rN]=x[((n))_N]
+\]<br>\[
+x[n]=
+\begin{cases}
+\tilde{x}[n] &amp; 0\leq n\leq N-1\\
+0 &amp; \text{其他}
+\end{cases}
+\]</p>
+<p>离散傅里叶变换\(X[k]\)和DFS系数\(\tilde{X}[k]\)的关系<br>\[
+\tilde{X}[k]=X[((k))_N]
+\]<br>\[
+X[k]=
+\begin{cases}
+\tilde{X}[k] &amp; 0\leq k\leq N-1\\
+0 &amp; \text{其他}
+\end{cases}
+\]</p>
+</blockquote>
+<blockquote>
+<p>离散傅里叶变换(DFT)<br>\[
+W_N=e^{-j(2\pi/N)}\text{ (旋转因子)}
+\]</p>
+<p>分析式<br>\[
+X[k]=\sum_{n=0}^{N-1}x[n]W_N^{kn},0\leq k\leq N-1
+\]</p>
+<p>综合式<br>\[
+x[n]=\frac{1}{N}\sum_{k=0}^{N-1}X[k]W_N^{-kn},0\leq n\leq N-1
+\]</p>
+</blockquote>
+<h2 id="离散傅里叶变换的性质"><a href="#离散傅里叶变换的性质" class="headerlink" title="离散傅里叶变换的性质"></a>离散傅里叶变换的性质</h2><blockquote>
+<p>线性</p>
+<p>若\(x_1[n]\stackrel{\mathcal{DFT}}{\longleftrightarrow}X_1[k]\), \(x_2[n]\stackrel{\mathcal{DFT}}{\longleftrightarrow}X_2[k]\), 则<br>\[
+ax_1[n]+bx_2[n]\stackrel{\mathcal{DFT}}{\longleftrightarrow}aX_1[k]+bX_2[k]
+\]</p>
+</blockquote>
+<blockquote>
+<p>序列的循环移位</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch08/8-12.svg" style="width: 52.8%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch08/8-12.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch08/8-12.svg" alt="有限长序列的循环移位"></a>
+<p class="signals-figure-caption">有限长序列的循环移位</p>
+</div>
+
+<p>\[
+x[((n-m))_N],0\leq n\leq N-1\stackrel{\mathcal{DFT}}{\longleftrightarrow}e^{-j(2\pi k/N)m}X[k]
+\]</p>
+</blockquote>
+<blockquote>
+<p>对称性</p>
+<p>周期共轭对称分量<br>\[
+\begin{aligned}
+x_{ep}[n]&amp;=\tilde{x}_e[n],0\leq n\leq N-1\\
+&amp;=\frac{1}{2}\{x[((n))_N]+x^*[((-n))_N]\},0\leq n\leq N-1\\
+&amp;=\begin{cases}
+\dfrac{1}{2}\{x[n]+x^*[N-n]\} &amp; 1\leq n\leq N-1\\[2pt]
+\mathcal{R}e\{x[0]\} &amp; n=0
+\end{cases}\\
+&amp;=\{x_e[n]+x_e[n-N]\},0\leq n\leq N-1
+\end{aligned}
+\]</p>
+<p>周期反共轭对称分量<br>\[
+\begin{aligned}
+x_{op}[n]&amp;=\tilde{x}_o[n],0\leq n\leq N-1\\
+&amp;=\frac{1}{2}\{x[((n))_N]-x^*[((-n))_N]\},0\leq n\leq N-1\\
+&amp;=\begin{cases}
+\dfrac{1}{2}\{x[n]-x^*[N-n]\} &amp; 1\leq n\leq N-1\\[2pt]
+j\mathcal{I}m\{x[0]\} &amp; n=0
+\end{cases}\\
+&amp;=\{x_o[n]+x_o[n-N]\},0\leq n\leq N-1
+\end{aligned}
+\]</p>
+<div class="table-container signals-table">
+<table>
+<thead><tr><th>有限序列</th><th>&#92;(N&#92;)点DFT</th></tr></thead>
+<tbody><tr><td>&#92;(x[n]&#92;)</td><td>&#92;(X[k]&#92;)</td></tr><tr><td>&#92;(x^*[n]&#92;)</td><td>&#92;(X^*[((-k))_N]&#92;)</td></tr><tr><td>&#92;(x[((-n))_N]&#92;)</td><td>&#92;(X[((-k))_N]&#92;)</td></tr><tr><td>&#92;(x^*[((-n))_N]&#92;)</td><td>&#92;(X^*[k]&#92;)</td></tr><tr><td>&#92;(\mathcal{R}e\{x[n]\}&#92;)</td><td>&#92;(X_{ep}[k]&#92;)</td></tr><tr><td>&#92;(j\mathcal{I}m\{x[n]\}&#92;)</td><td>&#92;(X_{op}[k]&#92;)</td></tr><tr><td>&#92;(x_{ep}[n]&#92;)</td><td>&#92;(\mathcal{R}e\{X[k]\}&#92;)</td></tr><tr><td>&#92;(x_{op}[n]&#92;)</td><td>&#92;(j\mathcal{I}m\{X[k]\}&#92;)</td></tr></tbody>
+</table>
+</div>
+
+<p>当\(\tilde{x}[n]\)为实数时<br>\[
+\begin{cases}
+X[k]=X^*[((-k))_N]\\
+\mathcal{R}e\{X[k]\}=\mathcal{R}e\{X[((-k))_N]\}\\
+\mathcal{I}m\{X[k]\}=-\mathcal{I}m\{X[((-k))_N]\}\\
+|X[k]|=|X[((-k))_N]|\\
+\angle X[k]=-\angle X[((-k))_N]
+\end{cases}
+\]</p>
+</blockquote>
+<blockquote>
+<p>对偶性</p>
+<p>若\(x[n]\stackrel{\mathcal{DFT}}{\longleftrightarrow}X[k]\), 则<br>\[
+X[n]\stackrel{\mathcal{DFT}}{\longleftrightarrow}Nx[((-k))_N],0\leq k\leq N-1
+\]</p>
+</blockquote>
+<blockquote>
+<p>循环卷积</p>
+<p>若\(x_1[n]\stackrel{\mathcal{DFT}}{\longleftrightarrow}X_1[k]\), \(x_2[n]\stackrel{\mathcal{DFT}}{\longleftrightarrow}X_2[k]\), 则循环卷积<br>\[
+\begin{aligned}
+x_1[n]\mathbin{\text{Ⓝ}}x_2[n]&amp;=\sum_{m=0}^{N-1}\tilde{x}_1[m]\tilde{x}_2[n-m],0\leq n\leq N-1\\
+&amp;=\sum_{m=0}^{N-1}x_1[((m))_N]x_2[((n-m))_N],0\leq n\leq N-1\\
+&amp;=\sum_{m=0}^{N-1}x_1[m]x_2[((n-m))_N],0\leq n\leq N-1
+\end{aligned}
+\]</p>
+<p>且有<br>\[
+x_1[n]\mathbin{\text{Ⓝ}}x_2[n]\stackrel{\mathcal{DFT}}{\longleftrightarrow}X_1[k]X_2[k]
+\]<br>\[
+x_1[n]x_2[n]\stackrel{\mathcal{DFT}}{\longleftrightarrow}\frac{1}{N}X_1[k]\mathbin{\text{Ⓝ}}X_2[k]
+\]</p>
+</blockquote>
+<blockquote>
+<p>帕斯瓦尔关系式</p>
+<p>\[
+\sum_{n=0}^{N-1}|x[n]|^2=\frac{1}{N}\sum_{k=0}^{N-1}|X[k]|^2
+\]</p>
+</blockquote>
+<h2 id="用离散傅里叶变换实现线性卷积"><a href="#用离散傅里叶变换实现线性卷积" class="headerlink" title="用离散傅里叶变换实现线性卷积"></a>用离散傅里叶变换实现线性卷积</h2><blockquote>
+<p>循环卷积与线性卷积的关系</p>
+<p>一个\(L\)点长的序列\(x_1[n]\)和一个\(P\)点长的序列\(x_2[n]\)的线性卷积\(x_3[n]\)为<br>\[
+x_3[n]=\sum_{m=-\infty}^{\infty}x_1[m]x_2[n-m]
+\]</p>
+<p>\(x_1[n]\)和\(x_2[n]\)的循环卷积\(x_{3p}[n]\)为<br>\[
+\begin{aligned}
+x_{3p}[n]&amp;=x_1[n]\mathbin{\text{Ⓝ}}x_2[n]\\
+&amp;=\begin{cases}
+\displaystyle\sum\limits_{r=-\infty}^{\infty}x_3[n-rN] &amp; 0\leq n\leq N-1\\[2pt]
+0 &amp; \text{其他}
+\end{cases}
+\end{aligned}
+\]</p>
+<p>(1) 两个有限长序列的循环卷积等于有时间混叠的两个序列的线性卷积.</p>
+<p>(2) 若DFT的长度\(N\)满足\(N\geq L+P-1\), 则\(X_1[k]X_2[k]\)对应的循环卷积等于\(X_1(e^{j\omega})X_2(e^{j\omega})\)对应的线性卷积.</p>
+</blockquote>
+<blockquote>
+<p>用DFT实现线性时不变系统</p>
+<p>(1) 一个\(L_\text{总}\)点输入序列\(x[n]\)和一个\(P\)点脉冲响应\(h[n]\)的线性卷积\(y[n]\)是长度为\((L_\text{总}+P-1)\)的有限长序列.</p>
+<p>(2) 为了使循环卷积等于线性卷积, 循环卷积的长度至少为\((L_\text{总}+P-1)\)点, 因此要计算的DFT也必须有相同的长度, 即对\(x[n]\)和\(h[n]\)进行补零.</p>
+<p>(3) 块卷积: 将输入序列\(x[n]\)分割成长度为\(L\)的段, 然后每段信号与\(h[n]\)进行卷积, 再将滤波后的信号段衔接在一起, 每一块的线性滤波可用DFT来实现.</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch08/8-22.svg" style="width: 49.6%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch08/8-22.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch08/8-22.svg" alt="有限长脉冲响应\(h[n]\)和未定义长度的信号\(x[n]\)"></a>
+<p class="signals-figure-caption">有限长脉冲响应\(h[n]\)和未定义长度的信号\(x[n]\)</p>
+</div>
+</blockquote>
+<blockquote>
+<p>重叠相加法</p>
+<p>将序列\(x[n]\)表示成长度为\(L\)的平移有限长序列之和<br>\[
+x[n]=\sum_{r=0}^{\infty}x_r[n-rL]
+\]</p>
+<p>其中<br>\[
+x_r[n]=
+\begin{cases}
+x[n+rL] &amp; 0\leq n\leq L-1\\
+0 &amp; \text{其他}
+\end{cases}
+\]</p>
+<p>则序列\(y[n]\)可表示为<br>\[
+y[n]=x[n]*h[n]=\sum_{r=0}^{\infty}y_r[n-rL]
+\]</p>
+<p>其中<br>\[
+y_r[n]=x_r[n]*h[n]
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch08/8-23.svg" style="width: 43.6%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch08/8-23.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch08/8-23.svg" alt="(a) 把\(x[n]\)分解成长度为\(L\)的不重叠序列段; (b) 每段与\(h[n]\)卷积的结果"></a>
+<p class="signals-figure-caption">(a) 把\(x[n]\)分解成长度为\(L\)的不重叠序列段; (b) 每段与\(h[n]\)卷积的结果</p>
+</div>
+
+<p>(1) 每一项\(y_r[n]\)的长度为\((L+P-1)\), DFT的点数需要满足\(N\geq L+P-1\).</p>
+<p>(2) 每个输入段的开头与相邻段间隔\(L\)点, 并且每个滤波后的序列段长度为\((L+P-1)\), 所以滤波后的序列段的非零点将重叠\((P-1)\)点.</p>
+<p>(3) 计算\(L_\text{总}\)点输入序列的卷积需要分的段数为\(\dfrac{L_\text{总}}{L}\).</p>
+</blockquote>
+<blockquote>
+<p>重叠保留法</p>
+<p>将序列\(x[n]\)分成长度为\(L\)的序列段, 每个输入段与先前的序列段重叠\((P-1)\)点<br>\[
+x[n]=\sum_{r=0}^{\infty}x_r[n-rL]
+\]</p>
+<p>其中<br>\[
+x_r[n]=x[n+r(L-P+1)-P+1],0\leq n\leq L-1
+\]</p>
+<p>则序列\(y[n]\)可表示为<br>\[
+y[n]=x[n]*h[n]=\sum_{r=0}^{\infty}y_r[n-r(L-P+1)+P-1]
+\]</p>
+<p>其中<br>\[
+y_r[n]=
+\begin{cases}
+y_{rp}[n] &amp; P-1\leq n\leq L-1\\
+0 &amp; \text{其他}
+\end{cases}
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch08/8-24.svg" style="width: 80%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch08/8-24.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch08/8-24.svg" alt="(a) 把\(x[n]\)分解成相互重叠的长度为\(L\)的序列段；(b) 每段与\(h[n]\)卷积的结果, 图中表示出为了得出线性卷积对过滤后的每段序列应当去掉的部分"></a>
+<p class="signals-figure-caption">(a) 把\(x[n]\)分解成相互重叠的长度为\(L\)的序列段；(b) 每段与\(h[n]\)卷积的结果, 图中表示出为了得出线性卷积对过滤后的每段序列应当去掉的部分</p>
+</div>
+
+<p>(1) 每一项是一个\(P\)点脉冲响应\(h[n]\)与一个\(L\)点的序列段\(x_r[n]\)的\(L\)点循环卷积(\(N=L\)).</p>
+<p>(2) 每个输入段与先前的序列段重叠\((P-1)\)点, 因此每个接续的输入序列包括\((L-P+1)\)个新点, 并且从先前的序列段保留下来\((P-1)\)个点, 每个输出序列段去掉区间\(0\leq n\leq P-2\)中的部分.</p>
+<p>(3) 计算\(L_\text{总}\)点输入序列的卷积需要分的段数为\(\dfrac{L_\text{总}+P-1}{L-P+1}\).</p>
+</blockquote>
+<hr>
+<a href="/2026/07/23/discrete-time-signal-processing-ch07/" title="离散时间信号处理 Ch07：滤波器设计方法">上一篇：滤波器设计方法</a> · <a href="/2026/07/23/discrete-time-signal-processing-ch09/" title="离散时间信号处理 Ch09：离散傅里叶变换的计算">下一篇：离散傅里叶变换的计算</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/discrete-time-signal-processing-ch09/">← Next 离散时间信号处理 Ch09：离散傅里叶变换的计算</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/discrete-time-signal-processing-ch07/">离散时间信号处理 Ch07：滤波器设计方法 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">1.</span> <span class="toc-text">离散傅里叶变换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%A8%E6%9C%9F%E5%BA%8F%E5%88%97%E7%9A%84%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">周期序列的离散傅里叶级数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E7%BA%A7%E6%95%B0%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.2.</span> <span class="toc-text">离散傅里叶级数的性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%A8%E6%9C%9F%E5%BA%8F%E5%88%97%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">1.3.</span> <span class="toc-text">周期序列的傅里叶变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E9%99%90%E9%95%BF%E5%BA%8F%E5%88%97%E7%9A%84%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="toc-number">1.4.</span> <span class="toc-text">有限长序列的离散傅里叶变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.5.</span> <span class="toc-text">离散傅里叶变换的性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E5%8D%B7%E7%A7%AF"><span class="toc-number">1.6.</span> <span class="toc-text">用离散傅里叶变换实现线性卷积</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

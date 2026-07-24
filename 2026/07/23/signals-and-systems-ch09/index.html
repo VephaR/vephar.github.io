@@ -1,0 +1,388 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>信号与系统 Ch09：z 变换与离散系统的 z 域分析 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>信号与系统 Ch09：z 变换与离散系统的 z 域分析</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T05:09:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:19:27.207Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.signals-table { display: block; overflow-x: auto; text-align: center; }
+.signals-table table { width: auto; margin-left: auto; margin-right: auto; }
+.signals-table th, .signals-table td { text-align: center !important; vertical-align: middle; }
+.signals-figure { text-align: center; }
+.signals-figure a { display: block; max-width: 100%; margin: 0 auto; }
+.signals-figure img { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
+</style>
+
+<blockquote>
+<p>本文是“信号与系统”系列的第 09 章，主题为“z 变换与离散系统的 z 域分析”。</p>
+</blockquote>
+<a href="/2026/07/23/signals-and-systems-ch08/" title="信号与系统 Ch08：离散时间系统的频域分析">上一篇：离散时间系统的频域分析</a>
+
+<span id="more"></span>
+
+<h2 id="HEXO-PRESERVED-MATH-0-END变换及其收敛域"><a href="#HEXO-PRESERVED-MATH-0-END变换及其收敛域" class="headerlink" title="\(z\)变换及其收敛域"></a>\(z\)变换及其收敛域</h2><blockquote>
+<p>双边\(z\)变换<br>\[
+X(z)=\mathscr{Z}[x(n)]=\sum_{n=-\infty}^{\infty}x(n)z^{-n}
+\]</p>
+<p>其中<br>\[
+z=re^{j\omega}
+\]</p>
+<p>单边\(z\)变换<br>\[
+X(z)=\sum_{n=0}^{\infty}x(n)z^{-n}
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(z\)变换收敛域(ROC)的性质</p>
+<p>(1) \(z\)变换收敛域内不包含任何极点.</p>
+<p>(2) 如果\(x(n)\)是一个因果序列(右边序列), 其\(z\)变换的收敛域在\(z\)平面某个圆的外部, 且必定在\(z\)为无穷大处收敛.</p>
+<p>(3) 如果\(x(n)\)是一个非因果序列(左边序列), 其\(z\)变换的收敛域在\(z\)平面某个圆的内部, 且必定在\(z=0\)处收敛.</p>
+<p>(4) 如果\(x(n)\)是一个双边序列, 则\(z\)变换的收敛域为右边序列和左边序列收敛域的重叠部分, 即\(R_{x_1}&lt;|z|&lt;R_{x_2}\).</p>
+<p>(5) 如果\(x(n)\)是一个有限长度序列(时限序列), 其\(z\)变换的收敛域为整个\(z\)平面, 但可能不包括\(z=0\)和&#x2F;或\(z=\infty\).</p>
+</blockquote>
+<blockquote>
+<p>判断\(z\)变换的收敛域是否包括\(z=0\)和\(z=\infty\)</p>
+<p>(1) 若\(X(z)\)中含有\(z\)的正次幂, 则收敛域不包括\(z=\infty\).</p>
+<p>(2) 若\(X(z)\)中含有\(z\)的负次幂, 则收敛域不包括\(z=0\).</p>
+<p>\(z\)变换的时域特性</p>
+<p>(1) 若\(H(z)\)的收敛域包括无穷, 此系统为因果系统.</p>
+<p>(2) 若\(H(z)\)的收敛域包括单位圆, 此系统为稳定系统.</p>
+<p>\(z\)变换与离散时间傅里叶变换的关系<br>\[
+\begin{cases}
+X(e^{j\omega})=X(z)\big|_{z=e^{j\omega}} &amp; \mbox{收敛域包括单位圆}\\
+\mbox{DTFT不存在} &amp; \mbox{收敛域不包括单位圆}
+\end{cases}
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(z\)变换的特征输入</p>
+<p>一个系统函数为\(H(z)\)的LTI系统, 若输入\(x(n)=z_0^n\)对于所有的\(n\)均成立, 则其零状态输出<br>\[
+T[z_0^n]=y_{zs}(n)=z_0^n\cdot H(z)\big|_{z=z_0}
+\]</p>
+</blockquote>
+<blockquote>
+<p>特殊信号的零极点特性</p>
+<p>(1) 若系统的单位脉冲响应\(h[n]\)为实数, 则\(H(z)\)的极点和极点共轭, 零点和零点共轭.<br>\[
+h[n]=h^*[n]\Rightarrow H(z_0)=H^*(z_0^*)
+\]</p>
+<p>(2) 若系统的单位脉冲响应\(h[n]\)具有对称性, 即<br>\[
+h[n]=h[-n]\quad\mbox{(偶对称)}
+\]</p>
+<p>或者<br>\[
+h[n]=-h[-n]\quad\mbox{(奇对称)}
+\]</p>
+<p>则\(H(z)\)的极点和极点倒数, 零点和零点倒数.<br>\[
+H(z_0)=\pm H(z_0^{-1})
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(z\)反变换<br>\[
+x(n)=\frac{1}{2\pi j}\oint_CX(z)z^{n-1}{\rm d}z
+\]</p>
+<p>求\(z\)反变换的常用方法</p>
+<p>(1) 幂级数展开法(长除法)<br>\[
+X(z)=\sum_{n=-\infty}^{\infty}x(n)z^{-n}
+\]</p>
+<p>在给定的收敛域内把\(X(z)\)展成\(z^{-1}\)的幂级数, 则序列值\(x(n)\)就是\(z^{-n}\)项的系数.</p>
+<p>当\(x(n)\)为右边序列时, \(X(z)\)的分子和分母按\(z^{-1}\)的升幂(\(z\)的降幂)排列后再进行长除; 当\(x(n)\)为左边序列时, \(X(z)\)的分子和分母按\(z^{-1}\)的降幂(\(z\)的升幂)排列后再进行长除.</p>
+<p>(2) 部分分式展开法</p>
+<p>在一般情况下, 序列的\(z\)变换可以表示为\(z\)的有理分式, 即<br>\[
+X(z)=\frac{N(z)}{M(z)}=\frac{b_rz^r+b_{r-1}z^{r-1}+\cdots+b_1z+b_0}{a_kz^k+a_{k-1}z^{k-1}+\cdots+a_1z+a_0}
+\]</p>
+<p>将\(X(z)\)展开成一些简单的部分分式之和, 然后分别求出各个分式的\(z\)反变换, 把各反变换相加, 就能得到\(x(n)\).</p>
+</blockquote>
+<h2 id="HEXO-PRESERVED-MATH-73-END变换的性质"><a href="#HEXO-PRESERVED-MATH-73-END变换的性质" class="headerlink" title="\(z\)变换的性质"></a>\(z\)变换的性质</h2><blockquote>
+<p>\(z\)变换的线性</p>
+<p>若\(\mathscr{Z}[x_1(n)]=X_1(n),\mbox{ROC}=R_1\), \(\mathscr{Z}[x_2(n)]=X_2(n),\mbox{ROC}=R_2\), 则<br>\[
+\mathscr{Z}[a_1x_1(n)+a_2x_2(n)]=a_1X_1(z)+a_2X_2(z),\mbox{ROC包括}R_1\cap R_2
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(z\)变换的时移特性</p>
+<p>(1) 双边\(z\)变换<br>\[
+\mathscr{Z}[x(n+m)]=z^{m}X(z),\mbox{ROC只可能在}z=0\mbox{或}z=\infty\mbox{处发生变化}
+\]<br>\[
+\mathscr{Z}[x(n-m)]=z^{-m}X(z),\mbox{ROC只可能在}z=0\mbox{或}z=\infty\mbox{处发生变化}
+\]</p>
+<p>(2) 单边\(z\)变换<br>\[
+\mathscr{Z}[x(n+m)\cdot\varepsilon(n)]=z^m\left[X(z)-\sum_{k=0}^{m-1}x(k)z^{-k}\right]
+\]<br>\[
+\mathscr{Z}[x(n-m)\cdot\varepsilon(n)]=z^{-m}\left[X(z)+\sum_{k=-m}^{-1}x(k)z^{-k}\right]
+\]</p>
+<p>当\(m=1,2\)时上述式子可表示为<br>\[
+\mathscr{Z}[x(n+1)\cdot\varepsilon(n)]=\mathscr{Z}\{x(n+1)\cdot[\varepsilon(n+1)-\delta(n+1)]\}=zX(z)-zx(0)
+\]<br>\[
+\mathscr{Z}[x(n-1)\cdot\varepsilon(n)]=\mathscr{Z}\{x(n-1)\cdot[\varepsilon(n-1)+\delta(n)]\}=z^{-1}X(z)+x(-1)
+\]<br>\[
+\mathscr{Z}[x(n+2)\cdot\varepsilon(n)]=\mathscr{Z}\{x(n+2)\cdot[\varepsilon(n+2)-\delta(n+2)-\delta(n+1)]\}=z^2X(z)-z^2x(0)-zx(1)
+\]<br>\[
+\mathscr{Z}[x(n-2)\cdot\varepsilon(n)]=\mathscr{Z}\{x(n-2)\cdot[\varepsilon(n-2)+\delta(n-1)+\delta(n)]\}=z^{-2}X(z)+z^{-1}x(-1)+x(-2)
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(z\)变换的频移特性<br>\[
+\mathscr{Z}[e^{j\omega_0n}x(n)]=X(e^{-j\omega_0}z),\mbox{ROC}=R
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(z\)变换的\(z\)域微分特性<br>\[
+\mathscr{Z}[nx(n)]=-zX'(z),\mbox{ROC}=R
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(z\)变换的时域尺度变换</p>
+<p>若\(\mathscr{Z}[x(n)]=X(z),R_{x_1}&lt;|z|&lt;R_{x_2}\), 则<br>\[
+\mathscr{Z}\left[x\left(\frac{n}{L}\right)\right]=X(z^L),R_{x_1}&lt;|z^L|&lt;R_{x_2}
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(z\)变换的\(z\)域尺度变换</p>
+<p>若\(\mathscr{Z}[x(n)]=X(z),R_{x_1}&lt;|z|&lt;R_{x_2}\), 则<br>\[
+\mathscr{Z}[a^nx(n)]=X\left(\frac{z}{a}\right),R_{x_1}&lt;\left|\frac{z}{a}\right|&lt;R_{x_2}
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(z\)变换的初值定理</p>
+<p>(1) 因果序列<br>\[
+x(0)=\lim\limits_{z\rightarrow\infty}X(z)
+\]</p>
+<p>(2) 非因果序列<br>\[
+x(0)=\lim\limits_{z\rightarrow0}X(z)
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(z\)变换的终值定理</p>
+<p>(1) 因果序列<br>\[
+\lim\limits_{n\rightarrow\infty}x(n)=\lim\limits_{z\rightarrow1}[(z-1)X(z)]
+\]</p>
+<p>(2) 非因果序列<br>\[
+\lim\limits_{n\rightarrow-\infty}x(n)=\lim\limits_{z\rightarrow1}[(z^{-1}-1)X(z)]
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(z\)变换的时域卷积定理</p>
+<p>若\(\mathscr{Z}[x_1(n)]=X_1(n),\mbox{ROC}=R_1\), \(\mathscr{Z}[x_2(n)]=X_2(n),\mbox{ROC}=R_2\), 则<br>\[
+\mathscr{Z}[x_1(n)*x_2(n)]=X_1(z)\cdot X_2(z),\mbox{ROC}=R_1\cap R_2
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(z\)变换的时间反转<br>\[
+\mathscr{Z}[x(-n)]=X\left(\frac{1}{z}\right),\mbox{ROC为原收敛域的倒置}
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(z\)变换的共轭性质<br>\[
+\mathscr{Z}[x^*(n)]=X^*(z^*),\mbox{ROC}=R
+\]</p>
+</blockquote>
+<h2 id="常见离散时间信号的HEXO-PRESERVED-MATH-116-END变换"><a href="#常见离散时间信号的HEXO-PRESERVED-MATH-116-END变换" class="headerlink" title="常见离散时间信号的\(z\)变换"></a>常见离散时间信号的\(z\)变换</h2><blockquote>
+<p>单位取样序列\(x(n)=\delta(n)\)的\(z\)变换<br>\[
+\mathscr{Z}[\delta(n)]=1,0\leq|z|\leq\infty
+\]</p>
+</blockquote>
+<blockquote>
+<p>单位阶跃序列\(x(n)=\varepsilon(n)\)的\(z\)变换<br>\[
+\mathscr{Z}[\varepsilon(n)]=\frac{1}{1-z^{-1}},|z|&gt;1
+\]<br>\[
+\mathscr{Z}[-\varepsilon(-n-1)]=\frac{1}{1-z^{-1}},|z|&lt;1
+\]</p>
+</blockquote>
+<blockquote>
+<p>斜变序列\(x(n)=n\varepsilon(n)\)的\(z\)变换<br>\[
+\mathscr{Z}[n\varepsilon(n)]=\frac{z^{-1}}{(1-z^{-1})^2},|z|&gt;1
+\]<br>\[
+\mathscr{Z}[-n\varepsilon(-n-1)]=\frac{z^{-1}}{(1-z^{-1})^2},|z|&lt;1
+\]</p>
+</blockquote>
+<blockquote>
+<p>实指数序列的\(z\)变换</p>
+<p>(1) 单边指数序列\(x(n)=a^n\varepsilon(n)\)<br>\[
+\mathscr{Z}[a^n\varepsilon(n)]=\frac{1}{1-az^{-1}},|z|&gt;|a|
+\]<br>\[
+\mathscr{Z}[-a^n\varepsilon(-n-1)]=\frac{1}{1-az^{-1}},|z|&lt;|a|
+\]</p>
+<p>(2) 双边指数序列\(x(n)=b^{|n|},b&lt;1\)<br>\[
+\mathscr{Z}[b^{|n|}]=\frac{1}{1-bz^{-1}}-\frac{1}{1-b^{-1}z^{-1}}=\frac{b^2-1}{b}\frac{z^{-1}}{(1-bz^{-1})(1-b^{-1}z^{-1})},|b|\leq|z|\leq|b^{-1}|
+\]</p>
+</blockquote>
+<blockquote>
+<p>正弦序列\(x(n)=\sin\omega_0n\cdot\varepsilon(n)\)和余弦序列\(x(n)=\cos\omega_0n\cdot\varepsilon(n)\)的\(z\)变换<br>\[
+\mathscr{Z}[\sin\omega_0n\cdot\varepsilon(n)]=\frac{1}{2j}\left[\frac{1}{1-e^{j\omega_0}z^{-1}}-\frac{1}{1-e^{-j\omega_0}z^{-1}}\right]=\frac{z^{-1}\sin\omega_0}{1-2z^{-1}\cos\omega_0+z^{-2}},|z|&gt;1
+\]<br>\[
+\mathscr{Z}[\cos\omega_0n\cdot\varepsilon(n)]=\frac{1}{2}\left[\frac{1}{1-e^{j\omega_0}z^{-1}}+\frac{1}{1-e^{-j\omega_0}z^{-1}}\right]=\frac{1-z^{-1}\cos\omega_0}{1-2z^{-1}\cos\omega_0+z^{-2}},|z|&gt;1
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(x(n)=(n+1)a^n\varepsilon(n)\)的\(z\)变换<br>\[
+\mathscr{Z}[(n+1)a^n\varepsilon(n)]=\frac{1}{(1-az^{-1})^2},|z|&gt;|a|
+\]</p>
+<p>推广:</p>
+<p>(1) \(x(n)=\dfrac{(n+1)(n+2)}{2!}a^n\varepsilon(n)\)的\(z\)变换<br>\[
+\mathscr{Z}\left[\frac{(n+1)(n+2)}{2!}a^n\varepsilon(n)\right]=\frac{1}{(1-az^{-1})^3},|z|&gt;|a|
+\]</p>
+<p>(2) \(x(n)=\dfrac{(n+1)(n+2)\cdots(n+m)}{m!}a^n\varepsilon(n)\)的\(z\)变换<br>\[
+\mathscr{Z}\left[\frac{(n+1)(n+2)\cdots(n+m)}{m!}a^n\varepsilon(n)\right]=\frac{1}{(1-az^{-1})^{m+1}},|z|&gt;|a|
+\]</p>
+</blockquote>
+<h2 id="HEXO-PRESERVED-MATH-148-END变换与拉式变换的关系"><a href="#HEXO-PRESERVED-MATH-148-END变换与拉式变换的关系" class="headerlink" title="\(z\)变换与拉式变换的关系"></a>\(z\)变换与拉式变换的关系</h2><blockquote>
+<p>从\(z\)变换到\(s\)变换</p>
+<div class="signals-figure">
+<a href="/2026/07/23/signals-and-systems-ch09/cd.svg" style="width: 37.6%;" class='item-img' data-src='/2026/07/23/signals-and-systems-ch09/cd.svg'><img src="/2026/07/23/signals-and-systems-ch09/cd.svg" alt="连续域与离散域的映射关系"></a>
+</div>
+
+<p>连续信号\(x_c(t)\)经过周期冲激串采样后得到冲激抽样信号\(x_s(t)\), 其\(s\)变换为<br>\[
+\begin{aligned}
+X_s(s)&amp;=\int_{-\infty}^{\infty}x_c(t)\cdot\sum_{n=-\infty}^{\infty}\delta(t-nT)e^{-st}{\rm d}t\\
+&amp;=\int_{-\infty}^{\infty}\sum_{n=-\infty}^{\infty}x_c(nT)e^{-snT}\cdot\delta(t-nT){\rm d}t\\
+&amp;=\sum_{n=-\infty}^{\infty}x_c(nT)e^{-snT}\\
+\end{aligned}
+\]</p>
+<p>而离散序列\(x(n)\)的\(z\)变换为<br>\[
+X(z)=\sum_{n=-\infty}^{\infty}x(n)z^{-n}
+\]</p>
+<p>由此可得连续信号\(x_c(t)\)和离散序列\(x(n)\)的关系<br>\[
+x(n)=x_c(nT)
+\]</p>
+<p>复变量\(z\)与\(s\)的关系<br>\[
+z=e^{sT},s=\frac{1}{T}\ln z
+\]</p>
+<p>其中\(T\)是取样间隔, 它与重复频率\(\omega_s\)的关系为<br>\[
+T=\frac{2\pi}{\omega_s}
+\]</p>
+</blockquote>
+<blockquote>
+<p>\(z\)平面与\(s\)平面的关系<br>\[
+z=e^{sT}=e^{(\sigma+j\Omega)T}=e^{\sigma T}e^{j\Omega T}=re^{j\omega}
+\]</p>
+<p>因此<br>\[
+r=e^{\sigma T}
+\]<br>\[
+\omega=\Omega T
+\]</p>
+<p>则\(z\)平面与\(s\)平面的映射关系为</p>
+<div class="table-container signals-table">
+<table>
+<thead><tr><th>&#92;(s&#92;) 平面</th><th>&#92;(z&#92;) 平面</th></tr></thead>
+<tbody><tr><td>虚轴（&#92;(\sigma=0,s=j\Omega&#92;)）</td><td>单位圆（&#92;(z=e^{j\Omega T},|z|=1&#92;)）</td></tr><tr><td>左半平面（&#92;(\sigma<0&#92;)）</td><td>单位圆内（&#92;(r=e^{\sigma T}<1&#92;)）</td></tr><tr><td>右半平面（&#92;(\sigma>0&#92;)）</td><td>单位圆外（&#92;(r=e^{\sigma T}>1&#92;)）</td></tr><tr><td>平行于虚轴的直线（&#92;(\sigma=\sigma_0&#92;)）</td><td>圆（&#92;(r=e^{\sigma_0T}&#92;)）</td></tr><tr><td>实轴（&#92;(\Omega=0,s=\sigma&#92;)）</td><td>正实轴（&#92;(\omega=\Omega T=0,r=e^{\sigma T}&#92;)）</td></tr><tr><td>平行于实轴的直线（&#92;(\Omega=\Omega_0&#92;)）</td><td>始于原点的辐射线（&#92;(\omega=\Omega_0T&#92;)）</td></tr><tr><td>&#92;(\Omega=\pm\dfrac{k\Omega_s}{2},k=1,3,\cdots&#92;)</td><td>负实轴（&#92;(\omega=\pm k\pi,k=1,3,\cdots&#92;)）</td></tr><tr><td>&#92;(\Omega=-\dfrac{\Omega_s}{2}\sim\dfrac{\Omega_s}{2}&#92;)</td><td>单位圆（&#92;(\omega=-\pi\sim\pi&#92;)）</td></tr><tr><td>&#92;(\Omega=-\dfrac{\Omega_s}{2}+k\Omega_s\sim\dfrac{\Omega_s}{2}+k\Omega_s&#92;)</td><td>单位圆（&#92;(\omega=-\pi+2k\pi\sim\pi+2k\pi&#92;)）</td></tr></tbody>
+</table>
+</div>
+</blockquote>
+<blockquote>
+<p>从\(s\)变换到\(z\)变换</p>
+<p>若连续信号\(x(t)\)的\(s\)变换\(X(s)\)只含有一阶极点\(s_i\), 即<br>\[
+X_c(s)=\sum_{i}\frac{A_i}{s-s_i}
+\]</p>
+<p>经过\(s\)反变换得到\(x(t)\)为<br>\[
+x_c(t)=\sum_{i}A_ie^{s_it}\varepsilon(t)
+\]</p>
+<p>则\(x(t)\)经C&#x2F;D转换后得到的离散序列\(x(n)\)为<br>\[
+x(n)=x_c(nT)=\sum_{i}A_ie^{s_inT}\varepsilon(nT)=\sum_{i}A_ie^{s_inT}\varepsilon(n)
+\]</p>
+<p>离散序列\(x(n)\)的\(z\)变换为<br>\[
+X(z)=\sum_{i}\frac{A_i}{1-e^{s_iT}z^{-1}}
+\]</p>
+</blockquote>
+<h2 id="求解频率响应的几何方法"><a href="#求解频率响应的几何方法" class="headerlink" title="求解频率响应的几何方法"></a>求解频率响应的几何方法</h2><blockquote>
+<p>设系统函数为<br>\[
+H(z)=\frac{\displaystyle\prod_{r=1}^{M}(z-z_r)}{\displaystyle\prod_{k=1}^{N}(z-p_k)}
+\]</p>
+<p>式中\(z_r\)为\(H(z)\)的零点, \(p_k\)为\(H(z)\)的极点, 则幅度响应为<br>\[
+|H(z)|=\frac{\displaystyle\prod_{r=1}^{M}U_r}{\displaystyle\prod_{k=1}^{N}V_k}
+\]</p>
+<p>相位响应为<br>\[
+\varphi(\omega)=\sum_{r=1}^{M}\varphi_r-\sum_{k=1}^{N}\theta_k
+\]</p>
+<p>式中\(U_r\)与\(\varphi_r\)分别表示零点\(z_r\)至单位圆上某点\(e^{j\omega}\)的矢量\((e^{j\omega}-z_r)\)的幅值与相角, 而\(V_k\)与\(\theta_k\)分别表示极点\(p_k\)至单位圆上某点\(e^{j\omega}\)的矢量\((e^{j\omega}-p_k)\)的幅值与相角.</p>
+</blockquote>
+<hr>
+<a href="/2026/07/23/signals-and-systems-ch08/" title="信号与系统 Ch08：离散时间系统的频域分析">上一篇：离散时间系统的频域分析</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/discrete-time-signal-processing-ch04/">← Next 离散时间信号处理 Ch04：连续时间信号的采样</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch08/">信号与系统 Ch08：离散时间系统的频域分析 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HEXO-PRESERVED-MATH-0-END%E5%8F%98%E6%8D%A2%E5%8F%8A%E5%85%B6%E6%94%B6%E6%95%9B%E5%9F%9F"><span class="toc-number">1.</span> <span class="toc-text">\(z\)变换及其收敛域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HEXO-PRESERVED-MATH-73-END%E5%8F%98%E6%8D%A2%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">2.</span> <span class="toc-text">\(z\)变换的性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%A6%BB%E6%95%A3%E6%97%B6%E9%97%B4%E4%BF%A1%E5%8F%B7%E7%9A%84HEXO-PRESERVED-MATH-116-END%E5%8F%98%E6%8D%A2"><span class="toc-number">3.</span> <span class="toc-text">常见离散时间信号的\(z\)变换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HEXO-PRESERVED-MATH-148-END%E5%8F%98%E6%8D%A2%E4%B8%8E%E6%8B%89%E5%BC%8F%E5%8F%98%E6%8D%A2%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">4.</span> <span class="toc-text">\(z\)变换与拉式变换的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E8%A7%A3%E9%A2%91%E7%8E%87%E5%93%8D%E5%BA%94%E7%9A%84%E5%87%A0%E4%BD%95%E6%96%B9%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">求解频率响应的几何方法</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

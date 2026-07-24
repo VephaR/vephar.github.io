@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>信号与系统 Ch04：连续时间系统的频域分析 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>信号与系统 Ch04：连续时间系统的频域分析</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T05:04:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:19:01.931Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.signals-figure { text-align: center; }
+.signals-figure a { display: block; max-width: 100%; margin: 0 auto; }
+.signals-figure img { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
+</style>
+
+<blockquote>
+<p>本文是“信号与系统”系列的第 04 章，主题为“连续时间系统的频域分析”。</p>
+</blockquote>
+<a href="/2026/07/23/signals-and-systems-ch03/" title="信号与系统 Ch03：连续信号的傅里叶分析">上一篇：连续信号的傅里叶分析</a> · <a href="/2026/07/23/signals-and-systems-ch05/" title="信号与系统 Ch05：拉普拉斯变换">下一篇：拉普拉斯变换</a>
+
+<span id="more"></span>
+
+<h2 id="线性系统的特征输入"><a href="#线性系统的特征输入" class="headerlink" title="线性系统的特征输入"></a>线性系统的特征输入</h2><blockquote>
+<p>一个冲激响应为\(h(t)\)的LTI系统对复指数信号\(e^{j(\omega_0t+\varphi_0)}\)的响应<br>\[
+T[e^{j(\omega_0t+\varphi_0)}]=r(t)=e^{j(\omega_0t+\varphi_0)}\cdot H(j\omega_0)
+\]</p>
+<p>推广到一般形式为<br>\[
+T\left[\sum_{k}C_ke^{j(\omega_kt+\varphi_k)}\right]=\sum_{k}C_kH(j\omega_k)e^{j(\omega_kt+\varphi_k)}
+\]</p>
+</blockquote>
+<blockquote>
+<p>LTI系统对正弦&#x2F;余弦信号的响应</p>
+<p>已知系统的频率响应\(H(j\omega)\)为<br>\[
+H(j\omega)=|H(j\omega)|e^{j\varphi(\omega)}
+\]</p>
+<p>则<br>\[
+T[\sin(\omega_0t+\varphi_0)]=|H(j\omega_0)|\cdot \sin[\omega_0t+\varphi_0+\varphi(\omega_0)]
+\]</p>
+<p>同理<br>\[
+T[\cos(\omega_0t+\varphi_0)]=|H(j\omega_0)|\cdot \cos[\omega_0t+\varphi_0+\varphi(\omega_0)]
+\]</p>
+</blockquote>
+<h2 id="线性系统的正弦稳态"><a href="#线性系统的正弦稳态" class="headerlink" title="线性系统的正弦稳态"></a>线性系统的正弦稳态</h2><blockquote>
+<p>系统的暂态响应和稳态响应</p>
+<p>(1) 暂态响应是指激励信号接入后, 完全响应中暂时出现的分量. 完全响应中凡是按指数衰减的各项均为暂态响应, 随着时间的增长, 它将消失.</p>
+<p>(2) 稳态响应是完全响应中除去暂态分量的部分, 它随着时间的增长仍然不趋于0, 通常是由阶跃函数或周期函数组成的.</p>
+</blockquote>
+<blockquote>
+<p>LTI系统对复指数信号\(e^{j(\omega_0t+\varphi_0)}\cdot\varepsilon(t)\)的稳态响应<br>\[
+T[e^{j(\omega_0t+\varphi_0)}\cdot\varepsilon(t)]=e^{j(\omega_0t+\varphi_0)}H(j\omega_0)\cdot\varepsilon(t)
+\]</p>
+</blockquote>
+<blockquote>
+<p>LTI系统对正弦信号\(\sin(\omega_0t+\varphi_0)\cdot\varepsilon(t)\)的稳态响应</p>
+<p>已知系统的频率响应\(H(j\omega)\)为<br>\[
+H(j\omega)=|H(j\omega)|e^{j\varphi(\omega)}
+\]</p>
+<p>则<br>\[
+T[\sin(\omega_0t+\varphi_0)\cdot\varepsilon(t)]=|H(j\omega_0)|\sin[\omega_0t+\varphi_0+\varphi(\omega_0)]\cdot\varepsilon(t)
+\]</p>
+<p>同理<br>\[
+T[\cos(\omega_0t+\varphi_0)\cdot\varepsilon(t)]=|H(j\omega_0)|\cos[\omega_0t+\varphi_0+\varphi(\omega_0)]\cdot\varepsilon(t)
+\]</p>
+</blockquote>
+<blockquote>
+<p>特征输入与正弦稳态的区别</p>
+<p>特征输入</p>
+<p>(1) \(t\)在整个时域内取值, 即\(t\in(-\infty,+\infty)\).</p>
+<p>(2) 当零输入响应\(r_{zp}(t)\)为0时, 使用特征输入求得的响应即为零状态响应\(r_{zs}(t)\).</p>
+<p>正弦稳态</p>
+<p>(1) 激励信号和输出信号中含有\(\varepsilon(t)\)项, 即\(t\in(0,+\infty)\).</p>
+<p>(2) 使用正弦稳态求得的响应为稳态响应, 零状态响应可能既有暂态响应部分又有稳态响应部分.</p>
+</blockquote>
+<h2 id="线性系统的信号失真"><a href="#线性系统的信号失真" class="headerlink" title="线性系统的信号失真"></a>线性系统的信号失真</h2><blockquote>
+<p>信号无失真传输的时域条件<br>\[
+r(t)=Ke(t-t_0)
+\]</p>
+</blockquote>
+<blockquote>
+<p>信号无失真传输的频域条件<br>\[
+R(j\omega)=KE(j\omega)e^{-j\omega t_0}
+\]</p>
+<p>频率响应<br>\[
+H(j\omega)=\frac{R(j\omega)}{E(j\omega)}=Ke^{-j\omega t_0}
+\]</p>
+<p>幅频特性和相频特性<br>\[
+|H(j\omega)|=K
+\]<br>\[
+\varphi(\omega)=\arg H(j\omega)=-\omega t_0
+\]</p>
+</blockquote>
+<h2 id="理想低通滤波器"><a href="#理想低通滤波器" class="headerlink" title="理想低通滤波器"></a>理想低通滤波器</h2><blockquote>
+<p>理想低通滤波器的频率响应<br>\[
+H(j\omega)=|H(j\omega)|e^{j\varphi(\omega)}=\begin{cases}
+e^{-j\omega t_0} &amp; |\omega|\leq\omega_c\\
+0 &amp; |\omega|&gt;\omega_c
+\end{cases}
+\]</p>
+<p>幅频特性和相频特性<br>\[
+|H(j\omega)|=\begin{cases}
+1 &amp; |\omega|\leq\omega_c\\
+0 &amp; |\omega|&gt;\omega_c
+\end{cases}
+\]<br>\[
+\varphi(\omega)=-\omega t_0
+\]</p>
+<p>对\(H(j\omega)\)进行傅里叶反变换可得其冲激响应<br>\[
+h(t)=\mathscr{F}^{-1}[H(j\omega)]=\frac{\omega_c}{\pi}Sa[\omega_c(t-t_0)]
+\]</p>
+</blockquote>
+<blockquote>
+<p>理想低通滤波器的阶跃响应</p>
+<p>阶跃信号\(\varepsilon(t)\)的频谱<br>\[
+E(j\omega)=\mathscr{F}[\varepsilon(t)]=\pi\delta(\omega)+\frac{1}{j\omega}
+\]</p>
+<p>输出信号的频谱<br>\[
+R(j\omega)=H(j\omega)E(j\omega)=\left[\pi\delta(\omega)+\frac{1}{j\omega}\right]e^{-j\omega t_0},|\omega|\leq\omega_c
+\]</p>
+<p>对\(R(j\omega)\)进行傅里叶反变换可得其阶跃响应<br>\[
+\begin{aligned}
+r(t)=\mathscr{F}^{-1}[R(j\omega)]&amp;=\frac{1}{2}+\frac{1}{\pi}\int_{0}^{\omega_c}\frac{\sin[\omega(t-t_0)]}{\omega}{\rm d}\omega\\
+&amp;=\frac{1}{2}+\frac{1}{\pi}Si[\omega_c(t-t_0)]
+\end{aligned}
+\]</p>
+<p>其中\(Si(y)\)为正弦积分<br>\[
+Si(y)=\int_{0}^{y}\frac{\sin x}{x}{\rm d}x
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/signals-and-systems-ch04/sine-integral.svg" style="width: 70%;" class='item-img' data-src='/2026/07/23/signals-and-systems-ch04/sine-integral.svg'><img src="/2026/07/23/signals-and-systems-ch04/sine-integral.svg" alt="正弦积分函数曲线"></a>
+</div>
+
+<p>(1)定义上升时间\(t_r\)为输出自最小值上升至最大值所需的时间<br>\[
+t_r=2\cdot\frac{\pi}{\omega_c}
+\]</p>
+<p>(2)滤波器的带宽\(B\)与截止频率\(\omega_c\)的关系<br>\[
+B=f_c=\frac{\omega_c}{2\pi}
+\]</p>
+<p>(3)上升时间\(t_r\)与带宽\(B\)的关系<br>\[
+t_r=\frac{1}{B}
+\]</p>
+</blockquote>
+<blockquote>
+<p>理想低通滤波器的矩形脉冲响应</p>
+<p>若输入信号为矩形脉冲<br>\[
+e_p(t)=\varepsilon(t)-\varepsilon(t-\tau)
+\]</p>
+<p>则滤波器对\(e_p(t)\)的响应<br>\[
+r_p(t)=\frac{1}{\pi}\{Si[\omega_c(t-t_0)]-Si[\omega_c(t-t_0-\tau)]\}
+\]</p>
+</blockquote>
+<hr>
+<a href="/2026/07/23/signals-and-systems-ch03/" title="信号与系统 Ch03：连续信号的傅里叶分析">上一篇：连续信号的傅里叶分析</a> · <a href="/2026/07/23/signals-and-systems-ch05/" title="信号与系统 Ch05：拉普拉斯变换">下一篇：拉普拉斯变换</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch05/">← Next 信号与系统 Ch05：拉普拉斯变换</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch03/">信号与系统 Ch03：连续信号的傅里叶分析 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%B9%E5%BE%81%E8%BE%93%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">线性系统的特征输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AD%A3%E5%BC%A6%E7%A8%B3%E6%80%81"><span class="toc-number">2.</span> <span class="toc-text">线性系统的正弦稳态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BF%A1%E5%8F%B7%E5%A4%B1%E7%9C%9F"><span class="toc-number">3.</span> <span class="toc-text">线性系统的信号失真</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E6%83%B3%E4%BD%8E%E9%80%9A%E6%BB%A4%E6%B3%A2%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">理想低通滤波器</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

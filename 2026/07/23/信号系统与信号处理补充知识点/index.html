@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>信号系统与信号处理补充知识点 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>信号系统与信号处理补充知识点</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T04:00:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:22:10.161Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><p>本文整理信号系统与数字信号处理中的若干补充知识点，主要包括分辨率、滤波器设计，以及重叠相加法和重叠保留法。</p>
+<span id="more"></span>
+
+<h2 id="物理分辨率和频率分辨率"><a href="#物理分辨率和频率分辨率" class="headerlink" title="物理分辨率和频率分辨率"></a>物理分辨率和频率分辨率</h2><p>注意：一般题目给出的分辨率 \(\Delta f\) 为对应连续域的分辨率，需要将其换算到离散域的分辨率再进行计算，即 \(\Delta\omega=2\pi\Delta f\cdot T_s\)。</p>
+<p>根本法则：区别分辨率主要看处于哪个过程。处于窗截断过程的是频率分辨率，处于 DFT 过程的是物理分辨率。</p>
+<blockquote>
+<p><strong>知识点 1</strong></p>
+<p>\(N\) 为 DFT 的点数，与谱分辨率有关；\(M\) 为窗 \(w(n)\) 的长度，与频率分辨率有关。</p>
+<p>需要满足 \(N\geqslant M\)。多数情况下 \(N=M\)；若题目未给窗，则默认无需补零，即 \(N=M\)。</p>
+</blockquote>
+<blockquote>
+<p><strong>知识点 2</strong></p>
+<p>最大采样间隔 \(T_s\)：C&#x2F;D 转换过程中的奈奎斯特采样间隔。</p>
+</blockquote>
+<blockquote>
+<p><strong>知识点 3</strong></p>
+<p>谱分辨率与采样间隔 \(T_s\)、DFT 的点数 \(N\) 有关，即 \(\Delta f=\dfrac{1}{NT_s}\)。</p>
+<p>注意：数值越小，分辨率越高；提高一倍即 \(\Delta f\) 变为原来的 \(\dfrac{1}{2}\)。</p>
+</blockquote>
+<blockquote>
+<p><strong>知识点 4</strong></p>
+<p>频率分辨率与窗的主瓣宽度（点数）有关。</p>
+</blockquote>
+<blockquote>
+<p><strong>知识点 5</strong></p>
+<p>最小记录点数 \(P\)：窗的点数 \(M\) 或 DFT 的点数 \(N\)，根据所处过程确定。</p>
+<ol>
+<li>若同时存在窗截断和 DFT 过程，由于 \(N\geqslant M\)，最小记录长度选择 \(M\)。在 \(N\) 点 DFT 的过程中，大于 \(M\) 点的部分通过补 \(N-M\) 个零来实现。</li>
+<li>若 DFT 通过 FFT 实现，应当注意 \(N\) 只能选取 2 的幂次。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>知识点 6</strong></p>
+<p>最小记录长度 \(t_p\)：时域的持续时间，满足 \(t_p\geqslant PT_s\)。</p>
+</blockquote>
+<blockquote>
+<p><strong>知识点 7</strong></p>
+<p>当分辨率不变时，持续时间 \(t_p=PT_s\) 为常数，此时的最小点数与采样间隔成反比。</p>
+</blockquote>
+<h2 id="滤波器设计"><a href="#滤波器设计" class="headerlink" title="滤波器设计"></a>滤波器设计</h2><blockquote>
+<p><strong>知识点 1：区分增益和衰减</strong></p>
+<p>通带最大衰减：</p>
+<p>\[
+A_p(\mathrm{dB})=-20\log_{10}\left(1-\delta_p\right)
+\]</p>
+<p>阻带最小衰减：</p>
+<p>\[
+A_s(\mathrm{dB})=-20\log_{10}\delta_s
+\]</p>
+<p>衰减为增益的负值。</p>
+</blockquote>
+<blockquote>
+<p><strong>知识点 2：主瓣宽度与过渡带宽</strong></p>
+<ol>
+<li>窗的主瓣宽度 \(\Delta\omega_m\) 表现为 \(H\left(e^{j\omega}\right)\) 的正负肩峰之间的过渡带宽度。</li>
+<li>滤波器的过渡带以 \(\omega_c=\dfrac{\omega_s+\omega_p}{2}\) 为中心，过渡带宽 \(\Delta\omega=\omega_s-\omega_p\)。</li>
+<li>主瓣宽度大于过渡带宽，但二者的变化趋势相同。</li>
+<li>过渡带宽 \(\Delta\omega\) 确定窗的点数为“\(M+1\)”，因此过渡带宽由窗长（主瓣宽度）决定。中心不变，两边会根据窗长有所改变；窗长不变时，过渡带宽也由窗的类型决定。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>知识点 3</strong></p>
+<p>在过渡带中点 \(\omega_c\) 处，\(\left|H\left(e^{j\omega}\right)\right|\) 衰减到 \(\dfrac{1}{2}\)。\(\omega_c\) 不随主瓣宽度、窗长或窗形状改变，它由 IIR 滤波器的截止频率决定。</p>
+</blockquote>
+<blockquote>
+<p><strong>知识点 4：3 dB 截止频率</strong></p>
+<p>3 dB 截止频率为 \(\left|H\left(e^{j\omega}\right)\right|\) 衰减到 \(\dfrac{\sqrt{2}}{2}\) 的位置，其幅度平方函数满足</p>
+<p>\[
+\left|H\left(e^{j\omega}\right)\right|^2=\dfrac{1}{2}
+\]</p>
+<p>通带边沿频率的增益为 \(1-\delta_p\)，截止频率通常大于边沿频率。</p>
+<p>窗长增大时，主瓣宽度减小，过渡带宽收缩，但中心点 \(\omega_c\) 不变。因此 3 dB 频率点会随着主瓣收缩而更逼近过渡带中心点 \(\omega_c=\dfrac{\omega_s+\omega_p}{2}\)，即 3 dB 点频率增大。</p>
+<p>窗长减小时，主瓣宽度增大，过渡带宽扩展，但中心点 \(\omega_c\) 不变。因此 3 dB 频率点会随着主瓣扩展而远离过渡带中心点，即 3 dB 点频率减小。</p>
+</blockquote>
+<blockquote>
+<p><strong>知识点 5</strong></p>
+<p>窗函数的形状由以下四个值决定：阻带最小衰减 \(A_s(\mathrm{dB})\)、通带起伏 \(A_p(\mathrm{dB})\)、主瓣宽度和 \(\beta\)。</p>
+</blockquote>
+<blockquote>
+<p><strong>知识点 6</strong></p>
+<p>同一种类的窗，主瓣和旁瓣的面积是常量，不随窗长 \(M\) 变化，且有相同的吉布斯现象。</p>
+<p>推论：旁瓣越高（旁瓣相对幅度不变），主瓣越窄（过渡带越小）。</p>
+</blockquote>
+<blockquote>
+<p><strong>知识点 7：窗函数与滤波器指标</strong></p>
+<p>根本法则：应当将窗函数的旁瓣幅度、旁瓣相对幅度和滤波器的阻带幅度（阻带衰减、波纹幅度）区别开。窗长 \(M\) 能够影响窗函数的旁瓣幅度，但后两者只能由窗的形状决定。</p>
+<ol>
+<li>旁瓣相对幅度表现为通带幅度峰值和阻带幅度峰值之差。旁瓣相对幅度越大，则阻带衰减越大、通带起伏越小、主瓣越宽（窗形状发生改变）。</li>
+<li>通带和阻带的起伏形状相同，由窗函数的旁瓣决定。其中，波纹的幅度取决于窗函数的旁瓣相对幅度，波纹的多少取决于旁瓣的多少。</li>
+</ol>
+<p>推论：</p>
+<ul>
+<li>阻带衰减只与窗的形状有关，与窗长无关；\(\beta\) 越大，过渡带宽越大，阻带衰减越大（2015，第 7 题）。</li>
+<li>高频分量越少，主瓣宽度越大，阻带衰减越大（2014，第 7 题）。</li>
+</ul>
+<ol start="3">
+<li>通带和阻带中的波纹变慢，以加宽过渡带宽为代价。主瓣宽度增大时，卷积过程中窗函数的进出速度变慢，导致波纹变慢，但是其幅度不发生改变。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>知识点 8</strong></p>
+<p>矩形窗旁瓣 \(=\) 主瓣 \(\times 0.2239\)（13 dB）。</p>
+</blockquote>
+<blockquote>
+<p><strong>知识点 9：滤波器设计指标</strong></p>
+<p>滤波器设计的第一步是确定离散的技术指标。若技术指标是连续的，则应当用 \(\Omega=\omega T\) 转换成离散指标，然后再通过脉冲响应不变法或者双线性变换法，将数字低通滤波器的指标映射为原型模拟低通滤波器的指标。</p>
+</blockquote>
+<h2 id="重叠相加法和重叠保留法"><a href="#重叠相加法和重叠保留法" class="headerlink" title="重叠相加法和重叠保留法"></a>重叠相加法和重叠保留法</h2><blockquote>
+<p><strong>知识点 1：\(L\)、\(P\)、\(N\) 的关系</strong></p>
+<ol>
+<li>\(P\) 为 \(h(n)\) 的点数，\(L\) 为每一段分块的点数，\(N\) 为 DFT 或 FFT 芯片的点数。</li>
+<li>重叠相加法满足 \(L+P-1=N\)；重叠保留法满足 \(L=N\)。</li>
+<li>重叠相加法和重叠保留法每段均重叠 \(P-1\) 点；每段输入的有效点数均为 \(N-P+1\)。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>知识点 2：分段数</strong></p>
+<p>重叠相加法：</p>
+<ul>
+<li>分段数：\(\dfrac{L_{\text{总}}}{L}\)</li>
+<li>每段输入的有效点数：\(L\)</li>
+</ul>
+<p>重叠保留法：</p>
+<ul>
+<li>分段数：\(\dfrac{L_{\text{总}}+P-1}{L-P+1}\)</li>
+<li>每段输入的有效点数：\(L-P+1\)</li>
+</ul>
+</blockquote>
+<h3 id="计算示例"><a href="#计算示例" class="headerlink" title="计算示例"></a>计算示例</h3><p>已知 FIR 滤波器的单位冲激响应</p>
+<p>\[
+h(n)=\{2,1,3,7\}
+\]</p>
+<p>输入序列为</p>
+<p>\[
+x(n)=\{4,9,-2,8,0,0,8,1,2,2,7,5,-2,3\}
+\]</p>
+<p>要求每段输入的长度为 5，求滤波器的输出。</p>
+<h4 id="重叠相加法"><a href="#重叠相加法" class="headerlink" title="重叠相加法"></a>重叠相加法</h4><p>输入序列 \(x(n)\) 的长度为 14，每段输入长度为 5，故将 \(x(n)\) 分为：</p>
+<p>\[
+\begin{aligned}
+x_1(n)&amp;=\{4,9,-2,8,0\}\\
+x_2(n)&amp;=\{0,8,1,2,2\}\\
+x_3(n)&amp;=\{7,5,-2,3,0\}
+\end{aligned}
+\]</p>
+<p>\(h(n)\) 的点数为 4，故相邻两段输出重叠 3 点。逐段与 \(h(n)\) 进行线性卷积，即 8 点循环卷积：</p>
+<p>\[
+\begin{aligned}
+\{8,22,17,69,65,10,56,0\}\qquad&amp;\\
+\{0,16,10,29,&amp;65,15,20,14\}\\
+&amp;\qquad\{14,17,22,68,32,-5,21,0\}
+\end{aligned}
+\]</p>
+<p>重叠相加后得到：</p>
+<p>\[
+y(n)=\{8,22,17,69,65,10,72,10,29,65,29,37,36,68,32,-5,21,0\}
+\]</p>
+<h4 id="重叠保留法"><a href="#重叠保留法" class="headerlink" title="重叠保留法"></a>重叠保留法</h4><p>此时不能认为每段输入长度为 5，而应当理解为每段输入的“有效点数”为 5。通过 \(L-P+1=5\) 可确定每段输入长度为 8，故将 \(x(n)\) 分为：</p>
+<p>\[
+\begin{aligned}
+x_1(n)&amp;=\{0,0,0,4,9,-2,8,0\}\\
+x_2(n)&amp;=\{-2,8,0,0,8,1,2,2\}\\
+x_3(n)&amp;=\{1,2,2,7,5,-2,3,0\}\\
+x_4(n)&amp;=\{-2,3,0,0,0,0,0,0\}
+\end{aligned}
+\]</p>
+<p>注意 \(x_1(n)\) 前 3 位补零，且分段数为</p>
+<p>\[
+\dfrac{L_{\text{总}}+P-1}{L-P+1}
+=\dfrac{14+4-1}{5}
+=4
+\]</p>
+<p>\(h(n)\) 的点数为 4，故相邻两段输出重叠 3 点。逐段与 \(h(n)\) 进行 8 点循环卷积：</p>
+<p>\[
+\begin{aligned}
+\{10,56,0,8,22,17,69,65\}\qquad&amp;\\
+\{11,34,16,10,72,10,&amp;29,65\}\\
+\{-3,&amp;26,9,29,37,36,68,32\}\\
+&amp;\qquad\{ -4,4,-3,-5,21,0,0,0\}
+\end{aligned}
+\]</p>
+<p>每段输出舍去前 3 点后得到：</p>
+<p>\[
+y(n)=\{8,22,17,69,65,10,72,10,29,65,29,37,36,68,32,-5,21,0\}
+\]</p>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch00/">← Next 信号与系统 Ch00：数学与电路基础</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/hello-world/">Hello World Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%88%86%E8%BE%A8%E7%8E%87%E5%92%8C%E9%A2%91%E7%8E%87%E5%88%86%E8%BE%A8%E7%8E%87"><span class="toc-number">1.</span> <span class="toc-text">物理分辨率和频率分辨率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BB%A4%E6%B3%A2%E5%99%A8%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.</span> <span class="toc-text">滤波器设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%8F%A0%E7%9B%B8%E5%8A%A0%E6%B3%95%E5%92%8C%E9%87%8D%E5%8F%A0%E4%BF%9D%E7%95%99%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">重叠相加法和重叠保留法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.1.</span> <span class="toc-text">计算示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%8F%A0%E7%9B%B8%E5%8A%A0%E6%B3%95"><span class="toc-number">3.1.1.</span> <span class="toc-text">重叠相加法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%8F%A0%E4%BF%9D%E7%95%99%E6%B3%95"><span class="toc-number">3.1.2.</span> <span class="toc-text">重叠保留法</span></a></li></ol></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

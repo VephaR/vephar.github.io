@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>概率论与数理统计 Ch04：随机变量的数字特征 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>概率论与数理统计 Ch04：随机变量的数字特征</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-24T02:17:00.000Z" id="date"> 2026-07-24</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:46:47.679Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.math-table { margin: 1.2em auto; overflow-x: auto; }
+.math-table table { width: auto; min-width: 60%; margin: 0 auto; border-collapse: collapse; }
+.math-table th, .math-table td { text-align: center; vertical-align: middle; padding: .45em .8em; white-space: nowrap; }
+.math-table-note { margin: -.5em auto 1em; text-align: center; color: #888; font-size: .92em; }
+.post-content mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
+</style>
+
+<blockquote>
+<p>本文是“概率论与数理统计”系列的第 04 章，主题为“随机变量的数字特征”。</p>
+</blockquote>
+<a href="/2026/07/24/probability-and-statistics-ch03/" title="概率论与数理统计 Ch03：多维随机变量及其分布">上一篇：概率论与数理统计 Ch03：多维随机变量及其分布</a> · <a href="/2026/07/24/probability-and-statistics-ch05/" title="概率论与数理统计 Ch05：大数定律与中心极限定理">下一篇：概率论与数理统计 Ch05：大数定律与中心极限定理</a>
+
+<span id="more"></span>
+
+<blockquote>
+<p>随机变量\(X\)的函数\(Y=g(X)\)的数学期望<br>\[
+E(Y)=E[g(X)]=\begin{cases}
+\displaystyle\sum_{k=1}^{\infty}g(x_k)p_k &amp; \text{离散型}\\[12pt]
+\displaystyle\int_{-\infty}^{+\infty}g(x)f(x)\mathrm{d}x &amp; \text{连续型}
+\end{cases}
+\]</p>
+<p>随机变量\((X,Y)\)的函数\(Z=g(X,Y)\)的数学期望<br>\[
+E(Z)=E[g(X,Y)]=\begin{cases}
+\displaystyle\sum_{i=1}^{\infty}\sum_{j=1}^{\infty}g(x_i,y_i)p_{ij} &amp; \text{离散型}\\[12pt]
+\displaystyle\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}g(x,y)f(x,y)\mathrm{d}x\mathrm{d}y &amp; \text{连续型}
+\end{cases}
+\]</p>
+<p>数学期望就是“取的值乘以相应的概率”.</p>
+</blockquote>
+<blockquote>
+<p>数学期望的性质</p>
+<p>(1) \(E(C)=C\).</p>
+<p>(2) \(E(CX)=CE(X)\).</p>
+<p>(3) \(E(X\pm Y)=E(X)\pm E(Y)\).</p>
+<p>(4) \(E(XY)=E(X)E(Y)\Leftrightarrow\)\(X\)与\(Y\)不相关.</p>
+</blockquote>
+<blockquote>
+<p>随机变量\(X\)的方差<br>\[
+\begin{aligned}
+D(X)&amp;=E\{[X-E(X)]^2\}\\
+&amp;=E(X^2)-[E(X)]^2
+\end{aligned}
+\]</p>
+<p>\(\sigma(X)=\sqrt{D(X)}\)为随机变量\(X\)的标准差&#x2F;均方差.</p>
+</blockquote>
+<blockquote>
+<p>方差的性质</p>
+<p>(1) \(D(C)=0\), 但由\(D(X)=0\)得不到\(X\)为常数, 而应当说\(X\)取常数以概率1成立.</p>
+<p>(2) \(D(aX+b)=a^2D(X)\).</p>
+<p>(3) \(D(X\pm Y)=D(X)+D(Y)\Leftrightarrow\)\(X\)与\(Y\)不相关.</p>
+</blockquote>
+<blockquote>
+<p>常用随机变量的数学期望和方差</p>
+<p>(1) 二项分布\(X\sim B(n,p)\)</p>
+<p>\(E(X)=np,D(X)=np(1-p)\).</p>
+<p>(2) 泊松分布\(X\sim P(\lambda)\)</p>
+<p>\(E(X)=\lambda,D(X)=\lambda\).</p>
+<p>(3) 均匀分布\(X\sim U(a,b)\)</p>
+<p>\(E(X)=\dfrac{a+b}{2},D(X)=\dfrac{(b-a)^2}{12}\).</p>
+<p>(4) 指数分布\(X\sim E(\lambda)\)</p>
+<p>\(E(X)=\dfrac{1}{\lambda},D(X)=\dfrac{1}{\lambda^2}\).</p>
+<p>(5) 正态分布\(X\sim N(\mu,\sigma^2)\)</p>
+<p>\(E(X)=\mu,D(X)=\sigma^2\).</p>
+</blockquote>
+<blockquote>
+<p>随机变量\(X\)的\(k\)阶矩<br>\[
+E(X^k),k=1,2,\cdots
+\]</p>
+<p>随机变量\(X\)的\(k\)阶中心矩<br>\[
+E\{[X-E(X)]^k\},k=2,3,\cdots
+\]</p>
+<p>随机变量\(X\)和\(Y\)的\(k+l\)阶混合矩<br>\[
+E(X^kY^l),k,l=1,2,\cdots
+\]</p>
+<p>随机变量\(X\)和\(Y\)的\(k+l\)阶混合中心矩<br>\[
+E\{[X-E(X)]^k[Y-E(Y)]^l\},k,l=1,2,\cdots
+\]</p>
+</blockquote>
+<blockquote>
+<p>随机变量\(X\)和\(Y\)的协方差<br>\[
+\mathrm{Cov}(X,Y)=E\{[X-E(X)][Y-E(Y)]\}
+\]</p>
+</blockquote>
+<blockquote>
+<p>协方差的性质</p>
+<p>(1) \(\mathrm{Cov}(X,Y)=E(XY)-E(X)E(Y)\), 当\(X=Y\)时, \(\mathrm{Cov}(X,X)=D(X)\).</p>
+<p>(2) \(D(X\pm Y)=D(X)+D(Y)\pm2\mathrm{Cov}(X,Y)\).</p>
+<p>(3) \(\mathrm{Cov}(aX,bY)=ab\mathrm{Cov}(X,Y)\).</p>
+<p>(4) \(\mathrm{Cov}(X_1+X_2,Y)=\mathrm{Cov}(X_1,Y)+\mathrm{Cov}(X_2,Y)\).</p>
+<p>(5) \(\mathrm{Cov}(X,C)=0\).</p>
+</blockquote>
+<blockquote>
+<p>随机变量\(X\)和\(Y\)的相关系数<br>\[
+\rho_{XY}=\frac{\mathrm{Cov}(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}
+\]</p>
+<p>(1) \(|\rho_{XY}|\leqslant1\).</p>
+<p>(2) \(D(X)D(Y)=0\Rightarrow\rho_{XY}=0\).</p>
+<p>(3) \(\rho_{XY}=0\Leftrightarrow X\)和\(Y\)不相关.</p>
+<p>(4) 随机变量\(X\)和\(Y\)相互独立\(\Rightarrow X\)和\(Y\)不相关; 但由\(X\)和\(Y\)不相关\(\nRightarrow X\)和\(Y\)相互独立.</p>
+<p>(5) 对二维正态随机变量\((X,Y),X\)和\(Y\)相互独立\(\Leftrightarrow X\)和\(Y\)不相关.</p>
+<p>(6) \(|\rho_{XY}|=1\Leftrightarrow\)存在\(a,b\), 其中\(a\neq0\), 使得\(P\{Y=aX+b\}=1\).</p>
+<p>推论: 若\(Y=aX+b\), 则有\[
+\rho_{XY}=\begin{cases}
+\dfrac{a}{|a|} &amp; a\neq0\\[2pt]
+0 &amp; a=0
+\end{cases}
+\].</p>
+</blockquote>
+<hr>
+<a href="/2026/07/24/probability-and-statistics-ch03/" title="概率论与数理统计 Ch03：多维随机变量及其分布">上一篇：概率论与数理统计 Ch03：多维随机变量及其分布</a> · <a href="/2026/07/24/probability-and-statistics-ch05/" title="概率论与数理统计 Ch05：大数定律与中心极限定理">下一篇：概率论与数理统计 Ch05：大数定律与中心极限定理</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/24/probability-and-statistics-ch05/">← Next 概率论与数理统计 Ch05：大数定律与中心极限定理</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/24/probability-and-statistics-ch03/">概率论与数理统计 Ch03：多维随机变量及其分布 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

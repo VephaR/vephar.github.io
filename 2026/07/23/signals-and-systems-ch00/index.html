@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>信号与系统 Ch00：数学与电路基础 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>信号与系统 Ch00：数学与电路基础</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T05:00:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:18:26.298Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><blockquote>
+<p>本文是“信号与系统”系列的第 00 章，主题为“数学与电路基础”。</p>
+</blockquote>
+<a href="/2026/07/23/signals-and-systems-ch01/" title="信号与系统 Ch01：信号的函数表示与系统分析方法">下一篇：信号的函数表示与系统分析方法</a>
+
+<span id="more"></span>
+
+<h2 id="复数相关"><a href="#复数相关" class="headerlink" title="复数相关"></a>复数相关</h2><blockquote>
+<p>欧拉公式<br>\[
+e^{j\omega}=\cos\omega+j\sin\omega
+\]</p>
+<p>欧拉逆向公式<br>\[
+a+bj=\sqrt{a^2+b^2}e^{j\arctan(b/a)}
+\]</p>
+<p>若复数\(z=a+bj\), 则模值为\(r=\sqrt{a^2+b^2}\), 相角为\(\theta=\begin{cases}
+\arctan\dfrac{b}{a} &amp; a\geq0\\[8pt]
+\arctan\dfrac{b}{a}+\pi &amp; a&lt;0
+\end{cases}\)</p>
+</blockquote>
+<blockquote>
+<p>复指数函数的周期性</p>
+<p>(1) \(e^{j\omega_0t}\)的周期为\(\dfrac{2\pi}{\omega_0}\).</p>
+<p>(2) 若两个信号相加\(f_1(t)+f_2(t)\), 则周期为最小公倍数\([T_1,T_2]\).</p>
+</blockquote>
+<blockquote>
+<p>正余弦函数和复指数函数的互化<br>\[
+\cos n\omega_1t=\frac{e^{jn\omega_1t}+e^{-jn\omega_1t}}{2}
+\]<br>\[
+\sin m\omega_1t=\frac{e^{jm\omega_1t}-e^{-jm\omega_1t}}{2j}
+\]</p>
+</blockquote>
+<h2 id="正交复变函数集"><a href="#正交复变函数集" class="headerlink" title="正交复变函数集"></a>正交复变函数集</h2><blockquote>
+<p>正交复变函数集的概念</p>
+<p>在某一时间段的信号可以利用完备正交函数集的各个分量的线性组合来表示<br>\[
+\int_{t_1}^{t_2}\varphi_i(t)\varphi_j^*(t){\rm d}t=\begin{cases}
+0 &amp; i\neq j\\
+K_i\neq0 &amp; i=j
+\end{cases}
+\]</p>
+</blockquote>
+<blockquote>
+<p>三角函数正交函数集</p>
+<p>三角函数集\(\{\cos n\omega_1\tau,\sin n\omega_1\tau\},(n=0,1,2,3,\cdots,\infty)\), 在区间\((t_0,t_0+T_1),(T_1=\dfrac{2\pi}{\omega_1})\)内组成完备正交函数集.<br>\[
+f(t)=a_0+\sum_{n=1}^{\infty}(a_n\cos n\omega_1t+b_n\sin n\omega_1t)
+\]</p>
+<p>满足“自交不为0, 杂交为0”.<br>\[
+\begin{cases}
+\displaystyle\int_{-T_1/2}^{T_1/2}\cos n\omega_1t\cdot\sin m\omega_1t{\rm d}t &amp; m=n\mbox{或}m\neq n\mbox{, 此式均为}0\\[8pt]
+\displaystyle\int_{-T_1/2}^{T_1/2}\cos n\omega_1t\cdot\cos m\omega_1t{\rm d}t &amp; m=n\mbox{, 此式为}\dfrac{T_1}{2}\mbox{; }m\neq n\mbox{, 此式为}0\\[8pt]
+\displaystyle\int_{-T_1/2}^{T_1/2}\sin n\omega_1t\cdot\sin m\omega_1t{\rm d}t &amp; m=n\mbox{, 此式为}\dfrac{T_1}{2}\mbox{; }m\neq n\mbox{, 此式为}0
+\end{cases}
+\]</p>
+</blockquote>
+<blockquote>
+<p>复变函数正交函数集</p>
+<p>对于满足狄里赫利条件的周期为\(T_1\)的周期函数\(f(t)\)的复指数正交函数分解:</p>
+<p>复指数正交函数集\(\{e^{jn\omega_1t}\},(n=0,1,2,3,\cdots,\infty)\), 在区间\((t_0,t_0+T_1),(T_1=\dfrac{2\pi}{\omega_1})\)内组成完备正交函数集.<br>\[
+f(t)=\sum_{n=0}^{\infty}F_n\cdot e^{jn\omega_1t}
+\]</p>
+<p>满足“自交不为0, 杂交为0”.<br>\[
+\int_{-T_1/2}^{T_1/2}e^{jn\omega_1t}\cdot e^{-jm\omega_1t}{\rm d}t=\begin{cases}
+T_1 &amp; m=n\\
+0 &amp; m\neq n
+\end{cases}
+\]</p>
+</blockquote>
+<h2 id="三角函数公式"><a href="#三角函数公式" class="headerlink" title="三角函数公式"></a>三角函数公式</h2><blockquote>
+<p>两角和差公式<br>\[
+\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta
+\]<br>\[
+\sin(\alpha-\beta)=\sin\alpha\cos\beta-\cos\alpha\sin\beta
+\]<br>\[
+\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta
+\]<br>\[
+\cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta
+\]<br>\[
+\tan(\alpha+\beta)=\frac{\tan\alpha+\tan\beta}{1-\tan\alpha\tan\beta}
+\]<br>\[
+\tan(\alpha-\beta)=\frac{\tan\alpha-\tan\beta}{1+\tan\alpha\tan\beta}
+\]</p>
+</blockquote>
+<blockquote>
+<p>二倍角公式<br>\[
+\sin2\alpha=2\sin\alpha\cos\alpha
+\]<br>\[
+\begin{aligned}
+\cos2\alpha&amp;=\cos^2\alpha-\sin^2\alpha\\&amp;=2\cos^2\alpha-1\\&amp;=1-2\sin^2\alpha
+\end{aligned}
+\]<br>\[
+\tan2\alpha=\frac{2\tan\alpha}{1-\tan^2\alpha}
+\]</p>
+</blockquote>
+<blockquote>
+<p>和差化积公式<br>\[
+\sin\alpha+\sin\beta=2\sin\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2}
+\]<br>\[
+\sin\alpha-\sin\beta=2\cos\frac{\alpha+\beta}{2}\sin\frac{\alpha-\beta}{2}
+\]<br>\[
+\cos\alpha+\cos\beta=2\cos\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2}
+\]<br>\[
+\cos\alpha-\cos\beta=-2\sin\frac{\alpha+\beta}{2}\sin\frac{\alpha-\beta}{2}
+\]</p>
+<p>口诀: 正加正, 正在前; 余加余, 余并肩; 正减正, 余在前; 余减余, 负正弦.</p>
+</blockquote>
+<blockquote>
+<p>积化和差公式<br>\[
+\sin\alpha\cos\beta=\frac{\sin(\alpha+\beta)+\sin(\alpha-\beta)}{2}
+\]<br>\[
+\cos\alpha\sin\beta=\frac{\sin(\alpha+\beta)-\sin(\alpha-\beta)}{2}
+\]<br>\[
+\cos\alpha\cos\beta=\frac{\cos(\alpha+\beta)+\cos(\alpha-\beta)}{2}
+\]<br>\[
+\sin\alpha\sin\beta=-\frac{\cos(\alpha+\beta)-\cos(\alpha-\beta)}{2}
+\]</p>
+</blockquote>
+<blockquote>
+<p>辅助角公式<br>\[
+a\sin\alpha+b\cos\alpha=\sqrt{a^2+b^2}\sin(\alpha+\varphi),\tan\varphi=\frac{b}{a}
+\]</p>
+</blockquote>
+<h2 id="电路基础"><a href="#电路基础" class="headerlink" title="电路基础"></a>电路基础</h2><blockquote>
+<p>基本概念</p>
+<p>(1) 支路: 电路中无分支的一段电路, 一个支路中流过同一个电流.</p>
+<p>(2) 节点: 两个或两个以上支路的连接点.</p>
+<p>(3) 回路: 由支路构成的闭合路径.</p>
+<p>(4) 网孔: 闭合电路内不含其他支路的回路(网孔一定是回路, 但回路不一定是网孔).</p>
+</blockquote>
+<blockquote>
+<p>基本定律</p>
+<p>(1) 欧姆定律(OL): 通过某一导体的电流跟这段导体两端的电压成正比, 跟这段导体的电阻成反比.<br>\[
+I=\frac{U}{R}
+\]</p>
+<p>(2) 基尔霍夫电流定律(KCL): 所有进入某节点的电流的总和等于所有离开这节点的电流的总和.<br>\[
+\sum_{k=1}^{n}i_k=0
+\]</p>
+<p>(3) 基尔霍夫电压定律(KVL): 沿着闭合回路所有元件两端的电势差(电压)的代数和等于零.<br>\[
+\sum_{k=1}^{m}v_k=0
+\]</p>
+<p>根据电路图列出电路方程, KCL方程数为“节点数\(-\)1”, KVL方程数为“网孔数”.</p>
+<p>(4) 叠加定理: 任何线性网络中, 若含有多个独立电源, 则网络中任一支路中的响应电流(或电压)等于电路中各个独立电源单独作用时在该支路中所产生的电流(或电压)的代数和. 此时所有的其他电源必须置零: 在所有其他独立电压源处用短路代替, 在所有其他独立电流源处用开路代替.</p>
+</blockquote>
+<blockquote>
+<p>电路初始状态的求解技巧</p>
+<p>(1) 电容电压不跳变.<br>\[
+u_C(0^-)=u_C(0^+)
+\]</p>
+<p>(2) 电感电流不跳变.<br>\[
+i_L(0^-)=i_L(0^+)
+\]</p>
+<p>(3) 开关闭合&#x2F;切换前(\(t=0^-\))称为稳定状态, 此时电容开路, 电感短路.<br>\[
+i_C(0^-)=0
+\]<br>\[
+u_L(0^-)=0
+\]</p>
+<p>(4) 电容电压的导数可跳变.<br>\[
+i_C=Cu'_C
+\]</p>
+<p>(5) 电感电流的导数可跳变.<br>\[
+u_L=Li'_L
+\]</p>
+</blockquote>
+<hr>
+<a href="/2026/07/23/signals-and-systems-ch01/" title="信号与系统 Ch01：信号的函数表示与系统分析方法">下一篇：信号的函数表示与系统分析方法</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch01/">← Next 信号与系统 Ch01：信号的函数表示与系统分析方法</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/%E4%BF%A1%E5%8F%B7%E7%B3%BB%E7%BB%9F%E4%B8%8E%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9/">信号系统与信号处理补充知识点 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E6%95%B0%E7%9B%B8%E5%85%B3"><span class="toc-number">1.</span> <span class="toc-text">复数相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E4%BA%A4%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">正交复变函数集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0%E5%85%AC%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">三角函数公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B5%E8%B7%AF%E5%9F%BA%E7%A1%80"><span class="toc-number">4.</span> <span class="toc-text">电路基础</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>线性代数 Ch02：矩阵 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>线性代数 Ch02：矩阵</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-24T02:09:00.000Z" id="date"> 2026-07-24</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:46:47.676Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.math-table { margin: 1.2em auto; overflow-x: auto; }
+.math-table table { width: auto; min-width: 60%; margin: 0 auto; border-collapse: collapse; }
+.math-table th, .math-table td { text-align: center; vertical-align: middle; padding: .45em .8em; white-space: nowrap; }
+.math-table-note { margin: -.5em auto 1em; text-align: center; color: #888; font-size: .92em; }
+.post-content mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
+</style>
+
+<blockquote>
+<p>本文是“线性代数”系列的第 02 章，主题为“矩阵”。</p>
+</blockquote>
+<a href="/2026/07/24/linear-algebra-ch01/" title="线性代数 Ch01：行列式">上一篇：线性代数 Ch01：行列式</a> · <a href="/2026/07/24/linear-algebra-ch03/" title="线性代数 Ch03：n维向量">下一篇：线性代数 Ch03：n维向量</a>
+
+<span id="more"></span>
+
+<blockquote>
+<p>矩阵\(\boldsymbol{A}\)的伴随矩阵<br>\[
+\boldsymbol{A}^*=\left[ \begin{array}{cccc}
+A_{11} &amp; A_{21} &amp; \cdots &amp; A_{n1}\\
+A_{12} &amp; A_{22} &amp; \cdots &amp; A_{n2}\\
+\vdots &amp; \vdots &amp;  &amp; \vdots\\
+A_{1n} &amp; A_{2n} &amp; \cdots &amp; A_{nn}\\
+\end{array}\right]
+\]</p>
+<p>2阶矩阵的伴随矩阵: 主对角线元素互换, 副对角线元素变号.</p>
+</blockquote>
+<blockquote>
+<p>正交矩阵 \(\boldsymbol{A}\boldsymbol{A}^T=\boldsymbol{A}^T\boldsymbol{A}=\boldsymbol{E}\).</p>
+<p>\(\boldsymbol{A}\)是正交矩阵\(\Leftrightarrow \boldsymbol{A}^T=\boldsymbol{A}^{-1}\);</p>
+<p>\(\boldsymbol{A}\)是正交矩阵\(\Rightarrow|\boldsymbol{A}|^2=1\).</p>
+<p>几何意义: 正交矩阵的每个行(列)向量长度均为1, 行(列)向量两两正交.</p>
+</blockquote>
+<blockquote>
+<p>\(n\)阶矩阵\(\boldsymbol{A}\)可逆</p>
+<p>\(\Leftrightarrow|\boldsymbol{A}|\neq0\)</p>
+<p>\(\Leftrightarrow r(\boldsymbol{A})=n\)</p>
+<p>\(\Leftrightarrow \boldsymbol{A}\)的列(行)向量组线性无关</p>
+<p>\(\Leftrightarrow \boldsymbol{A}\)与单位矩阵等价</p>
+<p>\(\Leftrightarrow 0\)不是矩阵\(\boldsymbol{A}\)的特征值.</p>
+</blockquote>
+<blockquote>
+<p>主要公式</p>
+<p>(1) 转置</p>
+<p>\((k\boldsymbol{A})^T=k\boldsymbol{A}^T\)  \((\boldsymbol{A}\boldsymbol{B})^T=\boldsymbol{B}^T\boldsymbol{A}^T\)  \((\boldsymbol{A}+\boldsymbol{B})^T=\boldsymbol{A}^T+\boldsymbol{B}^T\)</p>
+<p>(2) 可逆</p>
+<p>\((k\boldsymbol{A})^{-1}=\dfrac{1}{k}\boldsymbol{A}^{-1}\)  \((\boldsymbol{A}\boldsymbol{B})^{-1}=\boldsymbol{B}^{-1}\boldsymbol{A}^{-1}\)  \((\boldsymbol{A}^T)^{-1}=(\boldsymbol{A}^{-1})^T\)  \((\boldsymbol{A}^n)^{-1}=(\boldsymbol{A}^{-1})^n\)</p>
+<p>注意\((\boldsymbol{A}+\boldsymbol{B})^{-1}\)没有运算法则, 利用\(\boldsymbol{E}\)作恒等变形是常用技巧.</p>
+<p>(3) 伴随</p>
+<p>\((k\boldsymbol{A})^*=k^{n-1}\boldsymbol{A}^*\)  \((\boldsymbol{A}\boldsymbol{B})^*=\boldsymbol{B}^*\boldsymbol{A}^*\)  \(\boldsymbol{A}\boldsymbol{A}^*=\boldsymbol{A}^*\boldsymbol{A}=|\boldsymbol{A}|\boldsymbol{E}\)  \((\boldsymbol{A}^*)^{-1}=(\boldsymbol{A}^{-1})^*=\dfrac{1}{|\boldsymbol{A}|}\boldsymbol{A}\)</p>
+<p>\((\boldsymbol{A}^*)^T=(\boldsymbol{A}^T)^*\)  \((\boldsymbol{A}^*)^*=|\boldsymbol{A}|^{n-2}\boldsymbol{A}\)  \[
+r(\boldsymbol{A}^*)=\begin{cases}
+n &amp; r(\boldsymbol{A})=n\\
+1 &amp; r(\boldsymbol{A})=n-1\\
+0 &amp; r(\boldsymbol{A})&lt;n-1
+\end{cases}
+\]</p>
+<p>(4) 秩</p>
+<p>\(r(\boldsymbol{A})=r(\boldsymbol{A}^T)=r(\boldsymbol{A}^T\boldsymbol{A})=r(k\boldsymbol{A})\)  \(r(\boldsymbol{A}+\boldsymbol{B})\leqslant r(\boldsymbol{A})+r(\boldsymbol{B})\)   \(r(\boldsymbol{A}\boldsymbol{B})\leqslant\min(r(\boldsymbol{A}),r(\boldsymbol{B}))\)</p>
+<p>\(\boldsymbol{A}\)可逆\(\Rightarrow r(\boldsymbol{A}\boldsymbol{B})=r(\boldsymbol{B}),r(\boldsymbol{B}\boldsymbol{A})=r(\boldsymbol{B})\)   \(\boldsymbol{A}\)列满秩\(\Rightarrow r(\boldsymbol{A}\boldsymbol{B})=r(\boldsymbol{B})\)</p>
+<p>\(\boldsymbol{A}\)是\(m\times n\)矩阵, \(\boldsymbol{B}\)是\(n\times s\)矩阵, \(\boldsymbol{A}\boldsymbol{B}=\boldsymbol{O}\Rightarrow r(\boldsymbol{A})+r(\boldsymbol{B})\leqslant n\)</p>
+<p>\(\boldsymbol{A}\sim \boldsymbol{B}\Rightarrow r(\boldsymbol{A})=r(\boldsymbol{B}),r(\boldsymbol{A}+k\boldsymbol{E})=r(\boldsymbol{B}+k\boldsymbol{E})\)   \[
+r\left[ \begin{array}{cc}
+\boldsymbol{A} &amp; \boldsymbol{O}\\
+\boldsymbol{O} &amp; \boldsymbol{B}\\
+\end{array}\right] =r(\boldsymbol{A})+r(\boldsymbol{B})
+\]</p>
+<p>(5) 分块矩阵</p>
+<p>\[
+\left[ \begin{array}{cc}
+\boldsymbol{A} &amp; \boldsymbol{B}\\
+\boldsymbol{C} &amp; \boldsymbol{D}\\
+\end{array}\right] ^T=\left[ \begin{array}{cc}
+\boldsymbol{A}^T &amp; \boldsymbol{C}^T\\
+\boldsymbol{B}^T &amp; \boldsymbol{D}^T\\
+\end{array}\right]
+\]  \[
+\left[ \begin{array}{cc}
+\boldsymbol{B} &amp; \boldsymbol{O}\\
+\boldsymbol{O} &amp; \boldsymbol{C}\\
+\end{array}\right] ^n=\left[ \begin{array}{cc}
+\boldsymbol{B}^n &amp; \boldsymbol{O}\\
+\boldsymbol{O} &amp; \boldsymbol{C}^n\\
+\end{array}\right]
+\]  \[
+\left[ \begin{array}{cc}
+\boldsymbol{O} &amp; \boldsymbol{B}\\
+\boldsymbol{C} &amp; \boldsymbol{O}\\
+\end{array}\right] ^{-1}=\left[ \begin{array}{cc}
+\boldsymbol{O} &amp; \boldsymbol{C}^{-1}\\
+\boldsymbol{B}^{-1} &amp; \boldsymbol{O}\\
+\end{array}\right]
+\]</p>
+</blockquote>
+<blockquote>
+<p>(1) \(\boldsymbol{A}\boldsymbol{B}=\boldsymbol{O}\nRightarrow \boldsymbol{A}=\boldsymbol{O}\)或\(\boldsymbol{B}=\boldsymbol{O}\).</p>
+<p>(2) \(\boldsymbol{A}\boldsymbol{B}=\boldsymbol{A}\boldsymbol{C},\boldsymbol{A}\neq \boldsymbol{O}\nRightarrow \boldsymbol{B}=\boldsymbol{C}\).</p>
+</blockquote>
+<blockquote>
+<p>已知2个\(n\)维列向量\(\boldsymbol{\alpha}\)和\(\boldsymbol{\beta}\)</p>
+<p>(1) \(\boldsymbol{\alpha}\boldsymbol{\beta}^T\)和\(\boldsymbol{\beta}\boldsymbol{\alpha}^T\)是\(n\)阶矩阵(互为转置), \(\boldsymbol{\alpha}^T\boldsymbol{\beta}\)和\(\boldsymbol{\beta}^T\boldsymbol{\alpha}\)是一个数(相同), 正好为矩阵\(\boldsymbol{\alpha}\boldsymbol{\beta}^T\)的迹.</p>
+<p>(2) \(0\leqslant r(\boldsymbol{\alpha}\boldsymbol{\beta}^T)\leqslant r(\boldsymbol{\alpha})\leqslant1\).</p>
+<p>(3) 若\(\boldsymbol{A}=\boldsymbol{\alpha}\boldsymbol{\beta}^T\neq \boldsymbol{O}\Leftrightarrow r(\boldsymbol{A})=1\), 即任两行成比例;</p>
+<p>此时有\(\boldsymbol{A}^n=l^{n-1}\boldsymbol{A}\), 其中\(l=\boldsymbol{\alpha}^T\boldsymbol{\beta}=\boldsymbol{\beta}^T\boldsymbol{\alpha}=\displaystyle\sum a_{ii}\).</p>
+</blockquote>
+<blockquote>
+<p>特殊矩阵的\(n\)次方</p>
+<p>(一)</p>
+<p>若\[
+\boldsymbol{A}=\left[ \begin{array}{ccc}
+0 &amp; 0 &amp; 0\\
+a &amp; 0 &amp; 0\\
+* &amp; b &amp; 0\\
+\end{array}\right]
+\], 则\[
+\boldsymbol{A}^2=\left[ \begin{array}{ccc}
+0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0\\
+ab &amp; 0 &amp; 0\\
+\end{array}\right] ,\boldsymbol{A}^3=\boldsymbol{O}
+\].</p>
+<p>若\[
+\boldsymbol{A}=\left[ \begin{array}{cccc}
+0 &amp; a &amp; * &amp; *\\
+0 &amp; 0 &amp; b &amp; *\\
+0 &amp; 0 &amp; 0 &amp; c\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+\end{array}\right]
+\], 则\[
+\boldsymbol{A}^3=\left[ \begin{array}{cccc}
+0 &amp; 0 &amp; 0 &amp; abc\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0\\
+\end{array}\right] ,\boldsymbol{A}^4=\boldsymbol{O}
+\].</p>
+<p>(二) 若\(\boldsymbol{P}^{-1}\boldsymbol{A}\boldsymbol{P}=\boldsymbol{B}\), 则\(\boldsymbol{P}^{-1}\boldsymbol{A}^n\boldsymbol{P}=\boldsymbol{B}^n\), 从而\(\boldsymbol{A}^n=\boldsymbol{P}\boldsymbol{B}^n\boldsymbol{P}^{-1}\).</p>
+<p>一般\(\boldsymbol{A}\sim\boldsymbol{\Lambda}\)(对角矩阵), \(\boldsymbol{A}^n=\boldsymbol{P}\boldsymbol{\Lambda}^n\boldsymbol{P}^{-1}\), 而对角矩阵的\(n\)次方是容易计算的, 有<br>\[
+\left[ \begin{array}{ccc}
+\lambda_1 &amp;  &amp; \\
+&amp; \lambda_2 &amp; \\
+&amp;  &amp; \lambda_3\\
+\end{array}\right] ^n=\left[ \begin{array}{ccc}
+\lambda_1^n &amp;  &amp; \\
+&amp; \lambda_2^n &amp; \\
+&amp;  &amp; \lambda_3^n\\
+\end{array}\right]
+\]</p>
+<p>\(\lambda_1,\lambda_2,\lambda_3\)为\(\boldsymbol{A}\)的特征值, \(\boldsymbol{P}=[\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\boldsymbol{\alpha}_3]\), 其中\(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\boldsymbol{\alpha}_3\)为\(\boldsymbol{A}\)的特征向量.</p>
+</blockquote>
+<blockquote>
+<p>初等矩阵的\(n\)次幂是同类型的初等矩阵(以初等矩阵的逆即\(n=-1\)为例)</p>
+<p>(1) 倍加 \(\boldsymbol{E}_{ij}^{n}(k)=\boldsymbol{E}_{ij}(nk)\)<br>\[
+\left[ \begin{array}{ccc}
+1 &amp;  &amp; \\
+2 &amp; 1 &amp; \\
+&amp;  &amp; 1\\
+\end{array}\right] ^{-1}=\left[ \begin{array}{ccc}
+1 &amp;  &amp; \\
+-2 &amp; 1 &amp; \\
+&amp;  &amp; 1\\
+\end{array}\right]
+\]</p>
+<p>(2) 互换 \[
+\boldsymbol{E}_{ij}^{n}=\begin{cases}
+\boldsymbol{E} &amp; n=2k\\
+\boldsymbol{E}_{ij} &amp; n=2k-1
+\end{cases}
+\]<br>\[
+\left[ \begin{array}{ccc}
+1 &amp;  &amp; \\
+&amp;  &amp; 1\\
+&amp; 1 &amp; \\
+\end{array}\right] ^{-1}=\left[ \begin{array}{ccc}
+1 &amp;  &amp; \\
+&amp;  &amp; 1\\
+&amp; 1 &amp; \\
+\end{array}\right]
+\]</p>
+<p>(3) 乘\(k\) \(\boldsymbol{E}_{i}^{n}(k)=\boldsymbol{E}_{i}(k^n)\)<br>\[
+\left[ \begin{array}{ccc}
+1 &amp;  &amp; \\
+&amp; 1 &amp; \\
+&amp;  &amp; 2\\
+\end{array}\right] ^{-1}=\left[ \begin{array}{ccc}
+1 &amp;  &amp; \\
+&amp; 1 &amp; \\
+&amp;  &amp; \dfrac{1}{2}\\
+\end{array}\right]
+\]</p>
+<p>矩阵经初等变换后秩不变.</p>
+</blockquote>
+<blockquote>
+<p>补充结论</p>
+<p>(1) \[
+\left| \begin{array}{cc}
+\boldsymbol{A} &amp; \boldsymbol{B}\\
+\boldsymbol{B} &amp; \boldsymbol{A}\\
+\end{array}\right| =|\boldsymbol{A}+\boldsymbol{B}|\cdot|\boldsymbol{A}-\boldsymbol{B}|
+\]</p>
+<p>(2) 设\[
+\boldsymbol{H}=\left[ \begin{array}{cc}
+\boldsymbol{A} &amp; \boldsymbol{C}\\
+\boldsymbol{O} &amp; \boldsymbol{B}\\
+\end{array}\right]
+\], 则\[
+[\boldsymbol{H},\boldsymbol{E}]=\left[ \begin{array}{cccc}
+\boldsymbol{A} &amp; \boldsymbol{C} &amp; \boldsymbol{E} &amp; \boldsymbol{O}\\
+\boldsymbol{O} &amp; \boldsymbol{B} &amp; \boldsymbol{O} &amp; \boldsymbol{E}\\
+\end{array}\right] \xrightarrow{\text{行变换}}\left[ \begin{array}{cccc}
+\boldsymbol{E} &amp; \boldsymbol{O} &amp; \boldsymbol{A}^{-1} &amp; -\boldsymbol{A}^{-1}\boldsymbol{C}\boldsymbol{B}^{-1}\\
+\boldsymbol{O} &amp; \boldsymbol{E} &amp; \boldsymbol{O} &amp; \boldsymbol{B}^{-1}\\
+\end{array}\right]
+\],</p>
+<p>\[
+\boldsymbol{H}^{-1}=\left[ \begin{array}{cc}
+\boldsymbol{A}^{-1} &amp; -\boldsymbol{A}^{-1}\boldsymbol{C}\boldsymbol{B}^{-1}\\
+\boldsymbol{O} &amp; \boldsymbol{B}^{-1}\\
+\end{array}\right]
+\].</p>
+<p>(3) \(\boldsymbol{A}^{-1}\boldsymbol{B}\)可由\([\boldsymbol{A}|\boldsymbol{B}]\xrightarrow{\text{行变换}}[\boldsymbol{E}|\boldsymbol{A}^{-1}\boldsymbol{B}]\)来求.</p>
+</blockquote>
+<hr>
+<a href="/2026/07/24/linear-algebra-ch01/" title="线性代数 Ch01：行列式">上一篇：线性代数 Ch01：行列式</a> · <a href="/2026/07/24/linear-algebra-ch03/" title="线性代数 Ch03：n维向量">下一篇：线性代数 Ch03：n维向量</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/24/linear-algebra-ch03/">← Next 线性代数 Ch03：n维向量</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/24/linear-algebra-ch01/">线性代数 Ch01：行列式 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

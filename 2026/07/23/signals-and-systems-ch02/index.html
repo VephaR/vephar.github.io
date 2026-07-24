@@ -1,0 +1,245 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>信号与系统 Ch02：连续时间系统的时域分析 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>信号与系统 Ch02：连续时间系统的时域分析</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T05:02:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:18:47.939Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.signals-table { display: block; overflow-x: auto; text-align: center; }
+.signals-table table { width: auto; margin-left: auto; margin-right: auto; }
+.signals-table th, .signals-table td { text-align: center !important; vertical-align: middle; }
+</style>
+
+<blockquote>
+<p>本文是“信号与系统”系列的第 02 章，主题为“连续时间系统的时域分析”。</p>
+</blockquote>
+<a href="/2026/07/23/signals-and-systems-ch01/" title="信号与系统 Ch01：信号的函数表示与系统分析方法">上一篇：信号的函数表示与系统分析方法</a> · <a href="/2026/07/23/signals-and-systems-ch03/" title="信号与系统 Ch03：连续信号的傅里叶分析">下一篇：连续信号的傅里叶分析</a>
+
+<span id="more"></span>
+
+<h2 id="微分方程的建立"><a href="#微分方程的建立" class="headerlink" title="微分方程的建立"></a>微分方程的建立</h2><blockquote>
+<p>电阻端口电流与电压的关系<br>\[
+u_R(t)=Ri_R(t)
+\]</p>
+</blockquote>
+<blockquote>
+<p>电感端口电流与电压的关系<br>\[
+u_L(t)=L\frac{\mathrm{d}i_L(t)}{\mathrm{d}t}
+\]<br>\[
+i_L(t)=i_L(0^-)+\frac{1}{L}\int_{0}^{t}u_L(\tau){\rm d}\tau
+\]</p>
+</blockquote>
+<blockquote>
+<p>电容端口电流与电压的关系<br>\[
+i_C(t)=C\frac{\mathrm{d}u_C(t)}{\mathrm{d}t}
+\]<br>\[
+u_C(t)=u_C(0^-)+\frac{1}{C}\int_{0}^{t}i_C(\tau){\rm d}\tau
+\]</p>
+</blockquote>
+<h2 id="微分方程的求解"><a href="#微分方程的求解" class="headerlink" title="微分方程的求解"></a>微分方程的求解</h2><blockquote>
+<p>微分方程的齐次解(自由响应)</p>
+<p>(1) 特征根为单根</p>
+<p>如果\(n\)个特征根各不相同(无重根), 则微分方程的齐次解为<br>\[
+r_c(t)=\sum_{i=1}^{n}A_ie^{\lambda_it}
+\]</p>
+<p>(2) 特征根有重根</p>
+<p>如果\(\lambda_1\)是特征方程的\(k\)重根, 即有\(\lambda_1=\lambda_2=\cdots=\lambda_k\), 而其余\((n-k)\)个根\(\lambda_{k+1},\lambda_{k+2},\cdots,\lambda_n\)都是单根, 则微分方程的齐次解为<br>\[
+r_c(t)=\sum_{i=1}^{k}A_it^{k-i}e^{\lambda_it}+\sum_{j=k+1}^{n}A_je^{\lambda_jt}
+\]</p>
+</blockquote>
+<blockquote>
+<p>微分方程的特解(强迫响应)</p>
+<div class="table-container signals-table">
+<table>
+<thead><tr><th>激励函数 &#92;(e(t)&#92;)</th><th>特解 &#92;(r_p(t)&#92;)</th></tr></thead>
+<tbody><tr><td>&#92;(E&#92;)（常数）</td><td>&#92;(B&#92;)</td></tr><tr><td>&#92;(t^p&#92;)</td><td>&#92;(B_pt^p+B_{p-1}t^{p-1}+\cdots+B_1t+B_0&#92;)</td></tr><tr><td rowspan="2">&#92;(e^{\alpha t}&#92;)</td><td>&#92;(Be^{\alpha t}&#92;)，&#92;(\alpha&#92;) 不是特征根</td></tr><tr><td>&#92;(Bt^ke^{\alpha t}&#92;)，&#92;(\alpha&#92;) 是 &#92;(k&#92;) 重特征根</td></tr><tr><td>&#92;(\cos\beta t&#92;)</td><td rowspan="2">&#92;(B_1\cos\beta t+B_2\sin\beta t&#92;)</td></tr><tr><td>&#92;(\sin\beta t&#92;)</td></tr></tbody>
+</table>
+</div>
+
+<p>特解仅在\(t&gt;0\)时成立.</p>
+</blockquote>
+<h2 id="零输入响应与零状态响应"><a href="#零输入响应与零状态响应" class="headerlink" title="零输入响应与零状态响应"></a>零输入响应与零状态响应</h2><blockquote>
+<p>线性非时变系统的完全响应<br>\[
+r(t)=\underbrace{\sum_{i=1}^{n}A_{zp_i}e^{\lambda_it}}_{\text{零输入响应\(r_{zp}(t)\)}}+\underbrace{\sum_{i=1}^{n}A_{zs_i}e^{\lambda_it}+r_p(t)}_{\text{零状态响应\(r_{zs}(t)\)}}=\underbrace{\sum_{i=1}^{n}A_ie^{\lambda_it}}_{\text{自由相应}}+\underbrace{r_p(t)}_{\text{强迫响应}}
+\]</p>
+<p>求解的进阶技巧</p>
+<p>(1) 零输入响应在时域求解, 零状态响应在\(s\)域求解.<br>\[
+r_{zs}(t)=h(t)*e(t)\Leftrightarrow R_{zs}(s)=H(s)\cdot E(s)
+\]</p>
+<p>(2) 完全响应中与系统函数\(H(s)\)极点有关的响应为自由响应, 其余为强迫响应.</p>
+</blockquote>
+<blockquote>
+<p>初始条件的确定<br>\[
+\underbrace{r^{(k)}(0^+)}_{\text{初始条件}}=\underbrace{r^{(k)}(0^-)}_{\text{起始状态}}+\underbrace{r_{zs}^{(k)}(0^+)}_{\text{跳变量}}
+\]</p>
+<p>\[
+r(0^+)=r(t)\big|_{t=0}
+\]</p>
+<p>\[
+r(0^-)=r_{zp}(t)\big|_{t=0}
+\]</p>
+<p>\[
+r_{zs}(0^+)=r_{zs}(t)\big|_{t=0}
+\]</p>
+</blockquote>
+<blockquote>
+<p>求响应及其各阶导数在激励函数不连续点处的跳变量(冲激响应待定系数匹配法)</p>
+<p>设<br>\[
+\begin{cases}
+r''(t)=A\delta'(t)+B\delta(t)+C\varepsilon(t)\\
+r'(t)=A\delta(t)+B\varepsilon(t)\\
+r(t)=A\varepsilon(t)
+\end{cases}
+\]</p>
+<p>则<br>\[
+\begin{cases}
+r_{zs}''(0^+)=C\\
+r_{zs}'(0^+)=B\\
+r_{zs}(0^+)=A
+\end{cases}
+\]</p>
+</blockquote>
+<h2 id="卷积积分及其性质"><a href="#卷积积分及其性质" class="headerlink" title="卷积积分及其性质"></a>卷积积分及其性质</h2><blockquote>
+<p>卷积积分<br>\[
+r(t)=e(t)*h(t)=\int_{-\infty}^{\infty}e(\tau)h(t-\tau){\rm d}\tau
+\]</p>
+</blockquote>
+<blockquote>
+<p>卷积积分的性质</p>
+<p>(1) 交换律<br>\[
+f_1(t)*f_2(t)=f_2(t)*f_1(t)
+\]</p>
+<p>(2) 分配律<br>\[
+f_1(t)*[f_2(t)+f_3(t)]=f_1(t)*f_2(t)+f_1(t)*f_3(t)
+\]</p>
+<p>(3) 结合律<br>\[
+[f_1(t)*f_2(t)]*f_3(t)=f_1(t)*[f_2(t)*f_3(t)]
+\]</p>
+<p>(4) 微分和积分</p>
+<p>若\(f(t)=f_1(t)*f_2(t)=f_2(t)*f_1(t)\), 则<br>\[
+f^{(i)}(t)=f_1^{(j)}(t)*f_2^{(i-j)}(t)
+\]</p>
+<p>(5) 尺度变换性质</p>
+<p>若\(f(t)=f_1(t)*f_2(t)=f_2(t)*f_1(t)\), 则<br>\[
+|a|f\left(\frac{t}{a}\right)=f_1\left(\frac{t}{a}\right)*f_2\left(\frac{t}{a}\right)
+\]</p>
+<p>(6) 时移性质</p>
+<p>若\(f(t)=f_1(t)*f_2(t)=f_2(t)*f_1(t)\), 则<br>\[
+f(t-t_0)=f_1(t)*f_2(t-t_0)=f_1(t-t_0)*f_2(t)
+\]<br>\[
+f(t-t_1-t_2)=f_1(t-t_1)*f_2(t-t_2)=f_1(t-t_2)*f_2(t-t_1)
+\]</p>
+</blockquote>
+<blockquote>
+<p>与冲激函数或阶跃函数的卷积<br>\[
+f(t)*\delta^{(k)}(t)=f^{(k)}(t)
+\]<br>\[
+f(t)*\delta^{(k)}(t-t_0)=f^{(k)}(t-t_0)
+\]</p>
+</blockquote>
+<blockquote>
+<p>两个不同宽度的矩形脉冲卷积</p>
+<p>若\(f_1(t)\)的脉宽为\(\tau_1\), 脉高为\(E_1\); \(f_2(t)\)的脉宽为\(\tau_2(\tau_1&gt;\tau_2)\), 脉高为\(E_2\). 则\(f_1(t)*f_2(t)\)的结果为梯形, 其上底宽为\((\tau_1-\tau_2)\), 下底宽为\((\tau_1+\tau_2)\), 高为\(E_1\cdot E_2\cdot\tau_2\).</p>
+</blockquote>
+<blockquote>
+<p>具有对称性的函数卷积<br>\[
+\mbox{偶函数}*\mbox{奇函数}=\mbox{奇函数}
+\]<br>\[
+\mbox{偶函数}*\mbox{偶函数}=\mbox{偶函数}
+\]<br>\[
+\mbox{奇函数}*\mbox{奇函数}=\mbox{偶函数}
+\]</p>
+</blockquote>
+<hr>
+<a href="/2026/07/23/signals-and-systems-ch01/" title="信号与系统 Ch01：信号的函数表示与系统分析方法">上一篇：信号的函数表示与系统分析方法</a> · <a href="/2026/07/23/signals-and-systems-ch03/" title="信号与系统 Ch03：连续信号的傅里叶分析">下一篇：连续信号的傅里叶分析</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch03/">← Next 信号与系统 Ch03：连续信号的傅里叶分析</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/signals-and-systems-ch01/">信号与系统 Ch01：信号的函数表示与系统分析方法 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E5%BB%BA%E7%AB%8B"><span class="toc-number">1.</span> <span class="toc-text">微分方程的建立</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E6%B1%82%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">微分方程的求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%B6%E8%BE%93%E5%85%A5%E5%93%8D%E5%BA%94%E4%B8%8E%E9%9B%B6%E7%8A%B6%E6%80%81%E5%93%8D%E5%BA%94"><span class="toc-number">3.</span> <span class="toc-text">零输入响应与零状态响应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E7%A7%AF%E5%88%86%E5%8F%8A%E5%85%B6%E6%80%A7%E8%B4%A8"><span class="toc-number">4.</span> <span class="toc-text">卷积积分及其性质</span></a></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

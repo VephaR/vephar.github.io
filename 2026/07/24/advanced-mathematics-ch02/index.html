@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>高等数学 Ch02：一元函数微分学 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>高等数学 Ch02：一元函数微分学</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-24T02:02:00.000Z" id="date"> 2026-07-24</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:46:47.672Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.math-table { margin: 1.2em auto; overflow-x: auto; }
+.math-table table { width: auto; min-width: 60%; margin: 0 auto; border-collapse: collapse; }
+.math-table th, .math-table td { text-align: center; vertical-align: middle; padding: .45em .8em; white-space: nowrap; }
+.math-table-note { margin: -.5em auto 1em; text-align: center; color: #888; font-size: .92em; }
+.post-content mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
+</style>
+
+<blockquote>
+<p>本文是“高等数学”系列的第 02 章，主题为“一元函数微分学”。</p>
+</blockquote>
+<a href="/2026/07/24/advanced-mathematics-ch01/" title="高等数学 Ch01：函数、极限与连续">上一篇：高等数学 Ch01：函数、极限与连续</a> · <a href="/2026/07/24/advanced-mathematics-ch03/" title="高等数学 Ch03：一元函数积分学">下一篇：高等数学 Ch03：一元函数积分学</a>
+
+<span id="more"></span>
+
+<blockquote>
+<p>\(f(x)\)可导\(\Rightarrow f(x)\)连续, \(f(x)\)可导\(\nRightarrow f'(x)\)连续, \(f(x)\)可导\(\nRightarrow\lim\limits_{x\rightarrow x_0}f'(x)\)存在.</p>
+<p>反例: \[
+f(x)=\begin{cases}
+x^2\sin\dfrac{1}{x} &amp; x\neq0\\[2pt]
+0 &amp; x=0
+\end{cases}
+\]处处可导, 但\(\lim\limits_{x\rightarrow0}f'(x)\)不存在.</p>
+</blockquote>
+<blockquote>
+<p>可导、连续与洛必达法则的条件辨析</p>
+<p>可导的定义:  \(\lim\limits_{x\rightarrow x_0}\dfrac{f(x)-f(x_0)}{x-x_0}\)存在\(\Rightarrow f(x)\)在\(x=x_0\)处可导.</p>
+<p>连续的定义: \(\lim\limits_{x\rightarrow x_0}f(x)=f(x_0)\)\(\Rightarrow f(x)\)在\(x=x_0\)处连续.</p>
+<p>洛必达法则的条件:</p>
+<p>(1) \(\lim\limits_{x\rightarrow x_0}f(x)=\lim\limits_{x\rightarrow x_0}g(x)=0(\infty)\);</p>
+<p>(2) \(f(x)\)与\(g(x)\)在\(x_0\)的某去心邻域内可导, 且\(g'(x)\neq0\), 若仅设\(f'(x_0)\)与\(g'(x_0)\)存在, 而未设\(f'(x)\)与\(g'(x)\)在\(x=x_0\)的去心邻域内存在, 则不能使用洛必达法则;</p>
+<p>(3) \(\lim\limits_{x\rightarrow x_0}\dfrac{f'(x)}{g'(x)}\)存在(或\(\infty\)).</p>
+<p>推论: \(f'(x_0)=\lim\limits_{x\rightarrow x_0}\dfrac{f(x)-f(x_0)}{x-x_0}\xrightarrow{\text{洛}}\lim\limits_{x\rightarrow x_0}f'(x)\)的条件:</p>
+<p>(1) \(\lim\limits_{x\rightarrow x_0}f(x)=f(x_0)\), 即\(f(x)\)在\(x=x_0\)处连续;</p>
+<p>(2) \(f(x)\)在\(x_0\)的某去心邻域内可导.</p>
+<p>应用: 求具体点的导数值</p>
+<p>(方法一) 使用定义: \(f'(x_0)=\lim\limits_{x\rightarrow x_0}\dfrac{f(x)-f(x_0)}{x-x_0}\);</p>
+<p>(方法二) 若\(f(x)\)在\(x=x_0\)处连续, 且\(f(x)\)在\(x_0\)的某去心邻域内可导, 则先对\(f(x)\)进行求导, 再代入\(x_0\)即可得到\(f'(x_0)\).</p>
+</blockquote>
+<blockquote>
+<p>求导公式</p>
+<p>\((x^\alpha)'=\alpha x^{\alpha-1}\)  \((a^x)'=a^x\ln a\)  \((\log_ax)'=\dfrac{1}{x\ln a}\)  \((\ln|x|)'=\dfrac{1}{x}\)</p>
+<p>\((\tan x)'=\sec^2x\)  \((\cot x)'=-\csc^2x\)  \((\sec x)'=\sec x\tan x\)  \((\csc x)'=-\csc x\cot x\)</p>
+<p>\((\arcsin x)'=\dfrac{1}{\sqrt{1-x^2}}\)  \((\arccos x)'=-\dfrac{1}{\sqrt{1-x^2}}\)  \((\arctan x)'=\dfrac{1}{1+x^2}\)  \((\mathrm{arccot} x)'=-\dfrac{1}{1+x^2}\)</p>
+</blockquote>
+<blockquote>
+<p>反函数的导数</p>
+<p>\[
+f'(x)=\frac{1}{\varphi'(y)}\text{或}\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{1}{\dfrac{\mathrm{d}x}{\mathrm{d}y}}\text{, 注意}\dfrac{\mathrm{d}^2y}{\mathrm{d}x^2}\neq\dfrac{1}{\dfrac{\mathrm{d}^2x}{\mathrm{d}y^2}}.
+\]</p>
+</blockquote>
+<blockquote>
+<p>高阶导数</p>
+<p>若\(f(x)\)在\(x_0\)处\(n\)阶可导, 则在\(x_0\)的某邻域内\(f(x)\)必有一切低于\(n\)阶的导数.</p>
+<p>推论: 洛必达法则结论</p>
+<p>(1) 若\(f(x)\)在\(x_0\)处\(n\)阶可导, 洛必达最多用到\(n-1\)阶导.</p>
+<p>(2) 若\(f(x)\)在\(x_0\)处\(n\)阶连续可导, 洛必达最多用到\(n\)阶导.</p>
+</blockquote>
+<blockquote>
+<p>高阶导数常用公式</p>
+<p>\((\sin x)^{(n)}=\sin\left( x+\dfrac{n\pi}{2}\right)\)  \((\cos x)^{(n)}=\cos\left( x+\dfrac{n\pi}{2}\right)\)</p>
+<p>\((u\pm v)^{(n)}=u^{(n)}\pm v^{(n)}\)  \((uv)^{(n)}=\displaystyle\sum_{k=0}^{n}C_n^ku^{(k)}v^{(n-k)}\)</p>
+<p>\(\sin^{(n)}(ax+b)=\sin\left( ax+b+\dfrac{n\pi}{2}\right) \cdot a^n\)</p>
+</blockquote>
+<blockquote>
+<p>(1) \(f(x)\)为奇函数\(\Rightarrow f'(x)\)为偶函数; \(f(x)\)为偶函数\(\Rightarrow f'(x)\)为奇函数.</p>
+<p>(2) \(f(x)\)为周期函数\(\Rightarrow f'(x)\)为周期函数.</p>
+</blockquote>
+<blockquote>
+<p>设\(f(x)=\varphi(x)|x-a|\), 其\(\varphi(x)\)在\(x=a\)处连续, 则\(f(x)\)在\(x=a\)处可导的充要条件是\(\varphi(a)=0\).</p>
+<p>推论: \(|x|\)在\(x=0\)处不可导, 但\(x|x|\)在\(x=0\)处可导.</p>
+</blockquote>
+<blockquote>
+<p>(1) \(f(x)\)可导\(\nLeftrightarrow|f(x)|\)可导.</p>
+<p>(2) 设\(f(x)\)连续,</p>
+<p>若\(f(x_0)\neq0\), 则\(|f(x)|\)在\(x_0\)处可导\(\Leftrightarrow f(x)\)在\(x_0\)处可导.</p>
+<p>若\(f(x_0)=0\), 则\(|f(x)|\)在\(x_0\)处可导\(\Leftrightarrow f'(x_0)=0\).</p>
+</blockquote>
+<blockquote>
+<p>微分中值定理</p>
+<p>设\(f(x),g(x)\)在\([a,b]\)上连续, 在\((a,b)\)内可导,</p>
+<p>(1) 罗尔定理: \(f(a)=f(b)\Rightarrow\)至少存在一个\(\xi\in(a,b)\), 使\(f'(\xi)=0\).</p>
+<p>(2) 拉格朗日定理: 至少存在一个\(\xi\in(a,b)\), 使\(\dfrac{f(b)-f(a)}{b-a}=f'(\xi)\).</p>
+<p>(3) 柯西定理: \(g'(x)\neq0\Rightarrow\)至少存在一个\(\xi\in(a,b)\), 使\(\dfrac{f(b)-f(a)}{g(b)-g(a)}=\dfrac{f'(\xi)}{g'(\xi)}\).</p>
+<p>罗尔定理推论: 在区间\(I\)上\(f^{(n)}(x)\neq0\), 则方程\(f(x)=0\)在\(I\)上最多有\(n\)个实根.</p>
+</blockquote>
+<blockquote>
+<p>泰勒公式</p>
+<p>(1) 皮亚诺型余项</p>
+<p>设\(f(x)\)在\(x_0\)点\(n\)阶可导, 则<br>\[
+f(x)=f(x_0)+f'(x_0)(x-x_0)+\cdots+\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+R_n(x)
+\]</p>
+<p>其中\(R_n(x)=o(x-x_0),x\rightarrow x_0\).</p>
+<p>若\(x_0=0\), 则得麦克劳林公式<br>\[
+f(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2+\cdots+\frac{f^{(n)}(0)}{n!}x^n+R_n(x)
+\]</p>
+<p>(2) 拉格朗日型余项</p>
+<p>设\(f(x)\)在含\(x_0\)的区间\((a,b)\)内\(n+1\)阶可导, 那么对\(\forall x\in(a,b)\), 至少存在一个\(\xi\), 使<br>\[
+f(x)=f(x_0)+f'(x_0)(x-x_0)+\cdots+\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+R_n(x)
+\]</p>
+<p>其中\(R_n(x)=\dfrac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}\), \(\xi\)在\(x_0\)与\(x\)之间.</p>
+<p>注意:</p>
+<p>(1) 当需要建立函数与高阶导数的关系时, 可以考虑使用泰勒公式.</p>
+<p>(2) 皮亚诺型余项用于分析函数在某点上的局部形态, 适合求函数的极限和极值;</p>
+<p>拉格朗日型余项用于分析函数在区间内的整体形态, 适合求函数的最值、证明不等式.</p>
+<p>(3) 哪个点提供的信息多, 就在哪个点上使用泰勒公式.</p>
+</blockquote>
+<blockquote>
+<p>极值的必要条件</p>
+<p>(1) 可导函数: 极值只可能在驻点上取得.</p>
+<p>(2) 一般函数: 极值只可能在驻点和导数不存在的点上取得.</p>
+<p>极值的充分条件</p>
+<p>(1) 第一充分条件: 设\(f'(x_0)=0\) (驻点)或\(f(x)\)在\(x_0\)处连续(导数不存在的点), 且在\(x_0\)的某去心邻域内可导, \(f'(x)\)在\(x_0\)的两侧异号\(\Rightarrow f(x)\)在\(x_0\)处有极值.</p>
+<p>(2) 第二充分条件: 若\(f'(x_0)=0,f''(x_0)\neq0,\Rightarrow f(x)\)在\(x_0\)处取得极值, \(f''(x_0)&gt;0\)时取得极小值, \(f''(x_0)&lt;0\)时取得极大值.</p>
+<p>(3) 第三充分条件: 若\(f'(x_0)=f''(x_0)=\cdots=f^{(n-1)}(x_0)=0,f^{(n)}(x_0)\neq0\), 则</p>
+<p>当\(n\)为偶数时, \(f(x)\)在\(x_0\)处有极值, 其中\(f^{(n)}(x_0)&gt;0\)时取得极小值, \(f^{(n)}(x_0)&lt;0\)时取得极大值;</p>
+<p>当\(n\)为奇数时, \(f(x)\)在\(x_0\)处无极值.</p>
+</blockquote>
+<blockquote>
+<p>曲线的凹向</p>
+<p>定义: 设\(f(x)\)在区间\(I\)上连续, 如果对\(I\)上任意两点\(x_1,x_2\), 恒有<br>\[
+f\left( \frac{x_1+x_2}{2}\right) &lt;\frac{f(x_1)+f(x_2)}{2}
+\]</p>
+<p>则称\(f(x)\)在\(I\)上的图形是凹的; 如果恒有<br>\[
+f\left( \frac{x_1+x_2}{2}\right) &gt;\frac{f(x_1)+f(x_2)}{2}
+\]</p>
+<p>则称\(f(x)\)在\(I\)上的图形是凸的.</p>
+<p>判定: 若在区间\(I\)上\(f''(x)&gt;0(&lt;0)\), 则曲线\(y=f(x)\)在\(I\)上是凹(凸)的.</p>
+</blockquote>
+<blockquote>
+<p>曲线的拐点</p>
+<p>若连续曲线\(y=f(x)\)在点\((x_0,f(x_0))\)邻近两侧凹凸性相反, 则称点\((x_0,f(x_0))\)为曲线\(y=f(x)\)的拐点.</p>
+<p>(1) 将极值点的必要条件和充分条件中的导数阶数提高一阶即可得到拐点的一个必要条件和三个充分条件.</p>
+<p>(2) “零点、驻点、极值点、拐点”中, 只有拐点是“点”, 需要写成\((x_0,f(x_0))\)的形式.</p>
+</blockquote>
+<blockquote>
+<p>曲线的渐近线</p>
+<p>(1) 水平渐近线: \(\lim\limits_{x\rightarrow\infty}f(x)=A\Rightarrow y=A\)是\(y=f(x)\)的水平渐近线.</p>
+<p>(2) 铅直渐近线: \(\lim\limits_{x\rightarrow x_0}f(x)=\infty\Rightarrow x=x_0\)是\(y=f(x)\)的铅直渐近线.</p>
+<p>(3) 斜渐近线: \(\lim\limits_{x\rightarrow\infty}\dfrac{f(x)}{x}=a,\lim\limits_{x\rightarrow\infty}(f(x)-ax)=b\Rightarrow y=ax+b\)是\(y=f(x)\)的斜渐近线.</p>
+<p>若\(f(x)=ax+b+\alpha(x)\), 其中\(a\neq0,\lim\limits_{x\rightarrow\infty}\alpha(x)=0\), 则\(y=f(x)\)有斜渐近线\(y=ax+b\).</p>
+</blockquote>
+<blockquote>
+<p>平面曲线的曲率</p>
+<p>由方程\(y=y(x)\)给出的曲线曲率<br>\[
+K=\frac{|y''|}{(1+y'^2)^{\frac{3}{2}}}
+\]</p>
+<p>曲率半径\(R=\dfrac{1}{K}\).</p>
+</blockquote>
+<blockquote>
+<p>微分中值定理有关的证明题</p>
+<p>(一) 证明存在一个点\(\xi\in(a,b)\), 使\(F[\xi,f(\xi),f'(\xi)]=0\).</p>
+<p>求解的一般方法: 将要证的结论改写成\(F[\xi,f(\xi),f'(\xi)]=0\), 然后构造辅助函数用罗尔定理(难点在于辅助函数的构造).</p>
+<p>构造辅助函数的方法:</p>
+<p>(1) 分析法(还原法): 分析得到\(g(x)\)满足\(g'(x)=F[x,f(x),f'(x)]\).</p>
+<p>(2) 微分方程法:</p>
+<p>i.求微分方程\(F(x,y,y')=0\)的通解\(H(x,y)=C\).</p>
+<p>ii.设辅助函数: \(g(x)=H(x,f(x))\).</p>
+<p>(3) 常用辅助函数:</p>
+<div class="table-container math-table">
+<table>
+<thead><tr><th>欲证</th><th>构造</th></tr></thead>
+<tbody><tr><td>&#92;(f'(&#92;xi)+g(&#92;xi)f(&#92;xi)=0&#92;)</td><td>&#92;(F(x)=f(x)e^{&#92;int g(x)&#92;mathrm{d}x}&#92;)</td></tr><tr><td>&#92;(f'(&#92;xi)+g'(&#92;xi)f(&#92;xi)=0&#92;)</td><td>&#92;(F(x)=f(x)e^{g(x)}&#92;)</td></tr><tr><td>&#92;(f'(&#92;xi)+&#92;lambda f(&#92;xi)=0&#92;)</td><td>&#92;(F(x)=e^{&#92;lambda x}f(x)&#92;)</td></tr><tr><td>&#92;(&#92;alpha f'(&#92;xi)+&#92;beta f(&#92;xi)=0&#92;)</td><td>&#92;(F(x)=e^{&#92;frac{&#92;beta}{&#92;alpha}x}f(x)(&#92;alpha&#92;neq0)&#92;)</td></tr><tr><td>&#92;(f'(&#92;xi)+f(&#92;xi)=0&#92;)</td><td>&#92;(F(x)=e^xf(x)&#92;)</td></tr><tr><td>&#92;(f'(&#92;xi)-f(&#92;xi)=0&#92;)</td><td>&#92;(F(x)=e^{-x}f(x)&#92;)</td></tr><tr><td>&#92;(f'(&#92;xi)g(&#92;xi)+g'(&#92;xi)f(&#92;xi)=0&#92;)</td><td>&#92;(F(x)=f(x)g(x)&#92;)</td></tr><tr><td>&#92;(&#92;xi f'(&#92;xi)+nf(&#92;xi)=0&#92;)</td><td>&#92;(F(x)=x^nf(x)&#92;)</td></tr><tr><td>&#92;(f'(&#92;xi)g(&#92;xi)-g'(&#92;xi)f(&#92;xi)=0&#92;)</td><td>&#92;(F(x)=&#92;dfrac{f(x)}{g(x)}&#92;)</td></tr><tr><td>&#92;(&#92;xi f'(&#92;xi)-nf(&#92;xi)=0&#92;)</td><td>&#92;(F(x)=&#92;dfrac{f(x)}{x^n}&#92;)</td></tr></tbody>
+</table>
+</div>
+
+<p>(扩展) 当要证的命题出现更高阶导时, 需分多次构造辅助函数用罗尔定理, 如证明存在一个点\(\eta\in(a,b)\), 使\(f''(\eta)+f'(\eta)-6f(\eta)=0\), 一般步骤如下:</p>
+<p>i. 由此式得到方程<br>\[
+r^2+r-6=0\Rightarrow(r+3)(r-2)=0
+\]</p>
+<p>ii. 先构造辅助函数\(F(x)=e^{3x}f(x)\), 则有\(F'(x)=e^{3x}[f'(x)+3f(x)]\).</p>
+<p>iii. 用罗尔定理证明存在点\(\xi_1,\xi_2\in(a,b)\), 使\(F'(\xi_1)=F'(\xi_2)=0\).</p>
+<p>iv. 再次构造辅助函数\(G(x)=e^{-2x}[f'(x)+3f(x)]\), 则有\(G'(x)=e^{-2x}[f''(x)+f'(x)-6f(x)]\).</p>
+<p>v. 用罗尔定理证明存在点\(\eta\in(\xi_1,\xi_2)\), 使\(f''(\eta)+f'(\eta)-6f(\eta)=0\).</p>
+<p>(二) 证明存在两个中值点\(\xi,\eta\in(a,b),F[\xi,\eta,f(\xi),f(\eta),f'(\xi),f'(\eta)]=0\).</p>
+<p>求解的一般方法:</p>
+<p>(1) 不要求\(\xi\neq\eta\)</p>
+<p>i. 将含\(\xi\)和含\(\eta\)的表达式分别移到等式两端.</p>
+<p>ii. 根据\(\xi\)和\(\eta\)出现的形式选取拉格朗日中值定理或者柯西中值定理.</p>
+<p>iii. 在同一区间\([a,b]\)上用两次中值定理即可得证.</p>
+<p>(2) 要求\(\xi\neq\eta\)</p>
+<p>将区间\([a,b]\)分为两个子区间, 在两个子区间上分别用拉格朗日中值定理. 难点在于分点\(c\)的选取, 通常采用“逆推法”, 即在区间\([a,c]\)和\([c,b]\)上用拉格朗日中值定理, 然后代入要证的结论来选取合适的\(c\).</p>
+</blockquote>
+<hr>
+<a href="/2026/07/24/advanced-mathematics-ch01/" title="高等数学 Ch01：函数、极限与连续">上一篇：高等数学 Ch01：函数、极限与连续</a> · <a href="/2026/07/24/advanced-mathematics-ch03/" title="高等数学 Ch03：一元函数积分学">下一篇：高等数学 Ch03：一元函数积分学</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/24/advanced-mathematics-ch03/">← Next 高等数学 Ch03：一元函数积分学</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/24/advanced-mathematics-ch01/">高等数学 Ch01：函数、极限与连续 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>

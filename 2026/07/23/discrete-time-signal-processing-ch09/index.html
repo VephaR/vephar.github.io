@@ -1,0 +1,328 @@
+<!DOCTYPE html><html lang="en" theme-mode="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>离散时间信号处理 Ch09：离散傅里叶变换的计算 | 星の里屋</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="preload" as="font" crossorigin="anonymous" href="/font/Bender.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/BenderLight.ttf"><link rel="preload" as="font" crossorigin="anonymous" href="/font/JetBrainsMono-Regular.woff2"><link rel="stylesheet" href="/css/arknights.css"><style>@font-face {
+  font-family: Bender;
+  src: local('Bender'), url("/font/Bender.ttf"), url("/font/Bender.otf");
+}
+@font-face {
+  font-family: BenderLight;
+  src: local('BenderLight'), url("/font/BenderLight.ttf");
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}
+</style><script>var config = {"root":"/","code_fold":15,"search":{"preload":false,"activeHolder":"Enter here","blurHolder":"Search","noResult":"Data \"$0\" not found"},"code":{"codeInfo":"$0 - $1 lines","copy":"copy"}}</script><link type="text/css" rel="stylesheet" href="/lib/encrypt/hbe.style.css"><script src="//unpkg.com/mermaid@10.5.0/dist/mermaid.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+ menuSettings: {
+   zoom: "None"
+ },
+ showMathMenu: false,
+ jax: ["input/TeX","output/CommonHTML"],
+ extensions: ["tex2jax.js"],
+ TeX: {
+   extensions: ["AMSmath.js","AMSsymbols.js"],
+   equationNumbers: {
+     autoNumber: "AMS"
+   }
+ },
+ tex2jax: {
+   inlineMath: [["\\(", "\\)"]],
+   displayMath: [["\\[", "\\]"]]
+ }
+});</script><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lightgallery.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-zoom.css"><link type="text/css" rel="stylesheet" href="//unpkg.com/lightgallery@2.7.1/css/lg-thumbnail.css"><link type="text/css" rel="stylesheet" href="/lib/fontawesome/css/all.min.css"><script>if (window.localStorage.getItem('theme-mode') === 'light')
+ document.documentElement.setAttribute('theme-mode', 'light')
+if (window.localStorage.getItem('theme-mode') === 'dark')
+ document.documentElement.setAttribute('theme-mode', 'dark')</script><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.woff2") format('woff2');
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><style>:root {
+ --dark-background: url('https://ak.hypergryph.com/assets/index/images/ak/pc/bk.jpg');
+ --light-background: url('/img/bk.jpg');
+ --theme-encrypt-confirm: 'confirm'
+}</style><script defer src="/js/arknights.js"></script><script defer src="/js/search.js"></script><script defer type="module">import mermaid from '//unpkg.com/mermaid@10.5.0/dist/mermaid.esm.mjs';
+window.mermaid = mermaid;
+code.paintMermaid();
+</script><script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script><script>MathJax.Hub.Config({
+  menuSettings: {
+    zoom: "None"
+  },
+  showMathMenu: false,
+  jax: ["input/TeX","output/CommonHTML"],
+  extensions: ["tex2jax.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js"],
+    equationNumbers: {
+      autoNumber: "AMS"
+    }
+  },
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]]
+  }
+});
+</script><script async src="//unpkg.com/lightgallery@2.7.1/lightgallery.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script><script async src="//unpkg.com/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script><script async src="/lib/encrypt/hbe.js"></script><script async src="/js/pjax.js"></script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js','data-pjax','.busuanzi'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><script class="pjax-js">reset= () => {document.querySelector('.lg-container')?.remove()
+lightGallery(document.getElementById('post-bg'), {
+  plugins: [lgZoom,lgThumbnail],
+  selector: '.item-img'})}</script><script>window.addEventListener("load",() => {pjax = new Pjax({
+ cacheBust: false,
+ selectors: ['title','article','#aside-block','.pjax-js'],
+ switches: {'article': Pjax.switches.sideBySide},
+ switchesOptions: {
+   'article': {
+     classNames: {
+       remove: "pjax-out",
+       add: "pjax-in"
+     }
+   }
+ }
+});
+document.addEventListener("pjax:complete", reset);reset()})</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading" style="opacity: 0;"><div class="loadingBar left"></div><div class="loadingBar right"></div></div><main><header class="closed"><div class="navBtn"><i class="navBtnIcon"><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span><span class="navBtnIconBar"></span></i></div><nav><div class="navItem" id="search-header"><span class="navItemTitle"><input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Search" spellcheck="false" maxlength="50" type="text" id="search-input"></span></div><div class="navItem" id="search-holder"></div><div class="search-popup" tabindex="0"><div id="search-result"></div></div><ol class="navContent"><li class="navItem"><a class="navBlock" href="/"><span class="navItemTitle">Home</span></a></li><li class="navItem" matchdata="categories,tags"><a class="navBlock" href="/archives/"><span class="navItemTitle">Archives</span></a></li></ol></nav></header><article><div id="post-bg"><div id="post-title"><h1>离散时间信号处理 Ch09：离散傅里叶变换的计算</h1><div id="post-info"><span>First Post: <div class="control"><time datetime="2026-07-23T06:09:00.000Z" id="date"> 2026-07-23</time></div></span><br><span>Last Update: <div class="control"><time datetime="2026-07-24T02:21:06.826Z" id="updated"> 2026-07-24</time></div></span></div></div><hr><div id="post-content"><style>
+.signals-table { display: block; overflow-x: auto; text-align: center; }
+.signals-table table { width: auto; margin-left: auto; margin-right: auto; }
+.signals-table th, .signals-table td { text-align: center !important; vertical-align: middle; }
+.signals-figure { text-align: center; margin: 1.25rem 0; }
+.signals-figure a { display: block; max-width: 100%; margin: 0 auto; }
+.signals-figure img { display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
+.signals-figure-caption { margin: .5rem 0 0; text-align: center; opacity: .8; }
+</style>
+
+<blockquote>
+<p>本文是“离散时间信号处理”系列的第 09 章，主题为“离散傅里叶变换的计算”。</p>
+</blockquote>
+<a href="/2026/07/23/discrete-time-signal-processing-ch08/" title="离散时间信号处理 Ch08：离散傅里叶变换">上一篇：离散傅里叶变换</a> · <a href="/2026/07/23/discrete-time-signal-processing-ch10/" title="离散时间信号处理 Ch10：利用离散傅里叶变换的信号傅里叶分析">下一篇：利用离散傅里叶变换的信号傅里叶分析</a>
+
+<span id="more"></span>
+
+<h1 id="离散傅里叶变换的计算"><a href="#离散傅里叶变换的计算" class="headerlink" title="离散傅里叶变换的计算"></a>离散傅里叶变换的计算</h1><h2 id="离散傅里叶变换的高效计算"><a href="#离散傅里叶变换的高效计算" class="headerlink" title="离散傅里叶变换的高效计算"></a>离散傅里叶变换的高效计算</h2><blockquote>
+<p>直接计算DFT的运算次数<br>\[
+\begin{aligned}
+X[k]=&amp;\sum_{n=0}^{N-1}x[n]W_N^{kn},0\leq k\leq N-1\\
+=&amp;\sum_{n=0}^{N-1}[(\mathcal{R}e\{x[n]\}\mathcal{R}e\{W_N^{kn}\}-\mathcal{I}m\{x[n]\}\mathcal{I}m\{W_N^{kn}\})+\\
+&amp;j(\mathcal{R}e\{x[n]\}\mathcal{I}m\{W_N^{kn}\}+\mathcal{I}m\{x[n]\}\mathcal{R}e\{W_N^{kn}\})],k=0,1,\cdots,N-1
+\end{aligned}
+\]</p>
+<p>(1) 计算DFT的每一个值需要\(N\)次复数乘法和\((N-1)\)次复数加法.</p>
+<p>(2) 计算DFT的\(N\)个值需要\(N^2\)次复数乘法和\(N(N-1)\)次复数加法.</p>
+<p>(3) 每个复数乘法需要4次实数乘法和2次实数加法, 每个复数加法需要2次实数加法.</p>
+<p>(4) 序列\(x[n]\)的傅里叶变换的直接计算法需要\(4N^2\)次实数乘法和\(N(4N-2)\)次实数加法.</p>
+</blockquote>
+<h2 id="按时间抽取的FFT算法"><a href="#按时间抽取的FFT算法" class="headerlink" title="按时间抽取的FFT算法"></a>按时间抽取的FFT算法</h2><blockquote>
+<p>基2-DIT-FFT算法</p>
+<p>将\(x[n]\)分解为偶数点和奇数点, 可得<br>\[
+\begin{aligned}
+X[k]&amp;=\sum_{n\text{为偶数}}x[n]W_N^{nk}+\sum_{n\text{为奇数}}x[n]W_N^{nk}\\
+&amp;=\sum_{r=0}^{(N/2)-1}x[2r]W_N^{2rk}+\sum_{r=0}^{(N/2)-1}x[2r+1]W_N^{(2r+1)k}\\
+&amp;=\sum_{r=0}^{(N/2)-1}x[2r]W_{N/2}^{rk}+W_N^k\sum_{r=0}^{(N/2)-1}x[2r+1]W_{N/2}^{rk}\\
+&amp;=G[k]+W_N^kH[k],k=0,1,\cdots,N-1\\
+\end{aligned}
+\]</p>
+<p>其中\(G[k]\)是原序列偶数点的\(\dfrac{N}{2}\)点DFT, \(H[k]\)是原序列奇数点的\(\dfrac{N}{2}\)点DFT.</p>
+<p>将上式化简后得到\(N\)点DFT的表示为<br>\[
+\begin{cases}
+X[k]=G[k]+W_N^kH[k]\\[2pt]
+X\left[k+\dfrac{N}{2}\right]=G[k]-W_N^kH[k]
+\end{cases},k=0,1,\cdots,\frac{N}{2}-1
+\]</p>
+<p>(1) 对于没有利用对称性的直接计算, 需要\(N^2\)次复数乘法和加法(\(N-1\)近似为\(N\)).</p>
+<p>(2) 分解成两个\(\dfrac{N}{2}\)点DFT计算, 需要\(\left(N+\dfrac{N^2}{2}\right)\)次复数乘法和加法.</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch09/9-3.svg" style="width: 42.4%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch09/9-3.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch09/9-3.svg" alt="把一个 N 点 DFT 计算分解成两个 N/2 点 DFT 计算的按时间抽取流图"></a>
+<p class="signals-figure-caption">把一个 \(N\) 点 DFT 计算分解成两个 \(\dfrac{N}{2}\) 点 DFT 计算的按时间抽取流图</p>
+</div>
+</blockquote>
+<blockquote>
+<p>进一步分解\(\dfrac{N}{2}\)点DFT直至将计算简化为2点DFT的计算</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch09/9-7.svg" style="width: 45.6%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch09/9-7.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch09/9-7.svg" alt="按时间抽取将8点DFT计算完全分解的流图"></a>
+<p class="signals-figure-caption">按时间抽取将8点DFT计算完全分解的流图</p>
+</div>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch09/9-6.svg" style="width: 18.8%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch09/9-6.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch09/9-6.svg" alt="2点DFT的流图"></a>
+<p class="signals-figure-caption">2点DFT的流图</p>
+</div>
+
+<p>(1) 对于\(N\)点的DFT, 可以分解成\(\upsilon=\log_2N\)级的运算.</p>
+<p>(2) 每一级的蝶形计算次数为\(\dfrac{N}{2}\), 因此总的蝶形计算次数为\(\dfrac{N\log_2N}{2}\).</p>
+<p>(3) 每次蝶形计算需要2次复数乘法和加法, 因此总共需要\(N\log_2N\)次复数乘法和加法.</p>
+</blockquote>
+<blockquote>
+<p>利用系数\(W_N^r\)的对称性和周期性进一步减少计算量<br>\[
+W_N^{r+N/2}=W_N^{N/2}W_N^r=-W_N^r
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch09/9-8.svg" style="width: 72%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch09/9-8.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch09/9-8.svg" alt="(a) 基本蝶形计算流图(b) 只需要1次复数乘法的简化蝶形计算流图"></a>
+<p class="signals-figure-caption">(a) 基本蝶形计算流图(b) 只需要1次复数乘法的简化蝶形计算流图</p>
+</div>
+
+<p>化简后每次蝶形计算需要1次复数乘法和2次复数加法, 因此总共需要\(\dfrac{N\log_2N}{2}\)次复数乘法和\(N\log_2N\)次复数加法.</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch09/9-10.svg" style="width: 42.4%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch09/9-10.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch09/9-10.svg" alt="基2-DIT-FFT算法实现8点DFT的最终流图"></a>
+<p class="signals-figure-caption">基2-DIT-FFT算法实现8点DFT的最终流图</p>
+</div>
+</blockquote>
+<blockquote>
+<p>同址运算</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch09/9-11.svg" style="width: 35.6%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch09/9-11.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch09/9-11.svg" alt="同址运算的流图"></a>
+<p class="signals-figure-caption">同址运算的流图</p>
+</div>
+
+<p>(1) 若将\(X_m[p]\)和\(X_m[q]\)分别存放在原存放\(X_{m-1}[p]\)和\(X_{m-1}[q]\)的同一存储寄存器中, 每一行节点共用一个寄存器, 则实现全部计算只需要一列存储\(N\)个复数的寄存器, 这种计算称为同址计算.</p>
+<p>(2) 同址运算必须满足蝶形计算结构, 1个\(N\)点的基2-DIT-FFT结构需要\(N\)个寄存器.</p>
+</blockquote>
+<blockquote>
+<p>倒位序</p>
+<p>为了实现同址运算, 输入数据的存储和读取需要按照倒位序存储.对于8点流图, 用二进制形式来标注整个数据, 则可以得到</p>
+<div class="table-container signals-table">
+<table>
+<tbody><tr><td>&#92;(X_0[000]=x[000]&#92;)</td><td>&#92;(X_0[100]=x[001]&#92;)</td></tr><tr><td>&#92;(X_0[001]=x[100]&#92;)</td><td>&#92;(X_0[101]=x[101]&#92;)</td></tr><tr><td>&#92;(X_0[010]=x[010]&#92;)</td><td>&#92;(X_0[110]=x[011]&#92;)</td></tr><tr><td>&#92;(X_0[011]=x[110]&#92;)</td><td>&#92;(X_0[111]=x[111]&#92;)</td></tr></tbody>
+</table>
+</div>
+
+<p>若\((n_2,n_1,n_0)\)为序列\(x[n]\)中标号的二进制表示, 则序列值\(x[n_2,n_1,n_0]\)存放在数列\(X_0[n_0,n_1,n_2]\)的位置上.</p>
+</blockquote>
+<h2 id="按频率抽取的FFT算法"><a href="#按频率抽取的FFT算法" class="headerlink" title="按频率抽取的FFT算法"></a>按频率抽取的FFT算法</h2><blockquote>
+<p>基2-DIF-FFT算法</p>
+<p>将\(X[k]\)分解为偶序号频率样本和奇序号频率样本, 可得<br>\[
+\begin{aligned}
+X[2r]&amp;=\sum_{n=0}^{N-1}x[n]W_N^{2rn}\\
+&amp;=\sum_{n=0}^{(N/2)-1}x[n]W_N^{2rn}+\sum_{n=N/2}^{N-1}x[n]W_N^{2rn}\\
+&amp;=\sum_{n=0}^{(N/2)-1}x[n]W_N^{2rn}+\sum_{n=0}^{(N/2)-1}x\left[n+\dfrac{N}{2}\right]W_{N}^{2r(n+N/2)}\\
+&amp;=\sum_{n=0}^{(N/2)-1}\left(x[n]+x\left[n+\dfrac{N}{2}\right]\right)W_{N/2}^{rn},r=0,1,\cdots,\dfrac{N}{2}-1
+\end{aligned}
+\]<br>\[
+\begin{aligned}
+X[2r+1]&amp;=\sum_{n=0}^{N-1}x[n]W_N^{n(2r+1)}\\
+&amp;=\sum_{n=0}^{(N/2)-1}x[n]W_N^{n(2r+1)}+\sum_{n=N/2}^{N-1}x[n]W_N^{n(2r+1)}\\
+&amp;=\sum_{n=0}^{(N/2)-1}x[n]W_N^{n(2r+1)}+\sum_{n=0}^{(N/2)-1}x\left[n+\dfrac{N}{2}\right]W_{N}^{[n+(N/2)](2r+1)}\\
+&amp;=\sum_{n=0}^{(N/2)-1}\left(x[n]-x\left[n+\dfrac{N}{2}\right]\right)W_N^nW_{N/2}^{nr},r=0,1,\cdots,\dfrac{N}{2}-1
+\end{aligned}
+\]</p>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch09/9-19.svg" style="width: 33.6%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch09/9-19.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch09/9-19.svg" alt="按频率抽取分解的2点DFT的流图"></a>
+<p class="signals-figure-caption">按频率抽取分解的2点DFT的流图</p>
+</div>
+<div class="signals-figure">
+<a href="/2026/07/23/discrete-time-signal-processing-ch09/9-20.svg" style="width: 42.4%;" class='item-img' data-src='/2026/07/23/discrete-time-signal-processing-ch09/9-20.svg'><img src="/2026/07/23/discrete-time-signal-processing-ch09/9-20.svg" alt="8点DFT计算按频率抽取完全分解的流图"></a>
+<p class="signals-figure-caption">8点DFT计算按频率抽取完全分解的流图</p>
+</div>
+
+<p>按频率抽取的流图和按时间抽取的流图互为转置关系.</p>
+</blockquote>
+<h2 id="补充知识点"><a href="#补充知识点" class="headerlink" title="补充知识点"></a>补充知识点</h2><blockquote>
+<p>用1次\(N\)点FFT算法来计算2个\(N\)点实序列DFT的方法</p>
+<p>已知\(N\)点实序列\(x_1[n]\)和\(x_2[n]\), 为了只用1次FFT算法得到这两个序列的DFT, 令\(x[n]=x_1[n]+jx_2[n]\), 经过FFT计算后得到的序列为\(X[k]\), 则有<br>\[
+\begin{aligned}
+x_1[n]=\frac{x[n]+x^*[n]}{2}\Leftrightarrow X_1[k]&amp;=\frac{X[k]+X^*[((-k))_N]}{2}\\
+&amp;=X_{ep}[k]\\
+&amp;=\frac{1}{2}(\mathcal{R}e\{X[k]\}+\mathcal{R}e\{X[N-k]\})+\frac{j}{2}(\mathcal{I}m\{X[k]\}-\mathcal{I}m\{X[N-k]\})
+\end{aligned}
+\]<br>\[
+\begin{aligned}
+x_2[n]=\frac{x[n]-x^*[n]}{2j}\Leftrightarrow X_2[k]&amp;=\frac{X[k]-X^*[((-k))_N]}{2j}\\&amp;
+=-jX_{op}[k]\\
+&amp;=\frac{1}{2}(\mathcal{I}m\{X[k]\}+\mathcal{I}m\{X[N-k]\})-\frac{j}{2}(\mathcal{R}e\{X[k]\}-\mathcal{R}e\{X[N-k]\})
+\end{aligned}
+\]</p>
+<p>(扩展一) 可以将1个\(2N\)点实序列分解成2个\(N\)点实序列(偶数点和奇数点), 则得到用1次\(N\)点FFT算法来计算1个\(2N\)点实序列DFT的方法, 其中<br>\[
+x_1[n]=x[2n]\quad\quad x_2[n]=x[2n+1]
+\]</p>
+<p>构造\(y[n]=x_1[n]+jx_2[n]\), 其对应的DFT为\(Y[k]\), 则\(X_1[k]\)和\(X_2[k]\)分别可表示为<br>\[
+X_1[k]=\dfrac{1}{2}\{Y[k]+Y^*[N-k]\}
+\]<br>\[
+X_2[k]=\dfrac{1}{2j}\{Y[k]-Y^*[N-k]\}
+\]</p>
+<p>因此\(X[k]\)的\(2N\)点DFT可表示为<br>\[
+\begin{cases}
+X[k]=X_1[k]+W_{2N}^kX_2[k]\\
+X[k+N]=X_1[k]-W_{2N}^kX_2[k]
+\end{cases},k=0,1,\cdots,N-1
+\]</p>
+<p>(扩展二) 可以将实序列\(x_1[n]\)和\(x_2[n]\)进一步分解成对称和反对称序列, 则得到用1次\(N\)点FFT算法来计算4个\(N\)点实对称或反对称序列DFT的方法, 其中<br>\[
+x_1[n]=y_1[n]+y_3[n]\quad\quad x_2[n]=y_2[n]+y_4[n]
+\]</p>
+<p>则4个DFT分别可表示为<br>\[
+y_1[n]=y_1[N-n]\Leftrightarrow Y_1[k]=\mathcal{R}e\{X_1[k]\}=\frac{1}{2}(\mathcal{R}e\{X[k]\}+\mathcal{R}e\{X[N-k]\})
+\]<br>\[
+y_2[n]=y_2[N-n]\Leftrightarrow Y_2[k]=\mathcal{R}e\{X_2[k]\}=\frac{1}{2}(\mathcal{I}m\{X[k]\}+\mathcal{I}m\{X[N-k]\})
+\]<br>\[
+y_3[n]=-y_3[N-n]\Leftrightarrow Y_3[k]=j\mathcal{I}m\{X_1[k]\}=\frac{j}{2}(\mathcal{I}m\{X[k]\}-\mathcal{I}m\{X[N-k]\})
+\]<br>\[
+y_4[n]=-y_4[N-n]\Leftrightarrow Y_4[k]=j\mathcal{I}m\{X_2[k]\}=\frac{-j}{2}(\mathcal{R}e\{X[k]\}-\mathcal{R}e\{X[N-k]\})
+\]</p>
+</blockquote>
+<blockquote>
+<p>已知一个实对称序列\(x[n]\), 考虑序列\(u[n]\)<br>\[
+u[n]=x[((n+1))_N]-x[((n-1))_N]
+\]</p>
+<p>\(u[n]\)满足以下关系<br>\[
+\begin{aligned}
+u[N-n]&amp;=x[((N-n+1))_N]-x[((N-n-1))_N]\\
+&amp;=x[((n-1))_N]-x[((n+1))_N]\\
+&amp;=-u[n]
+\end{aligned}
+\]</p>
+<p>因此\(u[n]\)是一个反对称序列.</p>
+</blockquote>
+<blockquote>
+<p>用FFT算法来计算IDFT的方法</p>
+<p>(方法一) 已知IDFT的计算公式为<br>\[
+x[n]=\frac{1}{N}\sum_{k=0}^{N-1}X[k]W_N^{-kn},0\leq n\leq N-1
+\]</p>
+<p>等式两边取共轭<br>\[
+x^*[n]=\frac{1}{N}\sum_{k=0}^{N-1}X^*[k]W_N^{kn}\Rightarrow Nx^*[n]=\sum_{k=0}^{N-1}X^*[k]W_N^{kn}
+\]</p>
+<p>因此通过FFT算法来计算IDFT的流程为<br>\[
+X[k]\xrightarrow{\text{共轭}}X^*[k]\xrightarrow{\text{FFT}}Nx^*[n]\xrightarrow{\frac{1}{N}}x^*[n]\xrightarrow{\text{共轭}}x[n]
+\]</p>
+<p>(方法二) 直接将\(X[k]\)输入FFT得到的输出为<br>\[
+g[n]=\sum_{k=0}^{N-1}X[k]W_N^{kn}
+\]</p>
+<p>\(g[n]\)进行翻转后的DFT为<br>\[
+\begin{aligned}
+g[((N-n))_N]&amp;=\sum_{k=0}^{N-1}X[k]W_N^{k(N-n)}\\
+&amp;=\sum_{k=0}^{N-1}X[k]W_N^{-kn}
+\end{aligned}
+\]</p>
+<p>因此通过FFT算法来计算IDFT的流程为<br>\[
+X[k]\xrightarrow{\text{FFT}}g[n]\xrightarrow{\text{翻转}}g[((N-n))_N]\xrightarrow{\frac{1}{N}}x[n]
+\]</p>
+</blockquote>
+<blockquote>
+<p>旋转因子\(W_N^{kn}\)的性质</p>
+<p>(1) 对称性<br>\[
+(W_N^{kn})^*=W_N^{-kn}=W_N^{k(N-n)}
+\]</p>
+<p>(2) 周期性<br>\[
+W_N^{kn}=W_N^{k(n+N)}=W_N^{(k+N)n}\quad\text{(}n\text{和}k\text{均以}N\text{为周期)}
+\]</p>
+<p>(3) 可约性<br>\[
+W_N^{kn}=W_{N/2}^{kn/2}=W_{2N}^{2kn}
+\]</p>
+<p>(4) 特殊值<br>\[
+W_N^0=1\quad\quad W_N^{N/2}=W_2^1=-1
+\]<br>\[
+W_N^{N/4}=W_4^1=-j\quad\quad W_N^{k+N/2}=-W_N^k
+\]</p>
+</blockquote>
+<hr>
+<a href="/2026/07/23/discrete-time-signal-processing-ch08/" title="离散时间信号处理 Ch08：离散傅里叶变换">上一篇：离散傅里叶变换</a> · <a href="/2026/07/23/discrete-time-signal-processing-ch10/" title="离散时间信号处理 Ch10：利用离散傅里叶变换的信号傅里叶分析">下一篇：利用离散傅里叶变换的信号傅里叶分析</a>
+<div id="paginator"></div></div><div id="post-footer"><div id="pages"><div class="footer-link" style="width: 50%;text-align:right;border-right:1px #fe2 solid"><a href="/2026/07/23/discrete-time-signal-processing-ch10/">← Next 离散时间信号处理 Ch10：利用离散傅里叶变换的信号傅里叶分析</a></div><div class="footer-link" style="width: 50%;right:1px;border-left:1px #fe2 solid"><a href="/2026/07/23/discrete-time-signal-processing-ch08/">离散时间信号处理 Ch08：离散傅里叶变换 Prev →</a></div></div></div></div><div class="bottom-btn"><div><a class="i-top" id="to-top" onClick="scrolls.scrolltop();" title="To Top" style="opacity: 0; display: none;">∧ </a><a class="i-index" id="to-index" href="#toc-div" title="To Catalog">≡</a><a class="i-color" id="color-mode" onClick="colorMode.change()" title="Change Theme"></a><a onclick="BgmControl()"><svg id="bgm-control" viewBox="0 0 30 34" fill="currentColor" style="width: 24px; transition: transform .3s;margin-top: 4px"><path d="M25.998 23.422V11.29h3.999v12.132h-3.999zM19.497 6.234h4.001v22.243h-4.001V6.234zM12.998.867h4v32.978h-4V.867zm-6.5 5.367h4.001v22.243H6.498V6.234zm-6.5 5.056h4v12.132h-4V11.29z"></path></svg><audio id="bgm" src="/audio/bgm.mp3" loop crossorigin="anonymous"> </audio></a></div></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo" style="margin:0;border-radius:0;"></a><h1 id="Dr"><a href="/">Prima Stella</a></h1><div id="description"><p></p></div></div><div id="aside-block"><div id="toc-div"><h1>Catalog</h1><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">1.</span> <span class="toc-text">离散傅里叶变换的计算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%9A%84%E9%AB%98%E6%95%88%E8%AE%A1%E7%AE%97"><span class="toc-number">1.1.</span> <span class="toc-text">离散傅里叶变换的高效计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E6%97%B6%E9%97%B4%E6%8A%BD%E5%8F%96%E7%9A%84FFT%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">按时间抽取的FFT算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E9%A2%91%E7%8E%87%E6%8A%BD%E5%8F%96%E7%9A%84FFT%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">按频率抽取的FFT算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">1.4.</span> <span class="toc-text">补充知识点</span></a></li></ol></li></ol></div></div><footer><nobr>Published with <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></nobr><wbr><nobr> Theme <a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknights</a></nobr><wbr><nobr> by <a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas></body></html>
